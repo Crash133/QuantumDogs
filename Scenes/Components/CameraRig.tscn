@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ds3ccfhhi7ys7"]
+
+[ext_resource type="Script" uid="uid://honj72vvvgw4" path="res://Scripts/CameraRig/rig.gd" id="1_pkqe1"]
+
+[node name="CameraRig" type="Node3D" unique_id=2012222051]
+script = ExtResource("1_pkqe1")
+
+[node name="PitchPivot" type="Node3D" parent="." unique_id=346030370]
+
+[node name="Camera3D" type="Camera3D" parent="PitchPivot" unique_id=470521252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0108566, 2.6193104)
+current = true

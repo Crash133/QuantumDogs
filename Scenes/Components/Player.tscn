@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://c4hlloppwe5s0"]
+
+[ext_resource type="PackedScene" uid="uid://duxqnl5n6bv15" path="res://Assets/Protagonist.glb" id="1_h427e"]
+[ext_resource type="Script" uid="uid://u3ha2am1xd40" path="res://Scripts/Player/character.gd" id="1_u8ca5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8ca5"]
+size = Vector3(0.5351676, 0.3485065, 0.35364914)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h427e"]
+size = Vector3(0.1683802, 0.31810018, 0.22428834)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k7dlr"]
+size = Vector3(0.16221987, 0.3241502, 0.13901886)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iy0k1"]
+size = Vector3(0.3632009, 0.6056044, 0.37592697)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm2kc"]
+size = Vector3(0.13264465, 0.5574918, 0.18359375)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
+size = Vector3(0.14379883, 0.51588273, 0.18835449)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5iqjx"]
+size = Vector3(2.3566132, 9.251465, 1.559082)
+
+[node name="Player" type="CharacterBody3D" unique_id=1929478343]
+script = ExtResource("1_u8ca5")
+
+[node name="ModelPivot" type="Node3D" parent="." unique_id=579815724]
+
+[node name="Protagonist" parent="ModelPivot" unique_id=102189170 instance=ExtResource("1_h427e")]
+
+[node name="Hurtboxes" type="Node3D" parent="." unique_id=1743211083]
+
+[node name="Head" type="BoneAttachment3D" parent="Hurtboxes" unique_id=2039136803]
+transform = Transform3D(4.3423896, 0, 0, 0, 4.342389, -3.8823993e-07, 0, 2.5882662e-07, 4.3423896, 0, 7.7350974, 0.107257225)
+bone_name = "spine.006"
+bone_idx = 18
+use_external_skeleton = true
+external_skeleton = NodePath("../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Head" unique_id=448116579]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Head/Area3D" unique_id=2089838820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016894769, 0.1669296, -0.038419664)
+shape = SubResource("BoxShape3D_u8ca5")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Arms" type="Node3D" parent="Hurtboxes" unique_id=1575740601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.450581e-09)
+
+[node name="Left Arm" type="Node3D" parent="Hurtboxes/Arms" unique_id=903995708]
+
+[node name="Forearm" type="BoneAttachment3D" parent="Hurtboxes/Arms/Left Arm" unique_id=213734091]
+transform = Transform3D(-2.3893914, 3.585127, -0.54224414, -3.625901, -2.36255, 0.35713652, -0.00016078795, 0.649288, 4.293573, 1.9210734, 6.2925577, -0.3843017)
+bone_name = "forearm.L"
+bone_idx = 10
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Left Arm/Forearm" unique_id=1774433778]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Arms/Left Arm/Forearm/Area3D" unique_id=235646001]
+transform = Transform3D(0.98672533, -0.0041670217, -0.16234997, 0.044009484, 0.9691337, 0.24258041, 0.15632474, -0.24650428, 0.9564508, -0.010710716, -0.17200372, 0.03787697)
+shape = SubResource("BoxShape3D_h427e")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Hand" type="BoneAttachment3D" parent="Hurtboxes/Arms/Left Arm" unique_id=169830319]
+transform = Transform3D(-2.5914721, 3.4669416, -0.34777206, -3.48434, -2.5785391, 0.25857708, -6.2433835e-05, 0.43336755, 4.32071, 2.8633718, 5.671596, -0.21364573)
+bone_name = "hand.L"
+bone_idx = 11
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Left Arm/Hand" unique_id=1874335445]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Arms/Left Arm/Hand/Area3D" unique_id=402099346]
+transform = Transform3D(1.0000012, 4.3745104e-07, -1.0697477e-06, 4.458517e-06, 1.000001, 1.3411045e-07, -8.267789e-07, -7.450581e-09, 1.0000002, -0.009016752, -0.13480043, -0.0046967454)
+shape = SubResource("BoxShape3D_k7dlr")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Right Arm" type="Node3D" parent="Hurtboxes/Arms" unique_id=1661543744]
+
+[node name="Forearm" type="BoneAttachment3D" parent="Hurtboxes/Arms/Right Arm" unique_id=420729725]
+transform = Transform3D(-2.3893914, -3.585127, 0.54224414, 3.625901, -2.36255, 0.35713652, 0.00016078795, 0.649288, 4.293573, -1.9210734, 6.2925577, -0.3843017)
+bone_name = "forearm.R"
+bone_idx = 14
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Right Arm/Forearm" unique_id=1851533815]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Arms/Right Arm/Forearm/Area3D" unique_id=1397469727]
+transform = Transform3D(0.98672533, -0.0041670217, -0.16234997, 0.044009484, 0.9691337, 0.24258041, 0.15632474, -0.24650428, 0.9564508, -0.010710716, -0.17200372, 0.03787697)
+shape = SubResource("BoxShape3D_h427e")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Hand" type="BoneAttachment3D" parent="Hurtboxes/Arms/Right Arm" unique_id=1701383312]
+transform = Transform3D(-2.5914721, -3.4669416, 0.34777206, 3.48434, -2.5785391, 0.25857708, 6.2433835e-05, 0.43336755, 4.32071, -2.8633718, 5.671596, -0.21364573)
+bone_name = "hand.R"
+bone_idx = 15
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Right Arm/Hand" unique_id=1141411452]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Arms/Right Arm/Hand/Area3D" unique_id=1127282124]
+transform = Transform3D(1.0000012, 4.3745104e-07, -1.0697477e-06, 4.458517e-06, 1.000001, 1.3411045e-07, -8.267789e-07, -7.450581e-09, 1.0000002, -0.009016752, -0.13480043, -0.0046967454)
+shape = SubResource("BoxShape3D_k7dlr")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Torso" type="BoneAttachment3D" parent="Hurtboxes" unique_id=214899885]
+transform = Transform3D(4.3423896, 0, 0, 0, 4.3406177, 0.124018095, 0, -0.12401792, 4.3406186, 0, 6.36464, -0.025620138)
+bone_name = "spine.003"
+bone_idx = 5
+use_external_skeleton = true
+external_skeleton = NodePath("../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Torso" unique_id=331481540]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Torso/Area3D" unique_id=460871836]
+transform = Transform3D(1, 0, 0, 0, 1, 1.3503884e-06, 0, -1.3503884e-06, 1, 0.02270042, -0.041492343, 0.01711727)
+shape = SubResource("BoxShape3D_iy0k1")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Legs" type="Node3D" parent="Hurtboxes" unique_id=1704412726]
+
+[node name="Left Leg" type="Node3D" parent="Hurtboxes/Legs" unique_id=777467900]
+
+[node name="Tight" type="BoneAttachment3D" parent="Hurtboxes/Legs/Left Leg" unique_id=560805686]
+transform = Transform3D(4.34239, 0, 0, 0, -4.329684, -0.33193344, 0, 0.33193412, -4.329673, -0.42555425, 4.655042, -0.053845596)
+bone_name = "thigh.R"
+bone_idx = 24
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Left Leg/Tight" unique_id=2041587603]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Legs/Left Leg/Tight/Area3D" unique_id=573190236]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, -2.2351742e-08, 0, -2.2351742e-07, 1, 0.009849556, 0.23430568, 0.002441451)
+shape = SubResource("BoxShape3D_mm2kc")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Shin" type="BoneAttachment3D" parent="Hurtboxes/Legs/Left Leg" unique_id=2020005792]
+transform = Transform3D(4.34239, 0, 0, 0, -4.321215, 0.42829815, 0, -0.42829537, -4.3212047, -0.42555425, 2.3327322, 0.12419374)
+bone_name = "shin.R"
+bone_idx = 25
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Left Leg/Shin" unique_id=1166635113]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Legs/Left Leg/Shin/Area3D" unique_id=2022257272]
+transform = Transform3D(1, 0, 0, 0, 0.9966068, 0.08231029, 0, -0.082310304, 0.99660695, -0.002203606, 0.2837876, -0.021057064)
+shape = SubResource("BoxShape3D_5h11f")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Right Leg" type="Node3D" parent="Hurtboxes/Legs" unique_id=817682764]
+
+[node name="Tight" type="BoneAttachment3D" parent="Hurtboxes/Legs/Right Leg" unique_id=690595205]
+transform = Transform3D(4.34239, 0, 0, 0, -4.329684, -0.33193344, 0, 0.33193412, -4.329673, 0.42555425, 4.655042, -0.053845596)
+bone_name = "thigh.L"
+bone_idx = 19
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Right Leg/Tight" unique_id=441616266]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Legs/Right Leg/Tight/Area3D" unique_id=915672546]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, -2.2351742e-08, 0, -2.2351742e-07, 1, 0.009849556, 0.23430568, 0.002441451)
+shape = SubResource("BoxShape3D_mm2kc")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="Shin" type="BoneAttachment3D" parent="Hurtboxes/Legs/Right Leg" unique_id=1986555235]
+transform = Transform3D(4.34239, 0, 0, 0, -4.321215, 0.42829815, 0, -0.42829537, -4.3212047, 0.42555425, 2.3327322, 0.12419374)
+bone_name = "shin.L"
+bone_idx = 20
+use_external_skeleton = true
+external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+
+[node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Right Leg/Shin" unique_id=233843634]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtboxes/Legs/Right Leg/Shin/Area3D" unique_id=463334003]
+transform = Transform3D(1, 0, 0, 0, 0.9966068, 0.08231029, 0, -0.082310304, 0.99660695, 0.028808594, 0.2792796, -0.02068474)
+shape = SubResource("BoxShape3D_5h11f")
+debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2017241136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013112903, 4.661377, 0.27954102)
+shape = SubResource("BoxShape3D_5iqjx")
+debug_color = Color(0.95974445, 0.7983308, 0, 0.94509804)
+
+[editable path="ModelPivot/Protagonist"]
