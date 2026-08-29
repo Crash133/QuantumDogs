@@ -13,13 +13,14 @@ class_name CameraRig
 
 var pitch := -15.0
 var yaw := 0.0
+var follow_speed_mult := 1.0
 
 func _process(delta: float) -> void:
 	var target_position := orbit_point.global_position
 
 	global_position = global_position.lerp(
 		target_position,
-		follow_speed * delta
+		follow_speed * follow_speed_mult * delta
 	)
 	
 	rotation.y = yaw

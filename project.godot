@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="EOL"
-run/main_scene="uid://j1v738ts03mu"
+run/main_scene="uid://brp41fv6aauig"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,18 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "yellow",
+"res://Build/": "gray",
+"res://Resources/": "orange",
+"res://Scenes/": "red",
+"res://Scripts/": "blue",
+"res://Vendor/": "teal",
+"res://addons/": "gray"
+}
 
 [input]
 

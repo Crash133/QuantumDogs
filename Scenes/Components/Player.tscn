@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://duxqnl5n6bv15" path="res://Assets/Protagonist.glb" id="1_h427e"]
 [ext_resource type="Script" uid="uid://u3ha2am1xd40" path="res://Scripts/Player/character.gd" id="1_u8ca5"]
+[ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/dash_manager.tscn" id="3_iy0k1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8ca5"]
 size = Vector3(0.5351676, 0.3485065, 0.35364914)
@@ -200,5 +201,7 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013112903, 4.661377, 0.27954102)
 shape = SubResource("BoxShape3D_5iqjx")
 debug_color = Color(0.95974445, 0.7983308, 0, 0.94509804)
+
+[node name="DashManager" parent="." unique_id=706154543 instance=ExtResource("3_iy0k1")]
 
 [editable path="ModelPivot/Protagonist"]
