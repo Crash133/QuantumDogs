@@ -7,6 +7,8 @@ class_name DashManager extends Node
 @export var dash_time_buffering := 0.1
 @export var dash_speed_curve: Curve
 
+signal dash_end()
+
 var dashing = false
 var in_cooldown = false
 
@@ -36,6 +38,7 @@ func is_dashing() -> bool:
 
 func _on_duration_timeout() -> void:
 	dashing = false
+	dash_end.emit()
 
 func _on_cooldown_timeout() -> void:
 	in_cooldown = false

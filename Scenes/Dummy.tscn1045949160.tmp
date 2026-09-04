@@ -1,0 +1,591 @@
+[gd_scene format=3 uid="uid://brp41fv6aauig"]
+
+[ext_resource type="Script" uid="uid://bbq0mq6kui6fu" path="res://Scripts/main.gd" id="1_7go7v"]
+[ext_resource type="PackedScene" uid="uid://ds3ccfhhi7ys7" path="res://Scenes/Components/CameraRig.tscn" id="1_s2l5p"]
+[ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_7go7v"]
+[ext_resource type="Script" uid="uid://hctnj3c78bhg" path="res://Scripts/health_component.gd" id="4_b43vc"]
+[ext_resource type="PackedScene" uid="uid://bxleb0pxhiep1" path="res://Scenes/Components/Enemy.tscn" id="5_4js3i"]
+[ext_resource type="Texture2D" uid="uid://bp01k0nu4jpyn" path="res://Assets/Images/steel_ground.jpg" id="5_bmbhi"]
+[ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/DashManager.tscn" id="7_b43vc"]
+[ext_resource type="Script" uid="uid://bdad428wm7d3p" path="res://Scenes/spawner.gd" id="7_urm7v"]
+[ext_resource type="Texture2D" uid="uid://dltwblwymnt1o" path="res://icon.svg" id="8_e6k8e"]
+[ext_resource type="Shader" uid="uid://0m60c6obe4vh" path="res://Shaders/StyleFill.gdshader" id="8_l40ec"]
+[ext_resource type="Script" uid="uid://bsjfkkkqtn2vq" path="res://Scripts/battery_health.gd" id="8_sepaq"]
+[ext_resource type="Script" uid="uid://t8sas17itcgl" path="res://Scenes/style.gd" id="10_v4tai"]
+[ext_resource type="Texture2D" uid="uid://dr5pxj732ghtd" path="res://Assets/Images/Style_Atlas_3.png" id="11_e6k8e"]
+[ext_resource type="FontFile" uid="uid://becnvgx254dim" path="res://Assets/Fonts/Rubik_Glitch/RubikGlitch-Regular.ttf" id="13_e6k8e"]
+
+[sub_resource type="Curve" id="Curve_sepaq"]
+_limits = [0.0, 12.0, 0.0, 1.0]
+_data = [Vector2(0, 1.4579439), 12.292884, 0.0, 1, 0, Vector2(0.322807, 3.5643568), 0.0, 0.0, 0, 0, Vector2(0.54035085, 6.8910894), 25.734653, 25.734653, 0, 0, Vector2(0.99630994, 11.327103), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_5h11f"]
+_limits = [0.0, 1.0, 0.0, 0.4]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.08, 0.5), 0.0, 0.0, 0, 0, Vector2(0.19999999, 1), 0.0, 0.0, 0, 0, Vector2(0.39999998, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kh1t2"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="GDScript" id="GDScript_4js3i"]
+resource_name = "AutoCollision"
+script/source = "extends CollisionShape3D
+
+@onready var mesh_instance := $\"../MeshInstance3D\"
+
+func _ready() -> void:
+	var mesh_aabb: AABB = mesh_instance.mesh.get_aabb()
+	var mesh_size: Vector3 = mesh_aabb.size
+	
+	if shape is BoxShape3D:
+		shape.size = mesh_size
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjqr1"]
+albedo_texture = ExtResource("5_bmbhi")
+uv1_scale = Vector3(128, 128, 128)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bmbhi"]
+material = SubResource("StandardMaterial3D_xjqr1")
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5h11f"]
+lifetime_randomness = 0.1
+angle_min = -144.49998
+angle_max = 300.5
+direction = Vector3(0, 1, 0)
+spread = 21.98
+flatness = 0.195
+initial_velocity_min = 1.4499999
+initial_velocity_max = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq1y0"]
+albedo_texture = ExtResource("8_e6k8e")
+uv1_scale = Vector3(4, 4, 4)
+uv2_scale = Vector3(4, 4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1fiyt"]
+material = SubResource("StandardMaterial3D_mq1y0")
+size = Vector3(0.1, 0.1, 0.01)
+
+[sub_resource type="Skin" id="Skin_jx8tp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx8n8"]
+shader = ExtResource("8_l40ec")
+shader_parameter/unfilled_color = Color(0.5513892, 0.540169, 0.540169, 1)
+shader_parameter/fill_perc = 0.65
+shader_parameter/alpha_mult = 1.0
+shader_parameter/i = 0.0
+shader_parameter/m = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l40ec"]
+atlas = ExtResource("11_e6k8e")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h11f"]
+atlas = SubResource("AtlasTexture_l40ec")
+region = Rect2(641, 40, 218, 206)
+
+[sub_resource type="Curve" id="Curve_v4tai"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.22140223, 0.12871289), 0.0, 0.0, 0, 0, Vector2(0.37269378, 0.52475256), 0.0, 0.0, 0, 0, Vector2(0.6457565, 0.9504951), 0.423658, 0.423658, 0, 0, Vector2(0.9889299, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_urm7v"]
+font = ExtResource("13_e6k8e")
+font_size = 48
+outline_size = 4
+outline_color = Color(0.08, 0.08, 0.08, 1)
+shadow_size = 6
+shadow_color = Color(0.08, 0.08, 0.08, 0.6156863)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6k8e"]
+atlas = ExtResource("11_e6k8e")
+region = Rect2(641, 40, 218, 206)
+
+[sub_resource type="Animation" id="Animation_l40ec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/H/TextureRect:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/H/TextureRect:offset_transform_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/H/TextureRect:material:shader_parameter/alpha_mult")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.07, 0, 0.07, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.07, 0, 0.07, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_f0mwc"]
+resource_name = "style_downgrade"
+length = 0.15
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/H/TextureRect:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.043333344, 0.07666667, 0.14333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.1, 0.1), Vector2(0.7, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/H/TextureRect:offset_transform_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.043333344, 0.07666667, 0.1, 0.14333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.53930676, 0.0, 0.38397244, -0.53930676, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/H/TextureRect:material:shader_parameter/alpha_mult")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.009999998, 0.06666667, 0.08176751, 0.11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0, 1.0]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-21.592442, -0.010944445, 0, 0.033333335, 0, 0, -0.17333333, 31.41625, 0.014106021, -2.5566823, 0, 0, 0, 0.023166668, 0, -21.592442, -0.010944445, 0, 0.033333335, 0, 0, -0.17333333, 31.41625, 0.014106021, -2.5566823),
+"times": PackedFloat32Array(0.009999998, 0.050000004, 0.07766667, 0.11, 0.15)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-24.199427, -0.0165, 0, 0.006666667, 0, 0, -0.10666667, 32.215828, 0.04293211, -12.966501, 0, 0, 0, 0.023166668, 0, -24.199427, -0.0165, 0, 0.006666667, 0, 0, -0.10666667, 32.215828, 0.04293211, -12.966501),
+"times": PackedFloat32Array(0.009999998, 0.050000004, 0.07766667, 0.11, 0.15)
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CenterContainer/H/TextureRect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"pause_decay"
+}, {
+"args": [],
+"method": &"prev_level"
+}, {
+"args": [],
+"method": &"unpause_decay"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v4tai"]
+resource_name = "style_upgrade"
+length = 0.14
+step = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/H/TextureRect:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.066, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.865, 1.865), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/H/TextureRect:offset_transform_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.035592914, 0.06666667, 0.09, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.53930676, 0.38397244, -0.53930676, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/H/TextureRect:material:shader_parameter/alpha_mult")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.046174593, 0.06666667, 0.07503372, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.2, 0.0, 0.0, 1.0]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2),
+"points": PackedFloat32Array(0, -0.17333333, 31.41625, 0.014106021, -2.5566823, -21.592442, -0.010944445, 0, 0.033333335, 0, 0, 0, 0, 0.023166668, 0, -21.592442, -0.010944445, 0, 0.033333335, 0, 0, -0.17333333, 31.41625, 0.014106021, -2.5566823),
+"times": PackedFloat32Array(0.0066666603, 0.04559292, 0.06766667, 0.10000001, 0.14)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2),
+"points": PackedFloat32Array(0, -0.10666667, 32.215828, 0.04293211, -12.966501, -24.199427, -0.0165, 0, 0.006666667, 0, 0, 0, 0, 0.023166668, 0, -24.199427, -0.0165, 0, 0.006666667, 0, 0, -0.10666667, 32.215828, 0.04293211, -12.966501),
+"times": PackedFloat32Array(0.0066666603, 0.04559292, 0.06766667, 0.10000001, 0.14)
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CenterContainer/H/TextureRect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.014, 0.131),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"pause_decay"
+}, {
+"args": [],
+"method": &"next_level"
+}, {
+"args": [],
+"method": &"unpause_decay"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_urm7v"]
+resource_name = "style_upgrade_2"
+length = 0.14
+step = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/H/TextureRect:offset_transform_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.106, 0.10640187),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1.865, 1.865), Vector2(1, 1), Vector2(0.7, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/H/TextureRect:offset_transform_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.035592914, 0.06666667, 0.09, 0.106),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.53930676, 0.38397244, -0.53930676, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/H/TextureRect:material:shader_parameter/alpha_mult")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.046174593, 0.06666667, 0.07503372, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.2, 0.0, 0.0, 1.0]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.17333333, 31.41625, 0.014106021, -2.5566823, -21.592442, -0.010944445, 0, 0.033333335, 0, 0, 0, 0, 0.023166668, 0, -21.592442, -0.010944445, 0, 0.033333335, 0, 0, -0.17333333, 31.41625, 0.014106021, -2.5566823),
+"times": PackedFloat32Array(0.0066666603, 0.04559292, 0.06766667, 0.10000001, 0.107)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/H/TextureRect:offset_transform_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.10666667, 32.215828, 0.04293211, -12.966501, -24.199427, -0.0165, 0, 0.006666667, 0, 0, 0, 0, 0.023166668, 0, -24.199427, -0.0165, 0, 0.006666667, 0, 0, -0.10666667, 32.215828, 0.04293211, -12.966501),
+"times": PackedFloat32Array(0.0066666603, 0.04559292, 0.06766667, 0.10000001, 0.107)
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CenterContainer/H/TextureRect")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.056, 0.087, 0.131),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"pause_decay"
+}, {
+"args": [],
+"method": &"next_level"
+}, {
+"args": [],
+"method": &"level_text"
+}, {
+"args": [],
+"method": &"unpause_decay"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f0mwc"]
+_data = {
+&"RESET": SubResource("Animation_l40ec"),
+&"style_downgrade": SubResource("Animation_f0mwc"),
+&"style_upgrade": SubResource("Animation_v4tai"),
+&"style_upgrade_2": SubResource("Animation_urm7v")
+}
+
+[node name="Dummy" type="Node3D" unique_id=1664004354]
+script = ExtResource("1_7go7v")
+
+[node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig", "dash_manager", "health") instance=ExtResource("2_7go7v")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+camera_rig = NodePath("../CameraRig")
+dash_manager = NodePath("DashManager")
+health = NodePath("HealthComponent")
+
+[node name="Orbit Point" type="Node3D" parent="Player" unique_id=125713502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0507636, 0)
+
+[node name="DashManager" parent="Player" unique_id=706154543 instance=ExtResource("7_b43vc")]
+dash_multiplier = 15.0
+
+[node name="Cooldown" parent="Player/DashManager" index="0" unique_id=45365008]
+wait_time = 0.6
+one_shot = false
+
+[node name="Duration" parent="Player/DashManager" index="1" unique_id=1141162433]
+wait_time = 0.2
+
+[node name="HealthComponent" type="Node" parent="Player" unique_id=1131662113]
+script = ExtResource("4_b43vc")
+decay = SubResource("Curve_sepaq")
+decay_holdup = SubResource("Curve_5h11f")
+metadata/_custom_type_script = "uid://hctnj3c78bhg"
+
+[node name="CameraRig" parent="." unique_id=2012222051 node_paths=PackedStringArray("orbit_point") instance=ExtResource("1_s2l5p")]
+orbit_point = NodePath("../Player/Orbit Point")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1944780741]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=881050967]
+shape = SubResource("BoxShape3D_kh1t2")
+script = SubResource("GDScript_4js3i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2635924]
+mesh = SubResource("BoxMesh_bmbhi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1488952436]
+transform = Transform3D(0.99965954, -0.025203625, -0.0067532915, 0.024815015, 0.8383155, 0.54462045, -0.00806502, -0.5446026, 0.83865553, 0, 2.9154596, 4.102849)
+
+[node name="Spawner" type="Node3D" parent="." unique_id=830666899 node_paths=PackedStringArray("player_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.906806)
+script = ExtResource("7_urm7v")
+enemy = ExtResource("5_4js3i")
+player_target = NodePath("../Player")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Spawner" unique_id=1902209104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86231774, 0)
+process_material = SubResource("ParticleProcessMaterial_5h11f")
+draw_pass_1 = SubResource("BoxMesh_1fiyt")
+draw_skin = SubResource("Skin_jx8tp")
+
+[node name="Control" type="Control" parent="." unique_id=1300638570]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=792272930]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="H" type="HBoxContainer" parent="Control/CenterContainer" unique_id=2168575]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, 0)
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer/H" unique_id=690848877]
+material = SubResource("ShaderMaterial_bx8n8")
+clip_contents = true
+layout_mode = 2
+offset_transform_enabled = true
+texture = SubResource("AtlasTexture_5h11f")
+stretch_mode = 1
+script = ExtResource("10_v4tai")
+mult = 20
+decay_mult = 40
+decay = SubResource("Curve_v4tai")
+letter_spacing = 80.0
+
+[node name="RichTextLabel" type="Label" parent="Control/CenterContainer/H" unique_id=1122203457]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(-40, 0)
+theme_override_colors/font_shadow_color = Color(0.08625374, 0.08872386, 0.04342611, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_e6k8e")
+theme_override_font_sizes/font_size = 86
+text = "ootstrap"
+label_settings = SubResource("LabelSettings_urm7v")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AuxRect" type="TextureRect" parent="Control/CenterContainer/H" unique_id=285084141]
+material = SubResource("ShaderMaterial_bx8n8")
+clip_contents = true
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0.2702338, 0.44897544)
+offset_transform_scale = Vector2(0.7, 0.7)
+texture = SubResource("AtlasTexture_e6k8e")
+
+[node name="AuxLabel" type="Label" parent="Control/CenterContainer/H" unique_id=1379598332]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, 0)
+theme_override_colors/font_shadow_color = Color(0.08625374, 0.08872386, 0.04342611, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_e6k8e")
+theme_override_font_sizes/font_size = 86
+text = "ootstrap"
+label_settings = SubResource("LabelSettings_urm7v")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=294261761]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer" unique_id=26261092]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 40
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer/MarginContainer" unique_id=491298507]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+show_percentage = false
+script = ExtResource("8_sepaq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=328040570]
+libraries/ = SubResource("AnimationLibrary_f0mwc")
+
+[connection signal="dealt_damage" from="Player" to="Control/CenterContainer/H/TextureRect" method="_on_player_dealt_damage"]
+[connection signal="health_changed" from="Player/HealthComponent" to="Control/VBoxContainer/MarginContainer/ProgressBar" method="_on_health_component_health_changed"]
+[connection signal="animation_finished" from="Control/AnimationPlayer" to="Control/CenterContainer/H/TextureRect" method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="Control/AnimationPlayer" to="Control/CenterContainer/H/TextureRect" method="_on_animation_player_animation_started"]
+
+[editable path="Player/DashManager"]

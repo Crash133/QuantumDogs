@@ -28,6 +28,7 @@ folder_colors={
 "res://Resources/": "orange",
 "res://Scenes/": "red",
 "res://Scripts/": "blue",
+"res://Shaders/": "pink",
 "res://Vendor/": "teal",
 "res://addons/": "gray"
 }

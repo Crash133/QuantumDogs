@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://com1cbgks057n"]
 
-[ext_resource type="Script" uid="uid://catxb184l1qqn" path="res://Scenes/Components/dash_manager.gd" id="1_1o36p"]
+[ext_resource type="Script" uid="uid://catxb184l1qqn" path="res://Scripts/dash_manager.gd" id="1_62h3e"]
 
 [sub_resource type="Curve" id="Curve_1o36p"]
 _data = [Vector2(0, 0.30337083), 0.0, 12.1990385, 0, 0, Vector2(0.2, 1), -0.078848794, 0.0, 0, 0, Vector2(0.84499997, 1), 0.0, 0.0, 0, 0, Vector2(0.995, 0.75280905), 1.238248, 0.0, 0, 0]
@@ -8,7 +8,7 @@ point_count = 4
 metadata/_snap_count = 2
 
 [node name="DashManager" type="Node" unique_id=706154543]
-script = ExtResource("1_1o36p")
+script = ExtResource("1_62h3e")
 dash_speed_curve = SubResource("Curve_1o36p")
 
 [node name="Cooldown" type="Timer" parent="." unique_id=45365008]

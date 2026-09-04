@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://duxqnl5n6bv15"
-path="res://.godot/imported/Protagonist.glb-54956bd51dd0f7b60f6ede45ee107d18.scn"
+uid="uid://b1tcxhfqvp1g4"
+path="res://.godot/imported/dagger4_fbx.FBX-bc3b9ab105f3b2d09f9273cdbe5cba4b.scn"
 
 [deps]
 
-source_file="res://Assets/Protagonist.glb"
-dest_files=["res://.godot/imported/Protagonist.glb-54956bd51dd0f7b60f6ede45ee107d18.scn"]
+source_file="res://Assets/Objects/c5lupesx8sg0-Dagger4/dagger4_fbx.FBX"
+dest_files=["res://.godot/imported/dagger4_fbx.FBX-bc3b9ab105f3b2d09f9273cdbe5cba4b.scn"]
 
 [params]
 
@@ -32,7 +32,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -40,6 +40,7 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=2
-gltf/embedded_image_handling=1
-gltf/texture_map_mode=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2

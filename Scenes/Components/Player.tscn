@@ -1,8 +1,34 @@
 [gd_scene format=3 uid="uid://c4hlloppwe5s0"]
 
-[ext_resource type="PackedScene" uid="uid://duxqnl5n6bv15" path="res://Assets/Protagonist.glb" id="1_h427e"]
 [ext_resource type="Script" uid="uid://u3ha2am1xd40" path="res://Scripts/Player/character.gd" id="1_u8ca5"]
-[ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/dash_manager.tscn" id="3_iy0k1"]
+[ext_resource type="PackedScene" uid="uid://cdvkbprien3o1" path="res://Assets/Objects/Standard Run.fbx" id="2_3agm7"]
+[ext_resource type="Script" uid="uid://driuwdyddllek" path="res://Scripts/Combat/hit_data.gd" id="3_gc3gm"]
+[ext_resource type="Script" uid="uid://drlceompdmfil" path="res://Scripts/Combat/hitbox.gd" id="5_3agm7"]
+[ext_resource type="Animation" uid="uid://lqwp3458o65f" path="res://Assets/Objects/anim/idle.res" id="5_cu5te"]
+[ext_resource type="Animation" uid="uid://bmsnks6pv3kew" path="res://Assets/Objects/anim/run.res" id="5_d6f16"]
+[ext_resource type="Script" uid="uid://chvvpf8k34ut3" path="res://Scripts/follow_cool.gd" id="5_den6e"]
+[ext_resource type="Animation" uid="uid://cpalkxq4tag1j" path="res://Assets/Objects/anim/dash.res" id="5_udvxc"]
+[ext_resource type="Animation" uid="uid://ymbhn4yn73lq" path="res://Assets/Objects/anim/slash.res" id="6_cu5te"]
+[ext_resource type="PackedScene" uid="uid://b1tcxhfqvp1g4" path="res://Assets/Objects/c5lupesx8sg0-Dagger4/dagger4_fbx.FBX" id="9_udvxc"]
+[ext_resource type="Animation" uid="uid://ckq7l57y5fv32" path="res://Assets/Objects/anim/slash_2.res" id="10_eivkh"]
+
+[sub_resource type="Resource" id="Resource_gc3gm"]
+script = ExtResource("3_gc3gm")
+damage = 10.0
+hitstun = 2.0
+knockback = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://driuwdyddllek"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jx8tp"]
+size = Vector3(1, 0.14819336, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bx8n8"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.38431373)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5h11f"]
+material = SubResource("StandardMaterial3D_bx8n8")
+size = Vector3(1, 0.14819336, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8ca5"]
 size = Vector3(0.5351676, 0.3485065, 0.35364914)
@@ -22,24 +48,302 @@ size = Vector3(0.13264465, 0.5574918, 0.18359375)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
 size = Vector3(0.14379883, 0.51588273, 0.18835449)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5iqjx"]
-size = Vector3(2.3566132, 9.251465, 1.559082)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_den6e"]
+
+[sub_resource type="Animation" id="Animation_udvxc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HitBoxes/AttackHitbox/CollisionShape3D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.14819336, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HitBoxes/AttackHitbox/CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.09436166, 0.011853933)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7dlr"]
+_data = {
+&"RESET": SubResource("Animation_udvxc")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udvxc"]
+_data = {
+&"dash": ExtResource("5_udvxc"),
+&"idle": ExtResource("5_cu5te"),
+&"run": ExtResource("5_d6f16"),
+&"slash": ExtResource("6_cu5te"),
+&"slash_2": ExtResource("10_eivkh")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cqpq0"]
+animation = &"Player/slash_2"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4bsqo"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c3g2w"]
+graph_offset = Vector2(-193, 120)
+nodes/output/position = Vector2(420, 180)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_cqpq0")
+nodes/Animation/position = Vector2(-40, 160)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4bsqo")
+nodes/TimeScale/position = Vector2(220, 160)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hn644"]
+animation = &"Player/slash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cu5te"]
+animation = &"Player/slash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3g2w"]
+animation = &"Player/slash_2"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fmy4n"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_txa3h"]
+graph_offset = Vector2(0, 34.414898)
+nodes/output/position = Vector2(800, 40)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_fmy4n")
+nodes/TimeScale/position = Vector2(500, 40)
+nodes/Slash/node = SubResource("AnimationNodeAnimation_c3g2w")
+nodes/Slash/position = Vector2(160, 60)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Slash"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x2egp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_571gd"]
+advance_mode = 2
+advance_condition = &"light"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5cfcl"]
+advance_mode = 2
+advance_condition = &"light"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_68h5h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_go8e2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_my8bq"]
+advance_mode = 2
+advance_condition = &"light"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5xyd0"]
+advance_mode = 2
+advance_condition = &"light"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uynin"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rnuil"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cu5te"]
+states/BlendTree/node = SubResource("AnimationNodeBlendTree_c3g2w")
+states/BlendTree/position = Vector2(200, 271.72803)
+states/End/position = Vector2(405, 208)
+states/Player_slash/node = SubResource("AnimationNodeAnimation_cu5te")
+states/Player_slash/position = Vector2(389, 100)
+"states/Player_slash 2/node" = SubResource("AnimationNodeAnimation_hn644")
+"states/Player_slash 2/position" = Vector2(612, 100)
+states/light_1/node = SubResource("AnimationNodeBlendTree_txa3h")
+states/light_1/position = Vector2(200, 183.72804)
+transitions = ["Player_slash", "End", SubResource("AnimationNodeStateMachineTransition_x2egp"), "Player_slash", "Player_slash 2", SubResource("AnimationNodeStateMachineTransition_571gd"), "Player_slash 2", "Player_slash", SubResource("AnimationNodeStateMachineTransition_5cfcl"), "Player_slash 2", "End", SubResource("AnimationNodeStateMachineTransition_68h5h"), "Start", "light_1", SubResource("AnimationNodeStateMachineTransition_go8e2"), "light_1", "BlendTree", SubResource("AnimationNodeStateMachineTransition_my8bq"), "BlendTree", "light_1", SubResource("AnimationNodeStateMachineTransition_5xyd0"), "light_1", "End", SubResource("AnimationNodeStateMachineTransition_uynin"), "BlendTree", "End", SubResource("AnimationNodeStateMachineTransition_rnuil")]
+graph_offset = Vector2(-131, 118.72804)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_den6e"]
+animation = &"Player/dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eivkh"]
+animation = &"Player/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gc3gm"]
+animation = &"Player/run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hn644"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cqpq0"]
+advance_mode = 2
+advance_condition = &"is_running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4bsqo"]
+advance_mode = 2
+advance_condition = &"dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3g2w"]
+advance_mode = 2
+advance_condition = &"dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fmy4n"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_txa3h"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pglso"]
+advance_mode = 2
+advance_condition = &"is_running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_udvxc"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_den6e"]
+xfade_time = 0.05
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eivkh"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gc3gm"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_phhxb"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fvu4i"]
+advance_mode = 2
+advance_condition = &"is_dashing"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4blc5"]
+"states/Attack Machine/node" = SubResource("AnimationNodeStateMachine_cu5te")
+"states/Attack Machine/position" = Vector2(713, 100)
+states/End/position = Vector2(950, 100)
+states/Player_dash/node = SubResource("AnimationNodeAnimation_den6e")
+states/Player_dash/position = Vector2(467, 200)
+states/Player_idle/node = SubResource("AnimationNodeAnimation_eivkh")
+states/Player_idle/position = Vector2(335, 100)
+states/Player_run/node = SubResource("AnimationNodeAnimation_gc3gm")
+states/Player_run/position = Vector2(467, 19)
+states/Start/position = Vector2(201, 100)
+transitions = ["Start", "Player_idle", SubResource("AnimationNodeStateMachineTransition_hn644"), "Player_idle", "Player_run", SubResource("AnimationNodeStateMachineTransition_cqpq0"), "Player_idle", "Player_dash", SubResource("AnimationNodeStateMachineTransition_4bsqo"), "Player_run", "Player_dash", SubResource("AnimationNodeStateMachineTransition_c3g2w"), "Player_run", "Player_idle", SubResource("AnimationNodeStateMachineTransition_fmy4n"), "Player_dash", "Player_idle", SubResource("AnimationNodeStateMachineTransition_txa3h"), "Player_dash", "Player_run", SubResource("AnimationNodeStateMachineTransition_pglso"), "Player_run", "Attack Machine", SubResource("AnimationNodeStateMachineTransition_udvxc"), "Player_idle", "Attack Machine", SubResource("AnimationNodeStateMachineTransition_den6e"), "Player_dash", "Attack Machine", SubResource("AnimationNodeStateMachineTransition_eivkh"), "Attack Machine", "Player_run", SubResource("AnimationNodeStateMachineTransition_gc3gm"), "Attack Machine", "Player_idle", SubResource("AnimationNodeStateMachineTransition_phhxb"), "Attack Machine", "Player_dash", SubResource("AnimationNodeStateMachineTransition_fvu4i")]
+graph_offset = Vector2(80, -5.995819)
 
 [node name="Player" type="CharacterBody3D" unique_id=1929478343]
 script = ExtResource("1_u8ca5")
 
-[node name="ModelPivot" type="Node3D" parent="." unique_id=579815724]
+[node name="ModelPivot" type="Node3D" parent="." unique_id=1390728165]
 
-[node name="Protagonist" parent="ModelPivot" unique_id=102189170 instance=ExtResource("1_h427e")]
+[node name="HitBoxes" type="Node3D" parent="ModelPivot" unique_id=1618276674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5342355)
+
+[node name="AttackHitbox" type="Area3D" parent="ModelPivot/HitBoxes" unique_id=216604512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30022025, 0.85783577, -0.46005237)
+collision_layer = 0
+collision_mask = 32768
+monitorable = false
+script = ExtResource("5_3agm7")
+hit_data = SubResource("Resource_gc3gm")
+metadata/_custom_type_script = "uid://drlceompdmfil"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ModelPivot/HitBoxes/AttackHitbox" unique_id=1957331686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09436166, 0.011853933)
+shape = SubResource("BoxShape3D_jx8tp")
+debug_color = Color(0.45490196, 0.56078434, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ModelPivot/HitBoxes/AttackHitbox/CollisionShape3D" unique_id=2131272827 node_paths=PackedStringArray("collider")]
+visible = false
+mesh = SubResource("BoxMesh_5h11f")
+script = ExtResource("5_den6e")
+collider = NodePath("..")
+
+[node name="Standard Run" parent="ModelPivot" unique_id=1355288147 instance=ExtResource("2_3agm7")]
+
+[node name="Skeleton3D" parent="ModelPivot/Standard Run" index="0" unique_id=1642987013]
+bones/0/position = Vector3(-0.0010502863, 1.0538299, 0.0013712607)
+bones/0/rotation = Quaternion(-0.040629376, -0.37051022, -0.013669024, 0.92783874)
+bones/1/rotation = Quaternion(-0.018419893, 0.041704483, -0.006134785, 0.99894136)
+bones/2/rotation = Quaternion(0.093911774, 0.0824201, -0.006365449, 0.9921427)
+bones/3/rotation = Quaternion(0.094005845, 0.08235885, -0.006405526, 0.9921386)
+bones/4/rotation = Quaternion(0.052311353, -0.011126143, 0.0008507338, 0.99856853)
+bones/5/rotation = Quaternion(-0.04381622, 0.1770226, -0.0056577045, 0.98321474)
+bones/7/rotation = Quaternion(-0.558486, -0.4332376, 0.5915154, -0.38795382)
+bones/8/rotation = Quaternion(0.42886332, -0.10934531, -0.008315752, 0.8966889)
+bones/9/rotation = Quaternion(0.057247333, 0.075461425, 0.4149331, 0.90490824)
+bones/10/rotation = Quaternion(-0.16136497, 0.20940009, -0.06304098, 0.9623611)
+bones/11/rotation = Quaternion(0.1583615, 0.2745835, -0.046572477, 0.9472891)
+bones/12/rotation = Quaternion(-0.0018244241, -0.0104011465, 0.34585077, 0.93823016)
+bones/13/rotation = Quaternion(-0.0053758994, -0.015227155, 0.31237367, 0.9498221)
+bones/15/rotation = Quaternion(0.032334197, 0.0009634264, 0.14702202, 0.9886041)
+bones/16/rotation = Quaternion(0.15443142, -0.0010030136, 0.0033061372, 0.9879975)
+bones/17/rotation = Quaternion(6.258488e-07, 7.05262e-05, 0.00070578634, 0.9999998)
+bones/19/rotation = Quaternion(0.12460404, 0.01234093, 0.019492717, 0.99193835)
+bones/20/rotation = Quaternion(0.20148301, -0.0016485951, 0.021444792, 0.97925586)
+bones/21/rotation = Quaternion(-7.450581e-08, 0.00010430267, -0.003155421, 0.9999951)
+bones/23/rotation = Quaternion(0.26784056, 0.0036578735, -0.026085535, 0.9631032)
+bones/24/rotation = Quaternion(0.28624758, 0.0020284583, 0.034357864, 0.95753735)
+bones/25/rotation = Quaternion(3.688038e-07, 9.585917e-05, 0.0012865247, 0.9999992)
+bones/27/rotation = Quaternion(0.2935676, 0.0024719432, -0.06114043, 0.95397794)
+bones/28/rotation = Quaternion(0.3464744, 0.01204576, 0.061461885, 0.93596625)
+bones/29/rotation = Quaternion(2.3469329e-07, 0.00013316954, 0.0009310108, 0.9999996)
+bones/31/rotation = Quaternion(0.61259496, -0.3893459, 0.559085, 0.40070087)
+bones/32/rotation = Quaternion(0.35590556, 0.118330106, 0.23045257, 0.897898)
+bones/33/rotation = Quaternion(0.11878421, 0.0025097767, -0.35145095, 0.9286368)
+bones/34/rotation = Quaternion(0.080245204, -0.119622916, 0.052252665, 0.9881907)
+bones/35/rotation = Quaternion(0.14124236, -0.13626717, -0.009510629, 0.98050576)
+bones/36/rotation = Quaternion(0.04112198, 0.0064583425, -0.17065263, 0.9844517)
+bones/37/rotation = Quaternion(-0.02228014, 0.060251035, -0.31437987, 0.94712126)
+bones/39/rotation = Quaternion(0.04574906, 0.004090983, -0.09058817, 0.99482864)
+bones/40/rotation = Quaternion(0.14556119, 6.0912993e-05, 0.008739414, 0.98931074)
+bones/41/rotation = Quaternion(-2.5704506e-07, 1.1415875e-06, 1.8052142e-05, 1)
+bones/43/rotation = Quaternion(0.11678089, -0.0040002894, -0.07352072, 0.9904247)
+bones/44/rotation = Quaternion(0.28941965, 0.0015633528, -0.02095046, 0.95697176)
+bones/45/rotation = Quaternion(-2.682209e-07, 1.7347202e-18, 6.617445e-24, 1)
+bones/47/rotation = Quaternion(0.20459412, -0.029192178, -0.031465236, 0.9779054)
+bones/48/rotation = Quaternion(0.33287537, -0.0024396642, -0.03739289, 0.94222605)
+bones/49/rotation = Quaternion(-1.1175872e-07, 1.0102206e-06, 6.86242e-05, 1)
+bones/51/rotation = Quaternion(0.21066603, -0.033008974, -0.0055167945, 0.9769851)
+bones/52/rotation = Quaternion(0.36166587, -0.0127937645, -0.071589656, 0.9294671)
+bones/53/rotation = Quaternion(-2.8312206e-07, -5.8187866e-06, -7.829633e-05, 1)
+bones/55/rotation = Quaternion(0.07718402, 0.21563224, 0.96928424, -0.08962992)
+bones/56/rotation = Quaternion(-0.3532552, 0.11536466, -0.008432442, 0.92834836)
+bones/57/rotation = Quaternion(0.5303183, 0.082506835, -0.09811385, 0.83805054)
+bones/58/rotation = Quaternion(0.35414365, 0.029235048, -0.024468778, 0.93441373)
+bones/60/rotation = Quaternion(-0.12288096, 0.014285644, 0.984559, 0.12385391)
+bones/61/rotation = Quaternion(-0.3360661, 0.07226805, -0.045811716, 0.93794364)
+bones/62/rotation = Quaternion(0.63836676, -0.043843333, 0.16783401, 0.74993163)
+bones/63/rotation = Quaternion(0.3576198, -0.0046092323, -0.0018558534, 0.93385416)
 
 [node name="Hurtboxes" type="Node3D" parent="." unique_id=1743211083]
+visible = false
 
 [node name="Head" type="BoneAttachment3D" parent="Hurtboxes" unique_id=2039136803]
 transform = Transform3D(4.3423896, 0, 0, 0, 4.342389, -3.8823993e-07, 0, 2.5882662e-07, 4.3423896, 0, 7.7350974, 0.107257225)
 bone_name = "spine.006"
-bone_idx = 18
 use_external_skeleton = true
-external_skeleton = NodePath("../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Head" unique_id=448116579]
 collision_mask = 0
@@ -57,9 +361,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.450581e-09)
 [node name="Forearm" type="BoneAttachment3D" parent="Hurtboxes/Arms/Left Arm" unique_id=213734091]
 transform = Transform3D(-2.3893914, 3.585127, -0.54224414, -3.625901, -2.36255, 0.35713652, -0.00016078795, 0.649288, 4.293573, 1.9210734, 6.2925577, -0.3843017)
 bone_name = "forearm.L"
-bone_idx = 10
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Left Arm/Forearm" unique_id=1774433778]
 collision_mask = 0
@@ -72,9 +375,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Hand" type="BoneAttachment3D" parent="Hurtboxes/Arms/Left Arm" unique_id=169830319]
 transform = Transform3D(-2.5914721, 3.4669416, -0.34777206, -3.48434, -2.5785391, 0.25857708, -6.2433835e-05, 0.43336755, 4.32071, 2.8633718, 5.671596, -0.21364573)
 bone_name = "hand.L"
-bone_idx = 11
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Left Arm/Hand" unique_id=1874335445]
 collision_mask = 0
@@ -89,9 +391,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Forearm" type="BoneAttachment3D" parent="Hurtboxes/Arms/Right Arm" unique_id=420729725]
 transform = Transform3D(-2.3893914, -3.585127, 0.54224414, 3.625901, -2.36255, 0.35713652, 0.00016078795, 0.649288, 4.293573, -1.9210734, 6.2925577, -0.3843017)
 bone_name = "forearm.R"
-bone_idx = 14
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Right Arm/Forearm" unique_id=1851533815]
 collision_mask = 0
@@ -104,9 +405,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Hand" type="BoneAttachment3D" parent="Hurtboxes/Arms/Right Arm" unique_id=1701383312]
 transform = Transform3D(-2.5914721, -3.4669416, 0.34777206, 3.48434, -2.5785391, 0.25857708, 6.2433835e-05, 0.43336755, 4.32071, -2.8633718, 5.671596, -0.21364573)
 bone_name = "hand.R"
-bone_idx = 15
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Arms/Right Arm/Hand" unique_id=1141411452]
 collision_mask = 0
@@ -119,9 +419,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Torso" type="BoneAttachment3D" parent="Hurtboxes" unique_id=214899885]
 transform = Transform3D(4.3423896, 0, 0, 0, 4.3406177, 0.124018095, 0, -0.12401792, 4.3406186, 0, 6.36464, -0.025620138)
 bone_name = "spine.003"
-bone_idx = 5
 use_external_skeleton = true
-external_skeleton = NodePath("../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Torso" unique_id=331481540]
 collision_mask = 0
@@ -138,9 +437,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Tight" type="BoneAttachment3D" parent="Hurtboxes/Legs/Left Leg" unique_id=560805686]
 transform = Transform3D(4.34239, 0, 0, 0, -4.329684, -0.33193344, 0, 0.33193412, -4.329673, -0.42555425, 4.655042, -0.053845596)
 bone_name = "thigh.R"
-bone_idx = 24
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Left Leg/Tight" unique_id=2041587603]
 collision_mask = 0
@@ -153,9 +451,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Shin" type="BoneAttachment3D" parent="Hurtboxes/Legs/Left Leg" unique_id=2020005792]
 transform = Transform3D(4.34239, 0, 0, 0, -4.321215, 0.42829815, 0, -0.42829537, -4.3212047, -0.42555425, 2.3327322, 0.12419374)
 bone_name = "shin.R"
-bone_idx = 25
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Left Leg/Shin" unique_id=1166635113]
 collision_mask = 0
@@ -170,9 +467,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Tight" type="BoneAttachment3D" parent="Hurtboxes/Legs/Right Leg" unique_id=690595205]
 transform = Transform3D(4.34239, 0, 0, 0, -4.329684, -0.33193344, 0, 0.33193412, -4.329673, 0.42555425, 4.655042, -0.053845596)
 bone_name = "thigh.L"
-bone_idx = 19
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Right Leg/Tight" unique_id=441616266]
 collision_mask = 0
@@ -185,9 +481,8 @@ debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 [node name="Shin" type="BoneAttachment3D" parent="Hurtboxes/Legs/Right Leg" unique_id=1986555235]
 transform = Transform3D(4.34239, 0, 0, 0, -4.321215, 0.42829815, 0, -0.42829537, -4.3212047, 0.42555425, 2.3327322, 0.12419374)
 bone_name = "shin.L"
-bone_idx = 20
 use_external_skeleton = true
-external_skeleton = NodePath("../../../../ModelPivot/Protagonist/metarig/Skeleton3D")
+external_skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes/Legs/Right Leg/Shin" unique_id=233843634]
 collision_mask = 0
@@ -198,10 +493,38 @@ shape = SubResource("BoxShape3D_5h11f")
 debug_color = Color(2.4092884, 0.24304998, 2.4293215, 0.94509804)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2017241136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013112903, 4.661377, 0.27954102)
-shape = SubResource("BoxShape3D_5iqjx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77968615, -0.014133662)
+shape = SubResource("CapsuleShape3D_den6e")
 debug_color = Color(0.95974445, 0.7983308, 0, 0.94509804)
 
-[node name="DashManager" parent="." unique_id=706154543 instance=ExtResource("3_iy0k1")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=432286188]
+root_node = NodePath("../ModelPivot/Standard Run")
+libraries/ = SubResource("AnimationLibrary_k7dlr")
+libraries/Player = SubResource("AnimationLibrary_udvxc")
 
-[editable path="ModelPivot/Protagonist"]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=9862415]
+root_node = NodePath("../ModelPivot/Standard Run")
+tree_root = SubResource("AnimationNodeStateMachine_4blc5")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack = false
+parameters/conditions/dash = false
+parameters/conditions/idle = false
+parameters/conditions/is_dashing = false
+parameters/conditions/is_running = false
+"parameters/Attack Machine/conditions/light" = false
+"parameters/Attack Machine/BlendTree/TimeScale/scale" = 3.0
+"parameters/Attack Machine/light_1/TimeScale/scale" = 3.0
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="." unique_id=1087125862]
+transform = Transform3D(-0.29351166, -0.22403443, 0.9293326, 0.08099133, -0.97448295, -0.20933944, 0.9525182, 0.013824306, 0.30416718, -0.3406906, 1.0042334, -0.25012258)
+bone_name = "mixamorig_RightHand"
+bone_idx = 34
+use_external_skeleton = true
+external_skeleton = NodePath("../ModelPivot/Standard Run/Skeleton3D")
+
+[node name="dagger4_fbx" parent="BoneAttachment3D" unique_id=1546610530 instance=ExtResource("9_udvxc")]
+transform = Transform3D(-0.21926352, 0.9635844, -0.15307248, -0.96518075, -0.2371607, -0.11037432, -0.14265722, 0.12354162, 0.9820323, 0.016137458, 0.056274474, 0.007634878)
+
+[connection signal="attacked" from="ModelPivot/HitBoxes/AttackHitbox" to="." method="_on_attack_hitbox_attacked"]
+
+[editable path="ModelPivot/Standard Run"]

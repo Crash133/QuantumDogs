@@ -1,15 +1,20 @@
 class_name AttackHitbox extends Area3D
 
-@export var damage: int = 10
+@export var hit_data: HitData
 
-# The AnimationPlayer will keyframe this property!
 @export var is_active: bool = false:
 	set(value):
+		if value == is_active:
+			return
+			
 		is_active = value
+		
 		if is_active:
-			_hit_objects.clear() # Reset targets when the swing starts
+			_hit_entities.clear() # Reset targets when the swing starts
 
-var _hit_objects: Array[Hurtbox] = []
+signal attacked(hit: HitData, target: Hurtbox)
+
+var _hit_entities: Dictionary = {}
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -28,6 +33,51 @@ func _on_area_entered(area: Area3D) -> void:
 		_try_hit(area)
 
 func _try_hit(area: Area3D) -> void:
-	if area is Hurtbox and area not in _hit_objects:
-		_hit_objects.append(area)
-		area.apply_hit(damage)
+	if not area is Hurtbox:
+		return
+
+	var hurtbox := area as Hurtbox
+
+	if not _can_hit(hurtbox):
+		return
+
+	_register_hit(hurtbox)
+	
+	attacked.emit(hit_data, hurtbox)
+	hurtbox.apply_hit(hit_data)
+
+
+func _can_hit(hurtbox: Hurtbox) -> bool:
+	var entity := hurtbox.owner_entity
+
+	if entity == null:
+		return false
+
+	match hit_data.hit_policy:
+		HitData.HitPolicy.ONCE:
+			return not _hit_entities.has(entity)
+
+		HitData.HitPolicy.MULTI_HIT:
+			return true
+
+		HitData.HitPolicy.COOLDOWN:
+			if not _hit_entities.has(entity):
+				return true
+
+			var last_hit_time: int = _hit_entities[entity]
+
+			return Time.get_ticks_msec() - last_hit_time \
+				>= hit_data.hit_cooldown * 1000.0
+
+	return false
+	
+func _register_hit(hurtbox: Hurtbox) -> void:
+	var entity := hurtbox.owner_entity
+
+	if entity == null:
+		return
+
+	_hit_entities[entity] = Time.get_ticks_msec()
+	
+func _get_hit_entity(hurtbox: Hurtbox) -> Node:
+	return hurtbox.owner_entity

@@ -13,3 +13,7 @@ func _process(_delta: float) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+
+
+func _on_hurtbox_took_knockback(velocity: Vector3) -> void:
+	pass # Replace with function body.

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://brp41fv6aauig"]
+
+[ext_resource type="Script" uid="uid://bbq0mq6kui6fu" path="res://Scripts/main.gd" id="1_7go7v"]
+[ext_resource type="PackedScene" uid="uid://ds3ccfhhi7ys7" path="res://Scenes/Components/CameraRig.tscn" id="1_s2l5p"]
+[ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_7go7v"]
+[ext_resource type="Script" uid="uid://bi8bn3aal3p75" path="res://Scenes/enemy.gd" id="5_bmbhi"]
+[ext_resource type="Script" uid="uid://dfymmbx3mxm4w" path="res://Scripts/Combat/hurtbox.gd" id="6_sepaq"]
+[ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/dash_manager.tscn" id="7_b43vc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kh1t2"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="GDScript" id="GDScript_4js3i"]
+resource_name = "AutoCollision"
+script/source = "extends CollisionShape3D
+
+@onready var mesh_instance := $\"../MeshInstance3D\"
+
+func _ready() -> void:
+	var mesh_aabb: AABB = mesh_instance.mesh.get_aabb()
+	var mesh_size: Vector3 = mesh_aabb.size
+	
+	if shape is BoxShape3D:
+		shape.size = mesh_size
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_bmbhi"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4js3i"]
+albedo_color = Color(1, 0.24313726, 0.40392157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5h11f"]
+material = SubResource("StandardMaterial3D_4js3i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2l5p"]
+
+[sub_resource type="GDScript" id="GDScript_s2l5p"]
+resource_name = "AutoCollision"
+script/source = "extends CollisionShape3D
+
+@onready var mesh_instance := $\"../MeshInstance3D\"
+
+func _ready() -> void:
+	var mesh_aabb: AABB = mesh_instance.mesh.get_aabb()
+	var mesh_size: Vector3 = mesh_aabb.size
+	
+	if shape is BoxShape3D:
+		shape.size = mesh_size
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
+
+[node name="Dummy" type="Node3D" unique_id=1664004354]
+script = ExtResource("1_7go7v")
+
+[node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig", "dash_manager") instance=ExtResource("2_7go7v")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+camera_rig = NodePath("../CameraRig")
+dash_manager = NodePath("../DashManager")
+
+[node name="Orbit Point" type="Node3D" parent="Player" unique_id=125713502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0507636, 0)
+
+[node name="CameraRig" parent="." unique_id=2012222051 node_paths=PackedStringArray("orbit_point") instance=ExtResource("1_s2l5p")]
+orbit_point = NodePath("../Player/Orbit Point")
+
+[node name="DashManager" parent="." unique_id=706154543 instance=ExtResource("7_b43vc")]
+dash_multiplier = 15.0
+
+[node name="Cooldown" parent="DashManager" index="0" unique_id=45365008]
+wait_time = 0.6
+one_shot = false
+
+[node name="Duration" parent="DashManager" index="1" unique_id=1141162433]
+wait_time = 0.2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1944780741]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=881050967]
+shape = SubResource("BoxShape3D_kh1t2")
+script = SubResource("GDScript_4js3i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2635924]
+mesh = SubResource("BoxMesh_bmbhi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1488952436]
+transform = Transform3D(0.99965954, -0.025203625, -0.0067532915, 0.024815015, 0.8383155, 0.54462045, -0.00806502, -0.5446026, 0.83865553, 0, 2.9154596, 4.102849)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=859513388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6648872, 3.3181086)
+script = ExtResource("5_bmbhi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1372501788]
+mesh = SubResource("BoxMesh_5h11f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=300986069]
+shape = SubResource("BoxShape3D_s2l5p")
+script = SubResource("GDScript_s2l5p")
+
+[node name="Hurtbox" type="Area3D" parent="CharacterBody3D" unique_id=877506718 node_paths=PackedStringArray("owner_entity")]
+collision_layer = 32768
+collision_mask = 32768
+monitoring = false
+script = ExtResource("6_sepaq")
+owner_entity = NodePath("..")
+metadata/_custom_type_script = "uid://dfymmbx3mxm4w"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Hurtbox" unique_id=1639651832]
+shape = SubResource("BoxShape3D_5h11f")
+debug_color = Color(1, 0.24313726, 1, 1)
+
+[connection signal="took_knockback" from="CharacterBody3D/Hurtbox" to="CharacterBody3D" method="_on_hurtbox_took_knockback"]
+
+[editable path="DashManager"]
