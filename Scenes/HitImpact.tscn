@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://rg6basldpwl1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_spc5r"]
+lifetime_randomness = 0.07
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fed1h"]
+albedo_color = Color(0.15334707, 0.5721432, 0.76940346, 1)
+emission_enabled = true
+emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_spc5r"]
+material = SubResource("StandardMaterial3D_fed1h")
+
+[sub_resource type="Skin" id="Skin_tkd5o"]
+
+[node name="HitImpact" type="Node3D" unique_id=74011322]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1019416535]
+emitting = false
+amount = 20
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_spc5r")
+draw_pass_1 = SubResource("QuadMesh_spc5r")
+draw_skin = SubResource("Skin_tkd5o")

@@ -13,7 +13,11 @@ config_version=5
 config/name="EOL"
 run/main_scene="uid://brp41fv6aauig"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://rtihn0740mrn"
+
+[autoload]
+
+JuiceManager="*uid://x8vlvnup6xqy"
 
 [display]
 

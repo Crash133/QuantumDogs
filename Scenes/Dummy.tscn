@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_7go7v"]
 [ext_resource type="Script" uid="uid://hctnj3c78bhg" path="res://Scripts/health_component.gd" id="4_b43vc"]
 [ext_resource type="PackedScene" uid="uid://bxleb0pxhiep1" path="res://Scenes/Components/Enemy.tscn" id="5_4js3i"]
-[ext_resource type="Texture2D" uid="uid://bp01k0nu4jpyn" path="res://Assets/Images/steel_ground.jpg" id="5_bmbhi"]
+[ext_resource type="PackedScene" uid="uid://c6q0tywwpuem4" path="res://Assets/Objects/Sci Fi Room_Fbx/Sci Fi Room.fbx" id="6_urm7v"]
 [ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/DashManager.tscn" id="7_b43vc"]
 [ext_resource type="Script" uid="uid://bdad428wm7d3p" path="res://Scripts/spawner.gd" id="7_urm7v"]
-[ext_resource type="Texture2D" uid="uid://dltwblwymnt1o" path="res://icon.svg" id="8_e6k8e"]
 [ext_resource type="Shader" uid="uid://0m60c6obe4vh" path="res://Shaders/StyleFill.gdshader" id="8_l40ec"]
 [ext_resource type="Script" uid="uid://bsjfkkkqtn2vq" path="res://Scripts/battery_health.gd" id="8_sepaq"]
 [ext_resource type="Script" uid="uid://t8sas17itcgl" path="res://Scripts/style.gd" id="10_v4tai"]
@@ -26,30 +25,14 @@ _data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.08, 0.5), 0.0, 0.0, 0, 0, Ve
 point_count = 4
 metadata/_snap_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_urm7v"]
+size = Vector3(125.20056, 30, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6k8e"]
+size = Vector3(60, 30, 0)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_kh1t2"]
-size = Vector3(0.2, 0.2, 0.2)
-
-[sub_resource type="GDScript" id="GDScript_4js3i"]
-resource_name = "AutoCollision"
-script/source = "extends CollisionShape3D
-
-@onready var mesh_instance := $\"../MeshInstance3D\"
-
-func _ready() -> void:
-	var mesh_aabb: AABB = mesh_instance.mesh.get_aabb()
-	var mesh_size: Vector3 = mesh_aabb.size
-	
-	if shape is BoxShape3D:
-		shape.size = mesh_size
-"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjqr1"]
-albedo_texture = ExtResource("5_bmbhi")
-uv1_scale = Vector3(128, 128, 128)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bmbhi"]
-material = SubResource("StandardMaterial3D_xjqr1")
-size = Vector3(50, 0.2, 50)
+size = Vector3(60, 0.2, 110.694824)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5h11f"]
 lifetime_randomness = 0.1
@@ -61,8 +44,10 @@ flatness = 0.195
 initial_velocity_min = 1.4499999
 initial_velocity_max = 6.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_urm7v"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq1y0"]
-albedo_texture = ExtResource("8_e6k8e")
+albedo_texture = SubResource("CompressedTexture2D_urm7v")
 uv1_scale = Vector3(4, 4, 4)
 uv2_scale = Vector3(4, 4, 4)
 
@@ -459,19 +444,37 @@ metadata/_custom_type_script = "uid://hctnj3c78bhg"
 orbit_point = NodePath("../Player/Orbit Point")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1944780741]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=1434527085]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 23.904514, 0, -0.43670845)
+shape = SubResource("BoxShape3D_urm7v")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1440956954]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -22.338375, 0, -22.775084)
+shape = SubResource("BoxShape3D_urm7v")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=305168009]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, -77.442726)
+shape = SubResource("BoxShape3D_e6k8e")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1626794919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.435171, 21.849546)
+shape = SubResource("BoxShape3D_e6k8e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=881050967]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, -4.3532953, -22.129538)
 shape = SubResource("BoxShape3D_kh1t2")
-script = SubResource("GDScript_4js3i")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2635924]
-mesh = SubResource("BoxMesh_bmbhi")
+[node name="Sci Fi Room" parent="StaticBody3D" unique_id=1462888071 instance=ExtResource("6_urm7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.199543)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1488952436]
 transform = Transform3D(0.99965954, -0.025203625, -0.0067532915, 0.024815015, 0.8383155, 0.54462045, -0.00806502, -0.5446026, 0.83865553, 0, 2.9154596, 4.102849)
+visible = false
 
 [node name="Spawner" type="Node3D" parent="." unique_id=830666899 node_paths=PackedStringArray("player_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.906806)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.96409357, -20.890852)
 script = ExtResource("7_urm7v")
 enemy = ExtResource("5_4js3i")
 player_target = NodePath("../Player")
@@ -520,7 +523,7 @@ offset_transform_enabled = true
 texture = SubResource("AtlasTexture_5h11f")
 stretch_mode = 1
 script = ExtResource("10_v4tai")
-mult = 20
+mult = 5
 decay_mult = 40
 decay = SubResource("Curve_v4tai")
 letter_spacing = 80.0

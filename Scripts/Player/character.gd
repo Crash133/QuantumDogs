@@ -51,6 +51,9 @@ func _process(_delta: float) -> void:
 	
 	_update_tree()
 
+func _ready():
+	print(SPEED)
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and dash_manager.can_dash():
 		dash_manager.dash()
@@ -123,6 +126,10 @@ func _update_tree():
 		can_combo and Input.is_action_just_pressed("attack")
 	)
 
-func _on_attack_hitbox_attacked(hit: HitData, target: Hurtbox) -> void:
+func _on_attack_hitbox_attacked(hit: HitData, target: Hurtbox, hit_position: Vector3) -> void:
 	health.heal_health(hit.damage * 0.8)
 	dealt_damage.emit(hit)
+	JuiceManager.hit_stop(hit.hitstop)
+	camera_rig.get_shaker().add_shake(
+		hit.camera_shake
+	)

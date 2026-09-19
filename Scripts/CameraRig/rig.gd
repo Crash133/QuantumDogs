@@ -10,6 +10,7 @@ class_name CameraRig
 @export var orbit_point: Node3D
 
 @onready var pitch_pivot = $PitchPivot
+@onready var shaker = $PitchPivot/CameraShake
 
 var pitch := -15.0
 var yaw := 0.0
@@ -25,6 +26,9 @@ func _process(delta: float) -> void:
 	
 	rotation.y = yaw
 	pitch_pivot.rotation.x = deg_to_rad(pitch)
+
+func get_shaker() -> CameraShake:
+	return shaker
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

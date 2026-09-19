@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2c4jvax6wqe7" path="res://Scenes/Components/HealthComponent.tscn" id="4_nlcat"]
 [ext_resource type="Script" uid="uid://dbojqgvf4gyen" path="res://Scripts/health_display.gd" id="4_xjqr1"]
 [ext_resource type="Texture2D" uid="uid://b3v5klyfbd74s" path="res://Assets/Images/Enemy Health.png" id="5_jjaod"]
+[ext_resource type="PackedScene" uid="uid://2hqc8ekmmxw5" path="res://Assets/Objects/Mech Type 3.glb" id="8_bkl85"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xi7gl"]
 radius = 0.21191406
@@ -18,27 +19,27 @@ height = 0.88012695
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iqjx"]
 transparency = 1
-albedo_color = Color(1, 0.050000012, 0.050000012, 0.29411766)
+albedo_color = Color(0.7167012, 0.22202072, 0.032367352, 0.1882353)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bx8n8"]
 material = SubResource("StandardMaterial3D_5iqjx")
 radius = 0.381
 height = 0.88
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xi7gl"]
-animation = &"ArmatureFantasyWarrior|A-pose"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bkl85"]
+animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nlcat"]
-animation = &"ArmatureFantasyWarrior|sword idle"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vlasq"]
+animation = &"Walk"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_bx8n8"]
 min_space = 0.0
-blend_point_0/node = SubResource("AnimationNodeAnimation_xi7gl")
+blend_point_0/node = SubResource("AnimationNodeAnimation_bkl85")
 blend_point_0/pos = 0.0
-blend_point_0/name = &"ArmatureFantasyWarrior|A-pose"
-blend_point_1/node = SubResource("AnimationNodeAnimation_nlcat")
+blend_point_0/name = &"Idle"
+blend_point_1/node = SubResource("AnimationNodeAnimation_vlasq")
 blend_point_1/pos = 1.0
-blend_point_1/name = &"ArmatureFantasyWarrior|sword idle"
+blend_point_1/name = &"Walk"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx8n8"]
 render_priority = 0
@@ -82,6 +83,7 @@ mesh = SubResource("CapsuleMesh_bx8n8")
 
 [node name="FantasyWarrior" parent="." unique_id=1016309476 instance=ExtResource("3_xi7gl")]
 transform = Transform3D(-0.415, 0, -3.628045e-08, 0, 0.415, 0, 3.628045e-08, 0, -0.415, 0, 0, -0.052234665)
+visible = false
 
 [node name="Skeleton3D" parent="FantasyWarrior/ArmatureFantasyWarrior" parent_id_path=PackedInt32Array(1016309476, 949551595) index="0" unique_id=644778966]
 bones/1/rotation = Quaternion(0.011079506, 0.032706324, -0.023571951, 0.99912566)
@@ -140,9 +142,9 @@ bones/70/rotation = Quaternion(0.8978093, -0.44022462, 0.011666355, -0.002131312
 bones/71/rotation = Quaternion(0.8508247, -0.40502846, -0.3324932, -0.038698725)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=549416195]
-root_node = NodePath("../FantasyWarrior")
+root_node = NodePath("../Mech Type 3")
 tree_root = SubResource("AnimationNodeBlendSpace1D_bx8n8")
-anim_player = NodePath("../FantasyWarrior/AnimationPlayer")
+anim_player = NodePath("../Mech Type 3/AnimationPlayer")
 parameters/blend_position = 0.0
 
 [node name="HealthDisplay" type="Node3D" parent="." unique_id=1380540008]
@@ -155,6 +157,57 @@ mesh = SubResource("QuadMesh_5h11f")
 
 [node name="HealthComponent" parent="." unique_id=638034159 instance=ExtResource("4_nlcat")]
 
+[node name="Mech Type 3" parent="." unique_id=819981886 instance=ExtResource("8_bkl85")]
+transform = Transform3D(-0.05, 0, 4.371139e-09, 0, 0.05, 0, -4.371139e-09, 0, -0.05, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Mech Type 3/Armature" parent_id_path=PackedInt32Array(819981886, 1945072148) index="30" unique_id=1759767762]
+bones/1/position = Vector3(0, 3.4994042, 0)
+bones/3/rotation = Quaternion(0.17345522, -0.1234516, -0.64623773, 0.7328369)
+bones/4/rotation = Quaternion(-0.6788688, 2.8934226e-08, -2.468264e-07, 0.7342596)
+bones/5/rotation = Quaternion(0.65690786, 5.67704e-09, 2.5226583e-07, 0.75397086)
+bones/6/rotation = Quaternion(0.5451999, -0.035278704, -0.0255831, 0.8371726)
+bones/10/rotation = Quaternion(-0.34752873, 0.24080975, -0.5994613, 0.679618)
+bones/11/rotation = Quaternion(0.12544656, 2.819244e-09, 4.855141e-08, 0.99210036)
+bones/12/rotation = Quaternion(0.62241364, -1.27526985e-08, 2.3834664e-07, 0.78268856)
+bones/15/rotation = Quaternion(-2.5660443e-08, -1.7495763e-09, -0.6020345, 0.79847014)
+bones/16/rotation = Quaternion(-4.4897547e-08, -2.5655739e-08, -0.79861635, 0.6018405)
+bones/18/rotation = Quaternion(-1.7787363e-08, 7.17326e-08, -0.6020345, 0.79847014)
+bones/19/rotation = Quaternion(4.7229893e-08, -3.0903514e-08, -0.79861635, 0.6018405)
+bones/21/rotation = Quaternion(-1.7787363e-08, 7.17326e-08, -0.6020345, 0.79847014)
+bones/22/rotation = Quaternion(4.7229893e-08, -3.0903514e-08, -0.79861635, 0.6018405)
+bones/24/rotation = Quaternion(-1.7787363e-08, 7.17326e-08, -0.6020345, 0.79847014)
+bones/25/rotation = Quaternion(4.7229893e-08, -3.0903514e-08, -0.79861635, 0.6018405)
+bones/26/rotation = Quaternion(-0.136374, -0.6868995, -0.14165984, 0.69964546)
+bones/27/rotation = Quaternion(-5.7636374e-08, -3.9297525e-08, 0.710978, 0.70321435)
+bones/29/rotation = Quaternion(-0.3475287, -0.24080971, 0.5994613, 0.679618)
+bones/30/rotation = Quaternion(0.1254466, -5.5418217e-09, -4.4245997e-08, 0.9921004)
+bones/31/rotation = Quaternion(0.62241364, 1.0445885e-08, -2.3957054e-07, 0.78268856)
+bones/34/rotation = Quaternion(-3.2950346e-08, -5.831919e-10, 0.6020345, 0.79847014)
+bones/35/rotation = Quaternion(-2.9154249e-08, 1.720101e-08, 0.79861635, 0.6018405)
+bones/37/rotation = Quaternion(-3.528312e-08, -6.415111e-08, 0.6020345, 0.7984701)
+bones/38/rotation = Quaternion(4.0815955e-08, 7.580113e-09, 0.7986163, 0.60184056)
+bones/40/rotation = Quaternion(-3.528312e-08, -6.415111e-08, 0.6020345, 0.7984701)
+bones/41/rotation = Quaternion(4.0815955e-08, 7.580113e-09, 0.7986163, 0.60184056)
+bones/43/rotation = Quaternion(-3.528312e-08, -6.415111e-08, 0.6020345, 0.7984701)
+bones/44/rotation = Quaternion(4.0815955e-08, 7.580113e-09, 0.7986163, 0.60184056)
+bones/45/rotation = Quaternion(-0.13637401, 0.6868994, 0.14165987, 0.69964546)
+bones/46/rotation = Quaternion(-5.8946288e-08, 3.405785e-08, -0.710978, 0.70321435)
+bones/48/rotation = Quaternion(0.17345522, 0.123451605, 0.64623773, 0.7328369)
+bones/49/rotation = Quaternion(-0.6788688, -2.9603079e-08, 2.510295e-07, 0.7342596)
+bones/50/rotation = Quaternion(0.65690786, -1.958734e-09, -2.5362377e-07, 0.75397086)
+bones/51/rotation = Quaternion(0.5451999, 0.035278697, 0.025583103, 0.8371726)
+bones/52/position = Vector3(1.5435983, 0.04601319, -0.09710712)
+bones/52/scale = Vector3(1.5195552, 1.0000001, 0.99999994)
+bones/53/rotation = Quaternion(-1.374357e-07, 0.70835286, 0.7058585, -1.379214e-07)
+bones/54/position = Vector3(2.285694, 3.3172925, -0.26981038)
+bones/54/rotation = Quaternion(-1.685874e-07, 0.7071068, 0.7071068, -1.685874e-07)
+bones/54/scale = Vector3(1.2232053, 1, 1)
+bones/55/rotation = Quaternion(1.3767878e-07, 0.7071068, -0.7071068, -1.3767878e-07)
+bones/56/position = Vector3(-1.5435983, 0.04601319, -0.09710712)
+bones/56/scale = Vector3(1.5195552, 1.0000001, 0.99999994)
+bones/58/position = Vector3(-2.285694, 3.3172925, -0.26981038)
+bones/58/scale = Vector3(1.2232053, 1, 1)
+
 [connection signal="took_damage" from="Hurtbox" to="HealthComponent" method="_on_hurtbox_took_damage"]
 [connection signal="took_knockback" from="Hurtbox" to="." method="_on_hurtbox_took_knockback"]
 [connection signal="took_stun" from="Hurtbox" to="." method="_on_hurtbox_took_stun"]
@@ -162,3 +215,4 @@ mesh = SubResource("QuadMesh_5h11f")
 [connection signal="health_changed" from="HealthComponent" to="HealthDisplay" method="_on_health_component_health_changed"]
 
 [editable path="FantasyWarrior"]
+[editable path="Mech Type 3"]

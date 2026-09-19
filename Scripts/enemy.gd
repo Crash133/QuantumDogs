@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var KNOCKBACK_DECELERATION := 20.0
 @export var player: Player
 
+@onready var tree := $AnimationTree
+
 var direction := Vector3.ZERO
 var knockback_velocity := Vector3.ZERO
 var stun := 0
@@ -20,25 +22,22 @@ func _process(delta: float) -> void:
 	)
 
 func _physics_process(delta: float) -> void:
-	# Count down stun.
 	if stun > 0.0:
 		stun = max(0.0, stun - delta)
 
-	# Normal movement.
 	var movement_velocity := direction * SPEED
 
-	# Don't move normally while stunned or being knocked back.
 	if stun > 0.0 or knockback_velocity != Vector3.ZERO:
 		movement_velocity = Vector3.ZERO
 
-	# Decay knockback.
 	knockback_velocity = knockback_velocity.move_toward(
 		Vector3.ZERO,
 		KNOCKBACK_DECELERATION * delta
 	)
 
-	# Final velocity.
 	velocity = movement_velocity + knockback_velocity
+	
+	tree.set('parameters/blend_position', clampf(velocity.length(), 0.0, 1.0))
 
 	if not is_on_floor():
 		velocity += Vector3.DOWN * 9 * delta

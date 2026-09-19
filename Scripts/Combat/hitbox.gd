@@ -12,7 +12,7 @@ class_name AttackHitbox extends Area3D
 		if is_active:
 			_hit_entities.clear() # Reset targets when the swing starts
 
-signal attacked(hit: HitData, target: Hurtbox)
+signal attacked(hit: HitData, target: Hurtbox, hit_position: Vector3)
 
 var _hit_entities: Dictionary = {}
 
@@ -43,8 +43,11 @@ func _try_hit(area: Area3D) -> void:
 
 	_register_hit(hurtbox)
 	
-	attacked.emit(hit_data, hurtbox)
+	var hit_position := hurtbox.global_position
+	
 	hurtbox.apply_hit(hit_data)
+	
+	attacked.emit(hit_data, hurtbox, hit_position)
 
 
 func _can_hit(hurtbox: Hurtbox) -> bool:
