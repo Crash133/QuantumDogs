@@ -1,0 +1,31 @@
+
+{
+  "output": "boot_scene.mp4",
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "duration": 25,
+  "seed": 42,
+
+  "font_path": "C:\\Windows\\Fonts\\consola.ttf",
+  "font_size": 25,
+
+  "background": "#050408",
+  "text_color": "#e7e4f2",
+  "ok_color": "#36d653",
+  "warn_color": "#ffc857",
+  "error_color": "#ff5263",
+
+  "line_interval": 0.23,
+  "startup_delay": 0.5,
+  "scroll": true,
+  "cursor": true,
+
+  "flicker": 0.015,
+  "scanlines": 0.025,
+  "vignette": 0.12,
+
+  "timeout_enabled": true,
+  "timeout_at": 20,
+  "timeout_text": "Job dev-disk-by\\\\x2duuid-CEF9.device/start running (42s / 1min 30s)"
+}

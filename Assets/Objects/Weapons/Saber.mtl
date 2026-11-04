@@ -1,0 +1,13 @@
+# Blender 5.2.0 LTS MTL File: 'ProtagonistAnimation.blend'
+# www.blender.org
+
+newmtl Material
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd C:/Users/USER/Downloads/Saber/DefaultMaterial_BaseColor.<UDIM>.png
+map_Ns C:/Users/USER/Downloads/Saber/DefaultMaterial_Roughness.<UDIM>.png
+map_refl C:/Users/USER/Downloads/Saber/DefaultMaterial_Metallic.<UDIM>.png
+map_Ke C:/Users/USER/Downloads/Saber/DefaultMaterial_Emission.<UDIM>.png

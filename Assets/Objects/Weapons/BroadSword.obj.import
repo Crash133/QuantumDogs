@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bu38roo6knkdi"
+path="res://.godot/imported/BroadSword.obj-81afb6a1b175688f282eb8bde06ca75f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BroadSword.obj-81afb6a1b175688f282eb8bde06ca75f.mesh"]
+
+source_file="res://Assets/Objects/Weapons/BroadSword.obj"
+dest_files=["res://.godot/imported/BroadSword.obj-81afb6a1b175688f282eb8bde06ca75f.mesh", "res://.godot/imported/BroadSword.obj-81afb6a1b175688f282eb8bde06ca75f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
