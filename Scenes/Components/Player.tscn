@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b1tcxhfqvp1g4" path="res://Assets/Objects/c5lupesx8sg0-Dagger4/dagger4_fbx.FBX" id="9_udvxc"]
 [ext_resource type="Animation" uid="uid://ckq7l57y5fv32" path="res://Assets/Objects/anim/slash_2.res" id="10_eivkh"]
 [ext_resource type="Texture2D" uid="uid://gbmwiyqjx8ac" path="res://Assets/Objects/c5lupesx8sg0-Dagger4/Textures/dagger4.png" id="12_gc3gm"]
+[ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/DashManager.tscn" id="13_dash"]
 
 [sub_resource type="Resource" id="Resource_gc3gm"]
 script = ExtResource("3_gc3gm")
@@ -269,8 +270,11 @@ graph_offset = Vector2(80, -5.995819)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urm7v"]
 albedo_texture = ExtResource("12_gc3gm")
 
-[node name="Player" type="CharacterBody3D" unique_id=1929478343]
+[node name="Player" type="CharacterBody3D" unique_id=1929478343 node_paths=PackedStringArray("dash_manager")]
 script = ExtResource("1_u8ca5")
+dash_manager = NodePath("DashManager")
+
+[node name="DashManager" parent="." unique_id=706154543 instance=ExtResource("13_dash")]
 
 [node name="ModelPivot" type="Node3D" parent="." unique_id=1390728165]
 
