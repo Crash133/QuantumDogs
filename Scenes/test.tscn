@@ -33,11 +33,11 @@ script = ExtResource("1_lc1oi")
 orbit_point = NodePath("../Player/Orbit Point")
 
 [node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig") instance=ExtResource("2_8od7v")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 camera_rig = NodePath("../CameraRig")
 
 [node name="Orbit Point" type="Node3D" parent="Player" unique_id=678516425]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5038824, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6259706, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=29403665]
 
