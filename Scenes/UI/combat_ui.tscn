@@ -1,0 +1,101 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://healthBarBG.png" id="2_q8na3"]
+[ext_resource type="Texture2D" path="res://Textures/Mantis.png" id="3_bcns5"]
+[ext_resource type="Texture2D" path="res://healthBarFill.png" id="3_oemdt"]
+[ext_resource type="Texture2D" path="res://Textures/Lance.png" id="4_d65p1"]
+[ext_resource type="Texture2D" path="res://Textures/dpad.png" id="5_2ij20"]
+[ext_resource type="Texture2D" path="res://Textures/Sword.png" id="6_84nwx"]
+[ext_resource type="Texture2D" path="res://Textures/Saber.png" id="7_3ldhc"]
+
+[node name="CombatUI" type="Control" unique_id=2082787565]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="Control" parent="." unique_id=1009936181]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar" unique_id=1224554035]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 22.0
+offset_right = 551.0
+offset_bottom = 58.0
+value = 100.0
+nine_patch_stretch = true
+texture_over = ExtResource("2_q8na3")
+texture_progress = ExtResource("3_oemdt")
+
+[node name="WeaponPanel" type="Control" parent="." unique_id=1664091533]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -158.0
+offset_right = 242.0
+offset_bottom = 31.0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="WeaponPanel" unique_id=1153760080]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -19.0
+offset_right = -9.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Control" type="Control" parent="WeaponPanel/GridContainer" unique_id=767207690]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Mantis" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=69714332]
+layout_mode = 2
+texture = ExtResource("3_bcns5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="WeaponPanel/GridContainer" unique_id=862671201]
+layout_mode = 2
+
+[node name="Lance" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=154651007]
+layout_mode = 2
+texture = ExtResource("4_d65p1")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="DPad" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=62255155]
+layout_mode = 2
+texture = ExtResource("5_2ij20")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Sword" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=631107856]
+layout_mode = 2
+texture = ExtResource("6_84nwx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Control3" type="Control" parent="WeaponPanel/GridContainer" unique_id=154311789]
+layout_mode = 2
+
+[node name="Saber" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=1150534481]
+layout_mode = 2
+texture = ExtResource("7_3ldhc")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Control4" type="Control" parent="WeaponPanel/GridContainer" unique_id=1138916292]
+layout_mode = 2

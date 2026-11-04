@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bbq0mq6kui6fu" path="res://Scripts/main.gd" id="1_lc1oi"]
 [ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_8od7v"]
 [ext_resource type="PackedScene" uid="uid://ds3ccfhhi7ys7" path="res://Scenes/Components/CameraRig.tscn" id="2_qc4db"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/pause_menu.tscn" id="3_pause"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/combat_ui.tscn" id="4_combat"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -48,3 +50,10 @@ mesh = SubResource("BoxMesh_5h11f")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1930755757]
 transform = Transform3D(0.99965954, -0.025203625, -0.0067532915, 0.024815015, 0.8383155, 0.54462045, -0.00806502, -0.5446026, 0.83865553, 0, 2.9154596, 4.102849)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CombatUI" parent="UI" instance=ExtResource("4_combat")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("3_pause")]
+visible = false

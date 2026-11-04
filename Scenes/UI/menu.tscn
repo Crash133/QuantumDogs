@@ -1,0 +1,182 @@
+[gd_scene format=3]
+
+[ext_resource type="FontFile" path="res://Xirod.otf" id="1_xhh6f"]
+[ext_resource type="Texture2D" path="res://frame.png" id="2_cayip"]
+[ext_resource type="Texture2D" path="res://Logo.png" id="3_cayip"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yot2d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4evf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6rymm"]
+texture = ExtResource("2_cayip")
+texture_margin_left = 115.70258
+texture_margin_top = 74.92114
+texture_margin_right = 137.49074
+texture_margin_bottom = 54.3948
+region_rect = Rect2(14.626102, 9.374165, 300.6665, 152.68512)
+
+[sub_resource type="Theme" id="Theme_yot2d"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_xhh6f")
+Button/styles/normal = SubResource("StyleBoxTexture_6rymm")
+
+[sub_resource type="Theme" id="Theme_q4evf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfsgq"]
+font_size = 23
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0wxno"]
+
+[sub_resource type="Theme" id="Theme_yivmv"]
+
+[node name="Menu" type="Control" unique_id=849342229]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=179243390]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_top = -650.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yot2d")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2027616386]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1340362294]
+modulate = Color(1, 1, 1, 0.102941155)
+custom_minimum_size = Vector2(200, 400)
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2075600606]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_q4evf")
+
+[node name="Button4" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=643350603]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_yot2d")
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Button4" unique_id=744756983]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -29.5
+offset_right = 103.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q4evf")
+theme_override_font_sizes/font_size = 36
+text = "Start"
+label_settings = SubResource("LabelSettings_nfsgq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1338553621]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_q4evf")
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1878921984]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_yot2d")
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Button2" unique_id=891174255]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -29.5
+offset_right = 103.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q4evf")
+theme_override_font_sizes/font_size = 36
+text = "Options"
+label_settings = SubResource("LabelSettings_nfsgq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1096094296]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0wxno")
+
+[node name="Button3" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1528756093]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_yot2d")
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Button3" unique_id=557777513]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -24.5
+offset_right = 93.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yivmv")
+theme_override_font_sizes/font_size = 36
+text = "Quit"
+label_settings = SubResource("LabelSettings_nfsgq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2141340150]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0wxno")
+
+[node name="Title" type="Control" parent="." unique_id=937992559]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 0
+offset_left = 35.0
+offset_top = 24.0
+offset_right = 435.0
+offset_bottom = 224.0
+
+[node name="TextureRect" type="TextureRect" parent="Title" unique_id=935787879]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -23.0
+offset_right = 492.32556
+offset_bottom = 223.0
+texture = ExtResource("3_cayip")
+expand_mode = 1
