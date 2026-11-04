@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	if dash_manager.is_dashing():
-		var dash_speed := SPEED * dash_manager.get_mult()
+		var dash_speed: float = SPEED * dash_manager.get_mult()
 		velocity.x = dash_direction.x * dash_speed
 		velocity.z = dash_direction.z * dash_speed
 		model_pivot.basis = Basis.looking_at(-dash_direction, Vector3.UP)
