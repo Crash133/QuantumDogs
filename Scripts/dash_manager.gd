@@ -3,7 +3,7 @@ class_name DashManager extends Node
 @onready var cooldown: Timer = $Cooldown
 @onready var duration: Timer = $Duration
 
-@export var dash_multiplier = 10.0
+@export var dash_multiplier = 3.0
 @export var dash_time_buffering := 0.1
 @export var dash_speed_curve: Curve
 
@@ -31,7 +31,7 @@ func _get_speed_mult() -> float:
 		
 	var elapsed_time = duration.wait_time - duration.time_left
 	var t = elapsed_time / duration.wait_time
-	return dash_speed_curve.sample(t) * dash_multiplier
+	return lerp(1.0, dash_multiplier, dash_speed_curve.sample(t))
 	
 func is_dashing() -> bool:
 	return dashing

@@ -24,10 +24,9 @@ enum State {
 }
 
 var state := State.IDLE
-var lock_velocity := false
 var stand_still := false
-var speed_multiplier := 1.0
 var can_combo := false
+var dash_direction := Vector3.ZERO
 
 func end_attack():
 	state = State.IDLE
@@ -55,9 +54,16 @@ func _ready():
 	print(SPEED)
 
 func _physics_process(delta: float) -> void:
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+	var direction := Vector3.ZERO
+	if input_dir != Vector2.ZERO:
+		var forward := -camera_rig.global_basis.z
+		var right := camera_rig.global_basis.x
+		direction = (right * input_dir.x + forward * -input_dir.y).normalized()
+
 	if Input.is_action_just_pressed("dash") and dash_manager.can_dash():
 		dash_manager.dash()
-		speed_multiplier = dash_manager.get_mult()
+		dash_direction = direction if direction != Vector3.ZERO else -camera_rig.global_basis.z
 	
 	if not is_on_floor():
 		velocity += Vector3.DOWN * GRAVITY * delta
@@ -65,43 +71,31 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
-	var direction
-	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if direction:
-		var forward := -camera_rig.global_basis.z
-		var right := camera_rig.global_basis.x
-
-		direction = (
-			right * input_dir.x
-			+ forward * -input_dir.y
-		).normalized()
-		
-		if not lock_velocity:
-			velocity.x = direction.x * SPEED * speed_multiplier
-			velocity.z = direction.z * SPEED * speed_multiplier
-		
-		lock_velocity = dash_manager.is_dashing()
-
-		model_pivot.basis = Basis.looking_at(
-			-direction,
-			Vector3.UP
-		)
-		
+	if dash_manager.is_dashing():
+		var dash_speed := SPEED * dash_manager.get_mult()
+		velocity.x = dash_direction.x * dash_speed
+		velocity.z = dash_direction.z * dash_speed
+		model_pivot.basis = Basis.looking_at(-dash_direction, Vector3.UP)
+	elif direction != Vector3.ZERO:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		model_pivot.basis = Basis.looking_at(-direction, Vector3.UP)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	if stand_still:	velocity = Vector3.ZERO
-
-	speed_multiplier = 1.0
+	if stand_still:
+		velocity = Vector3.ZERO
 
 	move_and_slide()
 	
 func _update_tree():
 	anim_tree.set(
 		'parameters/conditions/dash',
+		dash_manager.is_dashing()
+	)
+	anim_tree.set(
+		'parameters/conditions/is_dashing',
 		dash_manager.is_dashing()
 	)
 	

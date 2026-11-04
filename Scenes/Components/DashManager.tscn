@@ -13,8 +13,11 @@ dash_speed_curve = SubResource("Curve_1o36p")
 
 [node name="Cooldown" type="Timer" parent="." unique_id=45365008]
 one_shot = true
+wait_time = 0.8
 
 [node name="Duration" type="Timer" parent="." unique_id=1141162433]
+one_shot = true
+wait_time = 0.25
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
