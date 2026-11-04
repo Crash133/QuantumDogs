@@ -415,24 +415,16 @@ _data = {
 [node name="Dummy" type="Node3D" unique_id=1664004354]
 script = ExtResource("1_7go7v")
 
-[node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig", "dash_manager", "health") instance=ExtResource("2_7go7v")]
+[node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig", "health") instance=ExtResource("2_7go7v")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 camera_rig = NodePath("../CameraRig")
-dash_manager = NodePath("DashManager")
 health = NodePath("HealthComponent")
 
 [node name="Orbit Point" type="Node3D" parent="Player" unique_id=125713502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0507636, 0)
 
-[node name="DashManager" parent="Player" unique_id=706154543 instance=ExtResource("7_b43vc")]
+[node name="DashManager2" parent="Player" unique_id=706154543 instance=ExtResource("7_b43vc")]
 dash_multiplier = 15.0
-
-[node name="Cooldown" parent="Player/DashManager" index="0" unique_id=45365008]
-wait_time = 0.6
-one_shot = false
-
-[node name="Duration" parent="Player/DashManager" index="1" unique_id=1141162433]
-wait_time = 0.2
 
 [node name="HealthComponent" type="Node" parent="Player" unique_id=1131662113]
 script = ExtResource("4_b43vc")
@@ -602,5 +594,3 @@ libraries/ = SubResource("AnimationLibrary_f0mwc")
 [connection signal="health_changed" from="Player/HealthComponent" to="Control/VBoxContainer/MarginContainer/ProgressBar" method="_on_health_component_health_changed"]
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="Control/CenterContainer/VBoxContainer/H/TextureRect" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="Control/AnimationPlayer" to="Control/CenterContainer/VBoxContainer/H/TextureRect" method="_on_animation_player_animation_started"]
-
-[editable path="Player/DashManager"]
