@@ -1,0 +1,79 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/style.gd" id="1_style_hud"]
+[ext_resource type="Shader" path="res://Shaders/StyleFill.gdshader" id="2_fill"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Style_Atlas_3.png" id="3_atlas"]
+
+[sub_resource type="ShaderMaterial" id="rank_material"]
+shader = ExtResource("2_fill")
+shader_parameter/unfilled_color = Color(0.55, 0.54, 0.54, 1)
+shader_parameter/fill_perc = 0.65
+shader_parameter/alpha_mult = 1.0
+shader_parameter/i = 0.0
+shader_parameter/m = 1.0
+
+[sub_resource type="AtlasTexture" id="rank_atlas"]
+atlas = ExtResource("3_atlas")
+
+[sub_resource type="AtlasTexture" id="rank_glyph"]
+atlas = SubResource("rank_atlas")
+region = Rect2(641, 40, 218, 206)
+
+[sub_resource type="AtlasTexture" id="aux_glyph"]
+atlas = ExtResource("3_atlas")
+region = Rect2(641, 40, 218, 206)
+
+[node name="StyleFeedback" type="MarginContainer"]
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="RankRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="StyleRank" type="TextureRect" parent="VBox/RankRow"]
+material = SubResource("rank_material")
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = SubResource("rank_glyph")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_style_hud")
+
+[node name="RichTextLabel" type="Label" parent="VBox/RankRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "DORMANT"
+visible = false
+
+[node name="AuxRect" type="TextureRect" parent="VBox/RankRow"]
+visible = false
+material = SubResource("rank_material")
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = SubResource("aux_glyph")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AuxLabel" type="Label" parent="VBox/RankRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+visible = false
+
+[node name="ActionList" type="Label" parent="VBox"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2
+
+[node name="PayoutLabel" type="Label" parent="VBox"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

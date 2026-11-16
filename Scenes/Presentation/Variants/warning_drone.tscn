@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/EnemyWarningAccent.tscn" id="1_base"]
+
+[node name="warning_drone" instance=ExtResource("1_base")]
+warning_shape = 1
+size = 0.7
+core_color = Color(1.0, 0.7, 0.25, 1)
+warning_intensity = 1.1

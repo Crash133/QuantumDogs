@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StyleTuning" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Style/style_tuning.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+max_rating = 100.0
+rank_thresholds = PackedFloat32Array(14.0, 28.0, 42.0, 56.0, 70.0, 84.0)
+rank_multipliers = PackedFloat32Array(1.0, 1.15, 1.3, 1.5, 1.75, 2.0, 2.5)
+idle_payout_ticks = 240
+rating_decay_per_tick = 0.05
+damage_retention_ratio = 0.5

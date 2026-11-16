@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/arena_fallback_layout.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelGeneration/Modules/core_coliseum.tscn" id="2_core"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelGeneration/Modules/ground_tile.tscn" id="3_tile"]
+
+[node name="Fallback_coliseum" type="Node3D"]
+script = ExtResource("1_script")
+silhouette_id = &"coliseum"
+core_scene = ExtResource("2_core")
+tile_scene = ExtResource("3_tile")

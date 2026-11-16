@@ -1,0 +1,383 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Textures/Mantis.png" id="3_bcns5"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Textures/Lance.png" id="4_d65p1"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Textures/dpad.png" id="5_2ij20"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Textures/Sword.png" id="6_84nwx"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Textures/Saber.png" id="7_3ldhc"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/StyleFeedback.tscn" id="8_style_feedback"]
+[ext_resource type="FontFile" path="res://Assets/FrontEndPrototype/Xirod.otf" id="9_font"]
+[ext_resource type="Script" path="res://Scripts/UI/segmented_progress_bar.gd" id="10_segments"]
+[ext_resource type="Script" path="res://Scripts/UI/low_battery_icon.gd" id="11_low_icon"]
+[ext_resource type="Script" path="res://Scripts/UI/revolver_chamber.gd" id="12_chamber"]
+
+[sub_resource type="StyleBoxFlat" id="panel_dark"]
+bg_color = Color(0.03, 0.05, 0.1, 0.55)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 9.0
+content_margin_top = 5.0
+content_margin_right = 9.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="battery_bg"]
+bg_color = Color(0.86, 0.88, 0.92, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08, 0.09, 0.12, 1)
+
+[sub_resource type="StyleBoxFlat" id="battery_fill"]
+bg_color = Color(0.08, 0.37, 0.69, 1)
+
+[sub_resource type="Gradient" id="heat_gradient"]
+offsets = PackedFloat32Array(0, 0.35, 0.65, 1)
+colors = PackedColorArray(0.15, 0.55, 1, 1, 0.2, 0.9, 0.7, 1, 1, 0.85, 0.2, 1, 0.95, 0.2, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="orange_box"]
+bg_color = Color(0.25, 0.9, 1, 1)
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="pale_box"]
+bg_color = Color(0.85, 0.93, 1, 1)
+content_margin_left = 10.0
+content_margin_top = 1.0
+content_margin_right = 10.0
+content_margin_bottom = 1.0
+
+[node name="CombatUI" type="Control" unique_id=2082787565]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WeaponPanel" type="Control" parent="." unique_id=1664091533]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -213.0
+offset_right = 242.0
+offset_bottom = -24.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 189)
+scale = Vector2(0.62, 0.62)
+
+[node name="GridContainer" type="GridContainer" parent="WeaponPanel" unique_id=1153760080]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -19.0
+offset_right = -9.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Control" type="Control" parent="WeaponPanel/GridContainer" unique_id=767207690]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Mantis" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=69714332]
+layout_mode = 2
+texture = ExtResource("3_bcns5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="WeaponPanel/GridContainer" unique_id=862671201]
+layout_mode = 2
+
+[node name="Lance" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=154651007]
+layout_mode = 2
+texture = ExtResource("4_d65p1")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="DPad" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=62255155]
+layout_mode = 2
+texture = ExtResource("5_2ij20")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Sword" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=631107856]
+layout_mode = 2
+texture = ExtResource("6_84nwx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Control3" type="Control" parent="WeaponPanel/GridContainer" unique_id=154311789]
+layout_mode = 2
+
+[node name="Saber" type="TextureRect" parent="WeaponPanel/GridContainer" unique_id=1150534481]
+layout_mode = 2
+texture = ExtResource("7_3ldhc")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Control4" type="Control" parent="WeaponPanel/GridContainer" unique_id=1138916292]
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -150.0
+offset_right = -16.0
+offset_bottom = 150.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="CombatLogPanel" type="PanelContainer" parent="RightColumn"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("panel_dark")
+
+[node name="CombatLogColumn" type="VBoxContainer" parent="RightColumn/CombatLogPanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="StyleFeedback" parent="RightColumn/CombatLogPanel/CombatLogColumn" instance=ExtResource("8_style_feedback")]
+layout_mode = 2
+
+[node name="LogDivider" type="HSeparator" parent="RightColumn/CombatLogPanel/CombatLogColumn"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HitsRow" type="HBoxContainer" parent="RightColumn/CombatLogPanel/CombatLogColumn"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HitsValueBox" type="PanelContainer" parent="RightColumn/CombatLogPanel/CombatLogColumn/HitsRow"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("orange_box")
+
+[node name="HitsValue" type="Label" parent="RightColumn/CombatLogPanel/CombatLogColumn/HitsRow/HitsValueBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17, 0.2, 0.26, 1)
+theme_override_fonts/font = ExtResource("9_font")
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1
+
+[node name="HitsCaption" type="Label" parent="RightColumn/CombatLogPanel/CombatLogColumn/HitsRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.93, 1, 1)
+theme_override_fonts/font = ExtResource("9_font")
+theme_override_font_sizes/font_size = 11
+text = "HITS"
+
+[node name="KillsRow" type="HBoxContainer" parent="RightColumn/CombatLogPanel/CombatLogColumn"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="KillsValueBox" type="PanelContainer" parent="RightColumn/CombatLogPanel/CombatLogColumn/KillsRow"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("pale_box")
+
+[node name="KillsValue" type="Label" parent="RightColumn/CombatLogPanel/CombatLogColumn/KillsRow/KillsValueBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.17, 0.2, 0.26, 1)
+theme_override_fonts/font = ExtResource("9_font")
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1
+
+[node name="KillsCaption" type="Label" parent="RightColumn/CombatLogPanel/CombatLogColumn/KillsRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.93, 1, 1)
+theme_override_fonts/font = ExtResource("9_font")
+theme_override_font_sizes/font_size = 11
+text = "KILLS"
+
+[node name="WeaponStatus" type="PanelContainer" parent="RightColumn"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("panel_dark")
+
+[node name="WeaponColumn" type="VBoxContainer" parent="RightColumn/WeaponStatus"]
+layout_mode = 2
+
+[node name="DashPromptLabel" type="Label" parent="RightColumn/WeaponStatus/WeaponColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "DASH  KEY"
+
+[node name="AttackPromptLabel" type="Label" parent="RightColumn/WeaponStatus/WeaponColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LIGHT / HEAVY"
+
+[node name="VitalsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 336.0
+offset_bottom = 120.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("panel_dark")
+
+[node name="Column" type="VBoxContainer" parent="VitalsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BatteryHeader" type="HBoxContainer" parent="VitalsPanel/Column"]
+layout_mode = 2
+
+[node name="BatteryLabel" type="Label" parent="VitalsPanel/Column/BatteryHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.93, 1, 1)
+theme_override_fonts/font = ExtResource("9_font")
+theme_override_font_sizes/font_size = 11
+text = "BATTERY  -- / --"
+
+[node name="BatteryPercent" type="Label" parent="VitalsPanel/Column/BatteryHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.8, 1, 1)
+theme_override_fonts/font = ExtResource("9_font")
+theme_override_font_sizes/font_size = 18
+text = "--%"
+horizontal_alignment = 2
+
+[node name="BatteryBar" type="ProgressBar" parent="VitalsPanel/Column"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+theme_override_styles/background = SubResource("battery_bg")
+theme_override_styles/fill = SubResource("battery_fill")
+max_value = 100.0
+show_percentage = false
+
+[node name="HeatLabel" type="Label" parent="VitalsPanel/Column"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.93, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "HEAT  -- / --"
+
+[node name="HeatBar" type="ProgressBar" parent="VitalsPanel/Column"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+script = ExtResource("10_segments")
+fill_gradient = SubResource("heat_gradient")
+
+[node name="DashRow" type="HBoxContainer" parent="VitalsPanel/Column"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DashIcons" type="HBoxContainer" parent="VitalsPanel/Column/DashRow"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="DashLabel" type="Label" parent="VitalsPanel/Column/DashRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.93, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "DASH  -- / --"
+
+[node name="CurrencyLabel" type="Label" parent="VitalsPanel/Column"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.3, 1)
+theme_override_font_sizes/font_size = 10
+text = "STYLE POINTS  --"
+
+[node name="EncounterPanel" type="MarginContainer" parent="VitalsPanel/Column"]
+layout_mode = 2
+
+[node name="EncounterLabel" type="Label" parent="VitalsPanel/Column/EncounterPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LEVEL --  |  DIFFICULTY --  |  ENCOUNTER -- / --"
+horizontal_alignment = 1
+
+[node name="RevolverChamber" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -136.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("12_chamber")
+
+[node name="LowBatteryIcon" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 80.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_low_icon")
+
+[node name="TargetPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -20.0
+offset_right = -28.0
+offset_bottom = 86.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TargetColumn" type="VBoxContainer" parent="TargetPanel"]
+layout_mode = 2
+
+[node name="TargetNameLabel" type="Label" parent="TargetPanel/TargetColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "ELITE TARGET"
+
+[node name="TargetDetailLabel" type="Label" parent="TargetPanel/TargetColumn"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "HEAT -- / --"
+
+[node name="PauseHint" type="Label" parent="."]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 10
+text = "ESC / START  PAUSE"

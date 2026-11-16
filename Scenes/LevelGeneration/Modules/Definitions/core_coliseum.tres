@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArenaModuleDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/arena_module_definition.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelGeneration/Modules/core_coliseum.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+module_id = &"core_coliseum"
+scene = ExtResource("2_scene")
+supported_silhouettes = Array[StringName]([&"coliseum"])
+local_bounds = Rect2(-2.0, -2.0, 4.0, 4.0)

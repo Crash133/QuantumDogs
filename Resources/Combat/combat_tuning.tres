@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CombatTuning" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Combat/combat_tuning.gd" id="1_tuning"]
+[ext_resource type="PackedScene" path="res://Scenes/GameFeel/ExecutionShockwaveVfx.tscn" id="2_shockwave"]
+
+[resource]
+script = ExtResource("1_tuning")
+execution_animation_enabled = false
+execution_shockwave_vfx = ExtResource("2_shockwave")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyAnimationMap" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/enemy_animation_map.gd" id="1_map"]
+
+[resource]
+script = ExtResource("1_map")
+role = &"elite"
+clips = Dictionary[StringName, StringName]({&"idle": &"EliteIdle", &"pursue": &"EliteWalking", &"windup": &"EliteAttack1", &"attack": &"EliteAttack1", &"recovery": &"EliteAttack1", &"hit": &"EliteHit1", &"stagger": &"EliteOverheatIdle", &"defeated": &"EliteKUFall"})
+fallback = &"EliteIdle"

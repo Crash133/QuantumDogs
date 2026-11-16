@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Combat/debug_arena.gd" id="1_arena"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_manager_node.gd" id="hit_manager"]
+[ext_resource type="PackedScene" path="res://Scenes/Combat/CombatTimeDomains.tscn" id="time_domains"]
+[ext_resource type="Script" path="res://Scripts/Combat/hitbox_proxy.gd" id="hitbox"]
+[ext_resource type="PackedScene" path="res://Scenes/Rendering/CombatLightRig.tscn" id="light_rig"]
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.16, 0.17, 0.19, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+material = SubResource("FloorMaterial")
+size = Vector3(80, 1, 80)
+
+[node name="CombatDebugArena" type="Node3D"]
+script = ExtResource("1_arena")
+dummy_count = 200
+benchmark_ticks = 600
+
+[node name="Floor" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.5, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+[node name="HitManager" type="Node" parent="."]
+script = ExtResource("hit_manager")
+
+[node name="CombatTimeDomains" parent="." instance=ExtResource("time_domains")]
+
+[node name="CombatLightRig" parent="." instance=ExtResource("light_rig")]
+[node name="BenchmarkSweep" type="Node3D" parent="."]
+script = ExtResource("hitbox")
+manager_path = NodePath("../HitManager")

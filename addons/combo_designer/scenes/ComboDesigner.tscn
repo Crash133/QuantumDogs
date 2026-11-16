@@ -1,0 +1,269 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/combo_designer/combo_editor.gd" id="1_editor"]
+[ext_resource type="Script" path="res://addons/combo_designer/combo_graph_canvas.gd" id="2_canvas"]
+[ext_resource type="Script" path="res://addons/combo_designer/combo_timeline.gd" id="3_timeline"]
+[ext_resource type="PackedScene" path="res://addons/combo_designer/scenes/ComboPreview.tscn" id="4_preview"]
+
+[node name="ComboDesigner" type="Control"]
+custom_minimum_size = Vector2(520, 620)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_editor")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Toolbar" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="ChooseResource" type="Button" parent="Layout/Toolbar" unique_id=1023012]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Browse"
+
+[node name="GraphPath" type="LineEdit" parent="Layout/Toolbar" unique_id=1023013]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "res://WeaponData.tres or attack.combo.tres"
+clear_button_enabled = true
+
+[node name="OpenResource" type="Button" parent="Layout/Toolbar" unique_id=1023014]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Open"
+
+[node name="NewGraph" type="Button" parent="Layout/Toolbar" unique_id=1023037]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Graph"
+
+[node name="SaveResource" type="Button" parent="Layout/Toolbar" unique_id=1023015]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="SaveAsResource" type="Button" parent="Layout/Toolbar" unique_id=1023038]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save As"
+
+[node name="CreateRow" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="NewAttackName" type="LineEdit" parent="Layout/CreateRow" unique_id=1023016]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Attack name"
+
+[node name="NewAttackAnimation" type="LineEdit" parent="Layout/CreateRow" unique_id=1023017]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Animation clip"
+
+[node name="AddAttack" type="Button" parent="Layout/CreateRow" unique_id=1023018]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Attack"
+
+[node name="DuplicateAttack" type="Button" parent="Layout/CreateRow" unique_id=1023032]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Duplicate"
+
+[node name="DeleteAttack" type="Button" parent="Layout/CreateRow" unique_id=1023019]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Delete"
+disabled = true
+
+[node name="MigrateLegacy" type="Button" parent="Layout/CreateRow" unique_id=1023033]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Migrate Legacy"
+disabled = true
+
+[node name="MainSplit" type="HSplitContainer" parent="Layout"]
+custom_minimum_size = Vector2(0, 380)
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 350
+
+[node name="GraphCanvas" type="GraphEdit" parent="Layout/MainSplit" unique_id=1023020]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 260)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_canvas")
+show_grid = true
+show_minimap_button = true
+show_zoom_buttons = true
+
+[node name="InspectorPanel" type="VBoxContainer" parent="Layout/MainSplit"]
+custom_minimum_size = Vector2(240, 260)
+layout_mode = 2
+
+[node name="InspectorTitle" type="Label" parent="Layout/MainSplit/InspectorPanel"]
+layout_mode = 2
+text = "Selected attack"
+
+[node name="SelectedName" type="LineEdit" parent="Layout/MainSplit/InspectorPanel" unique_id=1023021]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Display name"
+editable = false
+
+[node name="SelectedAnimation" type="LineEdit" parent="Layout/MainSplit/InspectorPanel" unique_id=1023022]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Animation clip"
+editable = false
+
+[node name="DurationRow" type="HBoxContainer" parent="Layout/MainSplit/InspectorPanel"]
+layout_mode = 2
+
+[node name="DurationLabel" type="Label" parent="Layout/MainSplit/InspectorPanel/DurationRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Duration (60 Hz ticks)"
+
+[node name="DurationTicks" type="SpinBox" parent="Layout/MainSplit/InspectorPanel/DurationRow" unique_id=1023023]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 3600.0
+value = 30.0
+editable = false
+[node name="ClipSpanRow" type="HBoxContainer" parent="Layout/MainSplit/InspectorPanel"]
+layout_mode = 2
+[node name="ClipSpanLabel" type="Label" parent="Layout/MainSplit/InspectorPanel/ClipSpanRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clip span (s)"
+[node name="ClipStartSeconds" type="SpinBox" parent="Layout/MainSplit/InspectorPanel/ClipSpanRow" unique_id=1023051]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.0
+max_value = 600.0
+step = 0.01
+editable = false
+prefix = "from "
+suffix = " s"
+[node name="ClipEndSeconds" type="SpinBox" parent="Layout/MainSplit/InspectorPanel/ClipSpanRow" unique_id=1023052]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -1.0
+max_value = 600.0
+step = 0.01
+editable = false
+prefix = "to "
+suffix = " s"
+tooltip_text = "Use -1 to play through the full animation clip."
+
+[node name="WindowKind" type="OptionButton" parent="Layout/MainSplit/InspectorPanel" unique_id=1023024]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select timing window"
+
+[node name="WindowRange" type="HBoxContainer" parent="Layout/MainSplit/InspectorPanel"]
+layout_mode = 2
+
+[node name="WindowStart" type="SpinBox" parent="Layout/MainSplit/InspectorPanel/WindowRange" unique_id=1023025]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 3599.0
+editable = false
+
+[node name="WindowEnd" type="SpinBox" parent="Layout/MainSplit/InspectorPanel/WindowRange" unique_id=1023026]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 3599.0
+editable = false
+[node name="WindowSecondsRow" type="HBoxContainer" parent="Layout/MainSplit/InspectorPanel"]
+layout_mode = 2
+[node name="WindowStartSeconds" type="Label" parent="Layout/MainSplit/InspectorPanel/WindowSecondsRow" unique_id=1023046]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.000 s start"
+[node name="WindowEndSeconds" type="Label" parent="Layout/MainSplit/InspectorPanel/WindowSecondsRow" unique_id=1023047]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.000 s end"
+
+[node name="DispatchMode" type="OptionButton" parent="Layout/MainSplit/InspectorPanel" unique_id=1023034]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Immediate transition"
+
+[node name="DispatchTick" type="SpinBox" parent="Layout/MainSplit/InspectorPanel" unique_id=1023035]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.0
+max_value = 3599.0
+editable = false
+prefix = "Dispatch tick "
+
+[node name="BlendTicks" type="SpinBox" parent="Layout/MainSplit/InspectorPanel" unique_id=1023036]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 60.0
+editable = false
+prefix = "Visual blend ticks "
+
+[node name="OpenInspector" type="Button" parent="Layout/MainSplit/InspectorPanel" unique_id=1023027]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Edit full Resource in Inspector"
+disabled = true
+
+[node name="Validation" type="RichTextLabel" parent="Layout/MainSplit/InspectorPanel" unique_id=1023028]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = true
+text = "Open a WeaponData or ComboGraph Resource."
+
+[node name="Preview" parent="Layout/MainSplit/InspectorPanel" unique_id=1023029 instance=ExtResource("4_preview")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="TimelineTitle" type="Label" parent="Layout"]
+layout_mode = 2
+text = "60 Hz timeline · inclusive endpoints"
+
+[node name="Timeline" type="Control" parent="Layout" unique_id=1023030]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+script = ExtResource("3_timeline")
+
+[node name="ResourceDialog" type="FileDialog" parent="." unique_id=1023031]
+unique_name_in_owner = true
+title = "Open WeaponData or ComboGraph"
+file_mode = 0
+access = 0
+filters = PackedStringArray("*.tres ; Godot Resources")

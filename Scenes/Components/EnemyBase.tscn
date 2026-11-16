@@ -1,0 +1,88 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://bi8bn3aal3p75" path="res://Scripts/enemy.gd" id="1_0snbo"]
+[ext_resource type="Script" uid="uid://dfymmbx3mxm4w" path="res://Scripts/Combat/hurtbox.gd" id="2_xi7gl"]
+[ext_resource type="Shader" uid="uid://cdajb14ngwokf" path="res://Shaders/EnemyHealth.gdshader" id="4_3du6n"]
+[ext_resource type="PackedScene" uid="uid://2c4jvax6wqe7" path="res://Scenes/Components/HealthComponent.tscn" id="4_nlcat"]
+[ext_resource type="Script" uid="uid://dbojqgvf4gyen" path="res://Scripts/health_display.gd" id="4_xjqr1"]
+[ext_resource type="Texture2D" uid="uid://b3v5klyfbd74s" path="res://Assets/Images/Enemy Health.png" id="5_jjaod"]
+[ext_resource type="PackedScene" path="res://Scenes/Combat/EnemyReactionController.tscn" id="reactions_scene"]
+[ext_resource type="Resource" path="res://Resources/Combat/combat_tuning.tres" id="combat_tuning"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xi7gl"]
+radius = 0.21191406
+height = 0.6529541
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nlcat"]
+radius = 0.38085938
+height = 0.88012695
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iqjx"]
+transparency = 1
+albedo_color = Color(0.7167012, 0.22202072, 0.032367352, 0.1882353)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bx8n8"]
+material = SubResource("StandardMaterial3D_5iqjx")
+radius = 0.381
+height = 0.88
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx8n8"]
+render_priority = 0
+shader = ExtResource("4_3du6n")
+shader_parameter/use_billboard = true
+shader_parameter/height = 0.67
+shader_parameter/alp = 0.0
+shader_parameter/fill_color = Vector3(0, 1, 1)
+shader_parameter/albedo_texture = ExtResource("5_jjaod")
+
+[sub_resource type="QuadMesh" id="QuadMesh_5h11f"]
+material = SubResource("ShaderMaterial_bx8n8")
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1312381849 node_paths=PackedStringArray("execution_center")]
+script = ExtResource("1_0snbo")
+SPEED = 2.0
+tuning = ExtResource("combat_tuning")
+execution_center = NodePath("ExecutionCenter")
+metadata/_custom_type_script = "uid://bi8bn3aal3p75"
+
+[node name="ExecutionCenter" type="Node3D" parent="." unique_id=1717400201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=190420817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33397096, 0)
+shape = SubResource("CapsuleShape3D_xi7gl")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1525551776 node_paths=PackedStringArray("owner_entity")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30680513, 0)
+collision_layer = 32768
+collision_mask = 32768
+monitoring = false
+script = ExtResource("2_xi7gl")
+owner_entity = NodePath("..")
+metadata/_custom_type_script = "uid://dfymmbx3mxm4w"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hurtbox" unique_id=177061481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0731253, 0)
+shape = SubResource("CapsuleShape3D_nlcat")
+debug_color = Color(0.9725556, 0.09931315, 0.34463432, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hurtbox/CollisionShape3D2" unique_id=158627591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0146484375, 0)
+mesh = SubResource("CapsuleMesh_bx8n8")
+
+[node name="HealthDisplay" type="Node3D" parent="." unique_id=1380540008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09513372, 0, 0)
+script = ExtResource("4_xjqr1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HealthDisplay" unique_id=512082809]
+transform = Transform3D(0.165, 0, 0, 0, 0.37, 0, 0, 0, 0.375, -0.168899, 0.586492, 0)
+mesh = SubResource("QuadMesh_5h11f")
+
+[node name="HealthComponent" parent="." unique_id=638034159 instance=ExtResource("4_nlcat")]
+
+[node name="Reactions" parent="." instance=ExtResource("reactions_scene")]
+[connection signal="took_damage" from="Hurtbox" to="HealthComponent" method="_on_hurtbox_took_damage"]
+[connection signal="took_knockback" from="Hurtbox" to="." method="_on_hurtbox_took_knockback"]
+[connection signal="took_stun" from="Hurtbox" to="." method="_on_hurtbox_took_stun"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="HealthDisplay" method="_on_health_component_health_changed"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ComboGraphLayout" format=3 uid="uid://ve5e8dm4j40d"]
+
+[ext_resource type="Script" uid="uid://4ax4v1xrs8bj" path="res://addons/combo_designer/combo_graph_layout.gd" id="1_plwyi"]
+
+[resource]
+script = ExtResource("1_plwyi")
+graph_key = "res://Assets/Weapons/rocket_lance.tres"
+node_positions = Dictionary[StringName, Vector2]({
+&"Behind Stab": Vector2(840, 160),
+&"Circle@Stoke": Vector2(40, 520),
+&"Circle@Sweep": Vector2(40, 320),
+&"Fire": Vector2(640, 120),
+&"High Throw": Vector2(640, 320),
+&"Lunge": Vector2(460, 120),
+&"Stoke": Vector2(840, 360),
+&"Sweep": Vector2(260, 120),
+&"__rest": Vector2(40, 120)
+})
+scroll_offset = Vector2(546.29626, -191.2901)
+zoom = 0.57870364

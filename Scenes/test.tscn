@@ -1,10 +1,8 @@
-[gd_scene format=3 uid="uid://j1v738ts03mu"]
+[gd_scene format=3 uid="uid://bfmp4najt3ym3"]
 
 [ext_resource type="Script" uid="uid://bbq0mq6kui6fu" path="res://Scripts/main.gd" id="1_lc1oi"]
 [ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_8od7v"]
 [ext_resource type="PackedScene" uid="uid://ds3ccfhhi7ys7" path="res://Scenes/Components/CameraRig.tscn" id="2_qc4db"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/pause_menu.tscn" id="3_pause"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/combat_ui.tscn" id="4_combat"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -33,11 +31,11 @@ script = ExtResource("1_lc1oi")
 orbit_point = NodePath("../Player/Orbit Point")
 
 [node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig") instance=ExtResource("2_8od7v")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 camera_rig = NodePath("../CameraRig")
 
 [node name="Orbit Point" type="Node3D" parent="Player" unique_id=678516425]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6259706, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5038824, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=29403665]
 
@@ -50,10 +48,3 @@ mesh = SubResource("BoxMesh_5h11f")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1930755757]
 transform = Transform3D(0.99965954, -0.025203625, -0.0067532915, 0.024815015, 0.8383155, 0.54462045, -0.00806502, -0.5446026, 0.83865553, 0, 2.9154596, 4.102849)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="CombatUI" parent="UI" instance=ExtResource("4_combat")]
-
-[node name="PauseMenu" parent="UI" instance=ExtResource("3_pause")]
-visible = false

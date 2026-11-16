@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://kpndkkjrqvkn"]
+
+[ext_resource type="PackedScene" path="res://Scenes/CombatDebugArena.tscn" id="1_arena"]
+
+[node name="CombatBenchmarkLance" unique_id=283715596 instance=ExtResource("1_arena")]
+benchmark_weapon = &"rocket_lance"
+benchmark_report_path = "res://native/hit/build/lance_benchmark_visible.json"
+benchmark_quit = true
+
+[node name="Floor" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

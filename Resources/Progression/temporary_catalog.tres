@@ -1,0 +1,121 @@
+[gd_resource type="Resource" script_class="ProgressionCatalog" load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/progression_catalog.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/Progression/stat_upgrade_definition.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/Progression/difficulty_profile.gd" id="3"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("2")
+stat_id = &"damage"
+max_level = 2
+cost_by_level = PackedFloat32Array(10, 20)
+
+[sub_resource type="Resource" id="s1"]
+script = ExtResource("2")
+stat_id = &"heat_damage_multiplier"
+max_level = 2
+cost_by_level = PackedFloat32Array(10, 20)
+
+[sub_resource type="Resource" id="s2"]
+script = ExtResource("2")
+stat_id = &"battery_drain_reduction"
+max_level = 2
+cost_by_level = PackedFloat32Array(10, 20)
+
+[sub_resource type="Resource" id="s3"]
+script = ExtResource("2")
+stat_id = &"dash_cooldown_reduction"
+max_level = 2
+cost_by_level = PackedFloat32Array(10, 20)
+
+[sub_resource type="Resource" id="s4"]
+script = ExtResource("2")
+stat_id = &"heat_gauge_increase"
+max_level = 2
+cost_by_level = PackedFloat32Array(10, 20)
+
+[sub_resource type="Resource" id="placeholder"]
+resource_name = "TEMPORARY: owner-authored arena/encounter required"
+
+[sub_resource type="Resource" id="d0"]
+script = ExtResource("3")
+mode = &"Normal"
+band = &"Easy"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d1"]
+script = ExtResource("3")
+mode = &"Normal"
+band = &"Medium"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d2"]
+script = ExtResource("3")
+mode = &"Normal"
+band = &"Hard"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d3"]
+script = ExtResource("3")
+mode = &"Challenger"
+band = &"Easy"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d4"]
+script = ExtResource("3")
+mode = &"Challenger"
+band = &"Medium"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d5"]
+script = ExtResource("3")
+mode = &"Challenger"
+band = &"Hard"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d6"]
+script = ExtResource("3")
+mode = &"Chaos"
+band = &"Easy"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d7"]
+script = ExtResource("3")
+mode = &"Chaos"
+band = &"Medium"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[sub_resource type="Resource" id="d8"]
+script = ExtResource("3")
+mode = &"Chaos"
+band = &"Hard"
+base_parameters = {"difficulty_scale": 1.0}
+per_depth_delta = {"difficulty_scale": 0.1}
+max_parameters = {"difficulty_scale": 1000000.0}
+
+[resource]
+script = ExtResource("1")
+tuning_note = "TEMPORARY TEST/PLAYTEST DEFAULTS: no approved balance; blank manifests, no weapon effects. Replace before integration."
+melee_weapon_ids = Array[StringName]([&"mantis_blades", &"rocket_lance", &"saber", &"greatsword"])
+stage_counts = {&"Easy": 2, &"Medium": 2, &"Hard": 2}
+stat_definitions = Array[ExtResource("2") ]([SubResource("s0"), SubResource("s1"), SubResource("s2"), SubResource("s3"), SubResource("s4")])
+difficulty_profiles = Array[ExtResource("3") ]([SubResource("d0"), SubResource("d1"), SubResource("d2"), SubResource("d3"), SubResource("d4"), SubResource("d5"), SubResource("d6"), SubResource("d7"), SubResource("d8")])
+encounters = {"Normal/Easy": [SubResource("placeholder")], "Normal/Medium": [SubResource("placeholder")], "Normal/Hard": [SubResource("placeholder")], "Challenger/Easy": [SubResource("placeholder")], "Challenger/Medium": [SubResource("placeholder")], "Challenger/Hard": [SubResource("placeholder")], "Chaos/Easy": [SubResource("placeholder")], "Chaos/Medium": [SubResource("placeholder")], "Chaos/Hard": [SubResource("placeholder")]}
+arena_profiles = {"Normal/Easy": SubResource("placeholder"), "Normal/Medium": SubResource("placeholder"), "Normal/Hard": SubResource("placeholder"), "Challenger/Easy": SubResource("placeholder"), "Challenger/Medium": SubResource("placeholder"), "Challenger/Hard": SubResource("placeholder"), "Chaos/Easy": SubResource("placeholder"), "Chaos/Medium": SubResource("placeholder"), "Chaos/Hard": SubResource("placeholder")}
+allow_exhausted_deck_fallback = true

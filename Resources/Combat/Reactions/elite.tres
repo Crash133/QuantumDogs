@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyReactionProfile" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Combat/enemy_reaction_profile.gd" id="1_profile"]
+
+[resource]
+resource_name = "elite reactions"
+script = ExtResource("1_profile")
+horizontal_deceleration = 10.0
+max_horizontal_speed = 8.0
+knockdown_hold = 0.5
+get_up_recovery = 0.2
+slam_speed = 10.0
+armor_enabled = true
+heavy_opening = 0.4
+parry_opening = 0.75
+heavy_opening_cooldown = 1.0

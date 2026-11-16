@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="ArrayMesh" path="res://Assets/Objects/Exports/CombatWeapons/rocket_lance.obj" id="1_mesh"]
+[ext_resource type="Material" path="res://Resources/Materials/rocket_lance.tres" id="2_mat"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_unit.gd" id="3_unit"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_hitbox_marker.gd" id="4_marker"]
+
+
+
+[node name="RocketLance" type="Node3D" unique_id=654144215]
+
+[node name="SourceMesh" type="MeshInstance3D" parent="." unique_id=1297110635]
+material_override = ExtResource("2_mat")
+mesh = ExtResource("1_mesh")
+
+[node name="PrimaryUnit" type="Node3D" parent="." node_paths=PackedStringArray("tip", "grip", "orientation_guide")]
+script = ExtResource("3_unit")
+unit_id = &"primary"
+tip = NodePath("Tip")
+grip = NodePath("Grip")
+orientation_guide = NodePath("OrientationGuide")
+
+[node name="Grip" type="Node3D" parent="PrimaryUnit"]
+
+[node name="Tip" type="Node3D" parent="PrimaryUnit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
+
+[node name="OrientationGuide" type="Node3D" parent="PrimaryUnit"]
+[node name="PrimaryHitbox" type="Node3D" parent="PrimaryUnit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+script = ExtResource("4_marker")
+marker_id = &"primary"

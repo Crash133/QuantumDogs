@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FeedbackProfile" format=3]
+
+[ext_resource type="Script" path="res://Scripts/GameFeel/feedback_profile.gd" id="script"]
+[ext_resource type="PackedScene" path="res://Scenes/HitImpact.tscn" id="v0"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Combat/impact_light.wav" id="a0"]
+
+[resource]
+script = ExtResource("script")
+cue_id = &"routine_hit"
+priority = 0
+cooldown_seconds = 0.03
+max_active = 6
+vfx_scenes = Array[PackedScene]([ExtResource("v0")])
+vfx_scale = 0.8
+vfx_lifetime_cap = 0.45
+vfx_sustained = false
+audio_streams = Array[AudioStream]([ExtResource("a0")])
+audio_spatial = true
+audio_volume_db = -4.0
+audio_pitch_range = Vector2(0.9, 1.1)
+camera_trauma = 0.0
+stop_duration = 0.0
+stop_scale = 0.05

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ArenaProfile" format=3 uid="uid://do8abkitka37a"]
+
+[ext_resource type="Script" uid="uid://g2yhvbjlu1d6" path="res://Scripts/LevelGeneration/arena_profile.gd" id="1_profile"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/core_column_corridor.tres" id="2_core"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/slab_variant_a.tres" id="3_a"]
+[ext_resource type="Script" uid="uid://dtgx5j1aqmm2k" path="res://Scripts/LevelGeneration/arena_module_definition.gd" id="3_ccipt"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/slab_variant_b.tres" id="4_b"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/slab_variant_c.tres" id="5_c"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelGeneration/Fallbacks/fallback_column_corridor.tscn" id="6_fallback"]
+
+[resource]
+script = ExtResource("1_profile")
+allowed_silhouettes = Array[StringName]([&"column_corridor"])
+module_unit_size = 4.0
+normalized_footprints = {
+&"column_corridor": PackedVector2Array(0.4, 0, 0.6, 0, 0.6, 0.4, 0.8, 0.4, 0.8, 0.6, 0.6, 0.6, 0.6, 1, 0.4, 1, 0.4, 0.6, 0.2, 0.6, 0.2, 0.4, 0.4, 0.4)
+}
+silhouette_source_note = "Approximate normalized shape guided by the user-provided Silhoutees.png; the original GDD diagram scale is unverified."
+core_modules = {
+&"column_corridor": ExtResource("2_core")
+}
+module_catalogue = Array[ExtResource("3_ccipt")]([ExtResource("3_a"), ExtResource("4_b"), ExtResource("5_c")])
+fallback_scenes = {
+&"column_corridor": ExtResource("6_fallback")
+}

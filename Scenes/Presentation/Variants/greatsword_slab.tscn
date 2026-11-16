@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/WeaponArc.tscn" id="1_base"]
+
+[node name="greatsword_slab" instance=ExtResource("1_base")]
+core_color = Color(0.7, 0.95, 1.0, 1)
+edge_color = Color(0.45, 0.85, 1.0, 1)
+edge_width = 0.15
+size = 2.0
+width = 0.75
+arc_degrees = 170.0
+lifetime = 0.3
+reveal_fraction = 0.55
+opacity = 0.7

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyAnimationMap" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/enemy_animation_map.gd" id="1_map"]
+
+[resource]
+script = ExtResource("1_map")
+role = &"common"
+clips = Dictionary[StringName, StringName]({&"idle": &"CommonIdle", &"pursue": &"CommonWalking", &"windup": &"CommonAttack1", &"attack": &"CommonAttack1", &"recovery": &"CommonAttack1", &"hit": &"CommonHit1", &"stagger": &"CommonHit2", &"defeated": &"CommonKUFall"})
+fallback = &"CommonIdle"

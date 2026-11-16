@@ -18,7 +18,6 @@ func _spawn():
 	var enemy_instance = enemy.instantiate()
 
 	enemy_instance.SPEED = 2.0
-	enemy_instance.KNOCKBACK_DECELERATION = 4.0
 	enemy_instance.player = player_target
 	
 	add_child(enemy_instance)

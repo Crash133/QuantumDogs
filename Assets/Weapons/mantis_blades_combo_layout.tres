@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ComboGraphLayout" format=3 uid="uid://b761a7ttal0be"]
+
+[ext_resource type="Script" uid="uid://4ax4v1xrs8bj" path="res://addons/combo_designer/combo_graph_layout.gd" id="1_nt6bd"]
+
+[resource]
+script = ExtResource("1_nt6bd")
+graph_key = "res://Assets/Weapons/mantis_blades.tres"
+node_positions = Dictionary[StringName, Vector2]({
+&"Left Stab": Vector2(2370, 120),
+&"Left Sweep": Vector2(1450, 120),
+&"Lunge": Vector2(760, 120),
+&"Overhead Throw": Vector2(2140, 120),
+&"Ram": Vector2(1680, 120),
+&"Right Stab": Vector2(2600, 120),
+&"Right Sweep": Vector2(1910, 120),
+&"Uppercut": Vector2(1220, 120),
+&"X-Cut": Vector2(990, 120),
+&"__rest": Vector2(520, 120)
+})
+scroll_offset = Vector2(516, -197)

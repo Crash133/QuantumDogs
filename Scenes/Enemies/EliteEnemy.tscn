@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Components/EnemyBase.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/Enemies/elite_enemy_controller.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Assets/Objects/Exports/EliteEnemy/EliteAnimation.glb" id="3"]
+[ext_resource type="Script" path="res://Scripts/Presentation/enemy_animation_bridge.gd" id="p_bridge"]
+[ext_resource type="Resource" path="res://Resources/Presentation/Enemies/elite.tres" id="p_map"]
+[ext_resource type="Resource" path="res://Resources/Combat/Reactions/elite.tres" id="reaction_profile"]
+
+[node name="EliteEnemy" instance=ExtResource("1")]
+elite = true
+
+[node name="RoleVisual" parent="." instance=ExtResource("3")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Reactions" parent="."]
+profile = ExtResource("reaction_profile")
+
+[node name="RoleController" type="Node3D" parent="."]
+script = ExtResource("2")
+
+[node name="AnimationBridge" type="Node" parent="."]
+script = ExtResource("p_bridge")
+map = ExtResource("p_map")

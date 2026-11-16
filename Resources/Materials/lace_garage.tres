@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_BaseColor.1001.png" id="basecolor"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Emission.1001.png" id="emission"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Metallic.1001.png" id="metallic"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Normal.1001.png" id="normal"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Roughness.1001.png" id="roughness"]
+
+[resource]
+resource_name = "lace_garage"
+albedo_texture = ExtResource("basecolor")
+metallic = 1.0
+metallic_texture = ExtResource("metallic")
+roughness_texture = ExtResource("roughness")
+emission_enabled = true
+emission_texture = ExtResource("emission")
+normal_enabled = true
+normal_texture = ExtResource("normal")

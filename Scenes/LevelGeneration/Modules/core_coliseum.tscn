@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/arena_ground_tile.gd" id="1_script"]
+
+[node name="Core_coliseum" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="PlayerStart" type="Marker3D" parent="."]
+position = Vector3(0, 0.1, 0)
+
+[node name="SocketNorth" type="Marker3D" parent="."]
+position = Vector3(0, 0, -2)
+
+[node name="SocketEast" type="Marker3D" parent="."]
+position = Vector3(2, 0, 0)
+rotation = Vector3(0, -1.570796, 0)
+
+[node name="SocketSouth" type="Marker3D" parent="."]
+position = Vector3(0, 0, 2)
+rotation = Vector3(0, 3.141593, 0)
+
+[node name="SocketWest" type="Marker3D" parent="."]
+position = Vector3(-2, 0, 0)
+rotation = Vector3(0, 1.570796, 0)

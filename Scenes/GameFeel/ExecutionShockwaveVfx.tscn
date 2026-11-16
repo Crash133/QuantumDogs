@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/GameFeel/execution_shockwave_vfx.gd" id="1_vfx"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+inner_radius = 0.94
+outer_radius = 1.0
+rings = 32
+ring_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ring"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.72, 0.91, 1, 0.82)
+metallic = 0.1
+emission_enabled = true
+emission = Color(0.18, 0.55, 0.85, 1)
+emission_energy_multiplier = 1.25
+
+[node name="ExecutionShockwaveVfx" type="Node3D"]
+script = ExtResource("1_vfx")
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_ring")
+material_override = SubResource("StandardMaterial3D_ring")

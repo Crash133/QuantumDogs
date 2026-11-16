@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="ArrayMesh" path="res://Assets/Objects/Exports/CombatWeapons/saber.obj" id="1_mesh"]
+[ext_resource type="Material" path="res://Resources/Materials/saber.tres" id="2_mat"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_unit.gd" id="3_unit"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_hitbox_marker.gd" id="4_marker"]
+
+
+
+[node name="Saber" type="Node3D" unique_id=650771843]
+
+[node name="SourceMesh" type="MeshInstance3D" parent="." unique_id=1989765347]
+material_override = ExtResource("2_mat")
+mesh = ExtResource("1_mesh")
+
+[node name="PrimaryUnit" type="Node3D" parent="." node_paths=PackedStringArray("tip", "grip", "orientation_guide")]
+script = ExtResource("3_unit")
+unit_id = &"primary"
+tip = NodePath("Tip")
+grip = NodePath("Grip")
+orientation_guide = NodePath("OrientationGuide")
+
+[node name="Grip" type="Node3D" parent="PrimaryUnit"]
+
+[node name="Tip" type="Node3D" parent="PrimaryUnit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="OrientationGuide" type="Node3D" parent="PrimaryUnit"]
+[node name="PrimaryHitbox" type="Node3D" parent="PrimaryUnit"]
+script = ExtResource("4_marker")
+marker_id = &"primary"

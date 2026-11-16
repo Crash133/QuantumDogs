@@ -1,0 +1,536 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://uuwibj2j7e5x"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/combo_node.gd" id="1_0jvkm"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_edge.gd" id="2_424m7"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_spec.gd" id="3_clx2n"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_graph.gd" id="4_senf5"]
+[ext_resource type="PackedScene" uid="uid://bpdhl2jw7x7t1" path="res://Scenes/Weapons/mantis_blades.tscn" id="5_6pd4a"]
+[ext_resource type="Script" uid="uid://c0sry7v5hmkgk" path="res://Scripts/Combat/combo_cancel_window.gd" id="5_sqh4s"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_data.gd" id="6_rshta"]
+[ext_resource type="Script" uid="uid://cq38ys2it828d" path="res://Scripts/Combat/weapon_ability.gd" id="ab_script"]
+[ext_resource type="Script" uid="uid://cwtm3r2hk4whv" path="res://Scripts/Combat/hitbox_profile.gd" id="hp_script"]
+[ext_resource type="Script" uid="uid://c1r1axg0fosky" path="res://Scripts/Combat/mantis_signature_lunge.gd" id="msl_script"]
+[ext_resource type="PackedScene" uid="uid://bqgixi31gejoa" path="res://Assets/Objects/LaceGame.glb" id="rig_scene"]
+[ext_resource type="Script" uid="uid://co75ynll48mu8" path="res://Scripts/Combat/weapon_poses.gd" id="wp_script"]
+
+[sub_resource type="Resource" id="MantisSignatureLunge"]
+script = ExtResource("msl_script")
+
+[sub_resource type="Resource" id="Resource_46jji"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_or71a"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_q5nm6"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_5vx1u"]
+script = ExtResource("2_424m7")
+id = &"Lunge_light_X-Cut_0"
+target = &"X-Cut"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_3v6v2"]
+script = ExtResource("2_424m7")
+id = &"Lunge_heavy_Uppercut_1"
+input = &"heavy"
+target = &"Uppercut"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_hatpv"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_1usct"]
+script = ExtResource("1_0jvkm")
+id = &"Lunge"
+display_name = "Lunge"
+animation = &"lunge"
+duration_ticks = 24
+clip_end_seconds = 0.556
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_46jji"), SubResource("Resource_or71a"), SubResource("Resource_q5nm6")])
+edges = Array[ExtResource("2_424m7")]([SubResource("Resource_5vx1u"), SubResource("Resource_3v6v2")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_hatpv")])
+magnetism = 0.35
+lunge_distance = 2.0
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_pstkv"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_eai1h"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_vvcpl"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_hccxt"]
+script = ExtResource("2_424m7")
+id = &"X-Cut_light_Left Sweep_0"
+target = &"Left Sweep"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_ywil2"]
+script = ExtResource("2_424m7")
+id = &"X-Cut_heavy_Ram_1"
+input = &"heavy"
+target = &"Ram"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_uv75m"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_mouy0"]
+script = ExtResource("1_0jvkm")
+id = &"X-Cut"
+display_name = "X-Cut"
+animation = &"x_cut"
+duration_ticks = 24
+clip_end_seconds = 0.3
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_pstkv"), SubResource("Resource_eai1h"), SubResource("Resource_vvcpl")])
+edges = Array[ExtResource("2_424m7")]([SubResource("Resource_hccxt"), SubResource("Resource_ywil2")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_uv75m")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_u5veb"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_atqjg"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_ryk47"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_kkhxh"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+effect = &"launch"
+
+[sub_resource type="Resource" id="Resource_bsnfr"]
+script = ExtResource("1_0jvkm")
+id = &"Uppercut"
+display_name = "Uppercut"
+animation = &"uppercut"
+duration_ticks = 24
+clip_start_seconds = 0.658
+clip_end_seconds = 0.958
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_u5veb"), SubResource("Resource_atqjg"), SubResource("Resource_ryk47")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_kkhxh")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_wvbw1"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_faslc"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_x7osd"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_hqn4i"]
+script = ExtResource("2_424m7")
+id = &"Left Sweep_light_Right Sweep_0"
+target = &"Right Sweep"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_kbvy4"]
+script = ExtResource("2_424m7")
+id = &"Left Sweep_heavy_Overhead Throw_1"
+input = &"heavy"
+target = &"Overhead Throw"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_hyro3"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_hh36f"]
+script = ExtResource("1_0jvkm")
+id = &"Left Sweep"
+display_name = "Left Sweep"
+animation = &"left_sweep"
+duration_ticks = 24
+clip_end_seconds = 0.667
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_wvbw1"), SubResource("Resource_faslc"), SubResource("Resource_x7osd")])
+edges = Array[ExtResource("2_424m7")]([SubResource("Resource_hqn4i"), SubResource("Resource_kbvy4")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_hyro3")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_aeq2t"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_6ihpf"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_so1a5"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_kf67p"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_dtlmj"]
+script = ExtResource("1_0jvkm")
+id = &"Ram"
+display_name = "Ram"
+animation = &"ram"
+duration_ticks = 24
+clip_end_seconds = 0.778
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_aeq2t"), SubResource("Resource_6ihpf"), SubResource("Resource_so1a5")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_kf67p")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_2lrbu"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_atepn"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_m3cwv"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_sjqii"]
+script = ExtResource("2_424m7")
+id = &"Right Sweep_light_Left Sweep_0"
+target = &"Left Sweep"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_b3wwk"]
+script = ExtResource("2_424m7")
+id = &"Right Sweep_heavy_Left Stab_1"
+input = &"heavy"
+target = &"Left Stab"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_7n7tx"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_iedjo"]
+script = ExtResource("1_0jvkm")
+id = &"Right Sweep"
+display_name = "Right Sweep"
+animation = &"right_sweep"
+duration_ticks = 24
+clip_end_seconds = 0.3
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_2lrbu"), SubResource("Resource_atepn"), SubResource("Resource_m3cwv")])
+edges = Array[ExtResource("2_424m7")]([SubResource("Resource_sjqii"), SubResource("Resource_b3wwk")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_7n7tx")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_rj4yl"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_jv6d1"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_h0fu3"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_iuulx"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_2bby4"]
+script = ExtResource("1_0jvkm")
+id = &"Overhead Throw"
+display_name = "Overhead Throw"
+animation = &"overhead_throw"
+duration_ticks = 24
+clip_start_seconds = 0.492
+clip_end_seconds = 1.292
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_rj4yl"), SubResource("Resource_jv6d1"), SubResource("Resource_h0fu3")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_iuulx")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_wry45"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_qkrtx"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_xwpqd"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_isoor"]
+script = ExtResource("2_424m7")
+id = &"Left Stab_heavy_Right Stab_0"
+input = &"heavy"
+target = &"Right Stab"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_48ia8"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_s8oup"]
+script = ExtResource("1_0jvkm")
+id = &"Left Stab"
+display_name = "Left Stab"
+animation = &"left_stab"
+duration_ticks = 24
+clip_end_seconds = 0.556
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_wry45"), SubResource("Resource_qkrtx"), SubResource("Resource_xwpqd")])
+edges = Array[ExtResource("2_424m7")]([SubResource("Resource_isoor")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_48ia8")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_jqgyp"]
+script = ExtResource("5_sqh4s")
+action = 2
+start_tick = 14
+end_tick = 22
+
+[sub_resource type="Resource" id="Resource_w055d"]
+script = ExtResource("5_sqh4s")
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_igwgn"]
+script = ExtResource("5_sqh4s")
+action = 4
+end_tick = 23
+
+[sub_resource type="Resource" id="Resource_wxcsx"]
+script = ExtResource("2_424m7")
+id = &"Right Stab_heavy_Left Stab_0"
+input = &"heavy"
+target = &"Left Stab"
+input_window = Vector2i(8, 21)
+
+[sub_resource type="Resource" id="Resource_a7imx"]
+script = ExtResource("3_clx2n")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(5, 13)])
+active_ticks = Vector2i(5, 13)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 8
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_f7ac4"]
+script = ExtResource("1_0jvkm")
+id = &"Right Stab"
+display_name = "Right Stab"
+animation = &"right_stab"
+duration_ticks = 24
+clip_start_seconds = 0.492
+clip_end_seconds = 1.292
+input_window = Vector2i(8, 21)
+switch_window = Vector2i(14, 22)
+cancel_windows = Array[ExtResource("5_sqh4s")]([SubResource("Resource_jqgyp"), SubResource("Resource_w055d"), SubResource("Resource_igwgn")])
+edges = Array[ExtResource("2_424m7")]([SubResource("Resource_wxcsx")])
+hit_specs = Array[ExtResource("3_clx2n")]([SubResource("Resource_a7imx")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_gscqn"]
+script = ExtResource("2_424m7")
+id = &"rest_light_0"
+target = &"Lunge"
+
+[sub_resource type="Resource" id="Resource_sqh4s"]
+script = ExtResource("2_424m7")
+id = &"rest_heavy_Lunge"
+input = &"heavy"
+target = &"Lunge"
+
+[sub_resource type="Resource" id="Resource_t5tp6"]
+script = ExtResource("4_senf5")
+schema_version = 1
+rest_edges = Array[ExtResource("2_424m7")]([SubResource("Resource_gscqn"), SubResource("Resource_sqh4s")])
+nodes = Array[ExtResource("1_0jvkm")]([SubResource("Resource_1usct"), SubResource("Resource_mouy0"), SubResource("Resource_bsnfr"), SubResource("Resource_hh36f"), SubResource("Resource_dtlmj"), SubResource("Resource_iedjo"), SubResource("Resource_2bby4"), SubResource("Resource_s8oup"), SubResource("Resource_f7ac4")])
+
+[sub_resource type="Resource" id="HitboxProfile_primary"]
+script = ExtResource("hp_script")
+shape = 1
+radius = 0.45
+length = 0.9
+
+[sub_resource type="Resource" id="WeaponPoses_placeholder"]
+script = ExtResource("wp_script")
+idle = &"MantisIdle"
+run = &"MantisRunning"
+jump_start = &"MantisJumpStart"
+jump_idle = &"MantisJumpIdle"
+jump_end = &"MantisJumpEnd"
+block = &"MantisParry"
+parry = &"MantisParrySuccess"
+hit = &"MantisHit1"
+equip = &"MantisChange"
+
+[resource]
+script = ExtResource("6_rshta")
+id = &"mantis_blades"
+display_name = "Mantis Blades"
+scene = ExtResource("5_6pd4a")
+graph = SubResource("Resource_t5tp6")
+hitbox_profiles = Dictionary[StringName, ExtResource("hp_script")]({
+&"primary": SubResource("HitboxProfile_primary")
+})
+character_scene = ExtResource("rig_scene")
+character_weapon_bone = &"DEF-hand.L"
+character_unit_bones = Dictionary[StringName, StringName]({
+&"left": &"DEF-hand.L",
+&"right": &"DEF-hand.R"
+})
+character_unit_transforms = Dictionary[StringName, Transform3D]({
+&"left": Transform3D(-1.1780143, 0.12628615, 0.12791118, 0.12050922, 1.1840621, -0.059174355, -0.13336788, -0.045561876, -1.1832854, -0.07839097, -0.28216955, 0.025780853),
+&"right": Transform3D(1.1651092, -0.0100898985, 0.24989189, 0.011138769, 1.1915908, -0.0038210622, -0.24984734, 0.0060717906, 1.1651466, 0.13738248, -0.36398023, -0.011363415)
+})
+animation_aliases = Dictionary[StringName, StringName]({
+&"left_stab": &"MantisLight1",
+&"left_sweep": &"MantisLight3",
+&"lunge": &"MantisLight1",
+&"overhead_throw": &"MantisHeavy3",
+&"ram": &"MantisHeavy2",
+&"right_stab": &"MantisHeavy3",
+&"right_sweep": &"MantisLight4",
+&"uppercut": &"MantisHeavy1",
+&"x_cut": &"MantisLight2"
+})
+air_animation_aliases = Dictionary[StringName, StringName]({
+&"left_stab": &"MantisJumpHeavy1",
+&"left_sweep": &"MantisJumpLight1",
+&"lunge": &"MantisJumpLight1",
+&"overhead_throw": &"MantisJumpHeavy1",
+&"ram": &"MantisJumpHeavy1",
+&"right_stab": &"MantisJumpHeavy1",
+&"right_sweep": &"MantisJumpLight2",
+&"uppercut": &"MantisJumpHeavy1",
+&"x_cut": &"MantisJumpLight2"
+})
+poses = SubResource("WeaponPoses_placeholder")
+fallback_animation = &"MantisLight1"
+trace_core_color = Color(1, 0.78, 0.846, 1)
+trace_edge_color = Color(1, 0.1, 0.37, 1)
+abilities = Array[ExtResource("ab_script")]([SubResource("MantisSignatureLunge")])

@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dbojqgvf4gyen" path="res://Scripts/health_display.gd" id="4_xjqr1"]
 [ext_resource type="Texture2D" uid="uid://b3v5klyfbd74s" path="res://Assets/Images/Enemy Health.png" id="5_jjaod"]
 [ext_resource type="PackedScene" uid="uid://2hqc8ekmmxw5" path="res://Assets/Objects/Mech Type 3.glb" id="8_bkl85"]
+[ext_resource type="PackedScene" path="res://Scenes/Combat/EnemyReactionController.tscn" id="reactions_scene"]
+[ext_resource type="Resource" path="res://Resources/Combat/combat_tuning.tres" id="combat_tuning"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xi7gl"]
 radius = 0.21191406
@@ -53,11 +55,15 @@ shader_parameter/albedo_texture = ExtResource("5_jjaod")
 [sub_resource type="QuadMesh" id="QuadMesh_5h11f"]
 material = SubResource("ShaderMaterial_bx8n8")
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1312381849]
+[node name="Enemy" type="CharacterBody3D" unique_id=1312381849 node_paths=PackedStringArray("execution_center")]
 script = ExtResource("1_0snbo")
 SPEED = 2.0
-KNOCKBACK_DECELERATION = 10.0
+tuning = ExtResource("combat_tuning")
+execution_center = NodePath("ExecutionCenter")
 metadata/_custom_type_script = "uid://bi8bn3aal3p75"
+
+[node name="ExecutionCenter" type="Node3D" parent="." unique_id=1717400201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=190420817]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33397096, 0)
@@ -142,6 +148,7 @@ bones/70/rotation = Quaternion(0.8978093, -0.44022462, 0.011666355, -0.002131312
 bones/71/rotation = Quaternion(0.8508247, -0.40502846, -0.3324932, -0.038698725)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=549416195]
+callback_mode_process = 2
 root_node = NodePath("../Mech Type 3")
 tree_root = SubResource("AnimationNodeBlendSpace1D_bx8n8")
 anim_player = NodePath("../Mech Type 3/AnimationPlayer")
@@ -208,6 +215,8 @@ bones/56/scale = Vector3(1.5195552, 1.0000001, 0.99999994)
 bones/58/position = Vector3(-2.285694, 3.3172925, -0.26981038)
 bones/58/scale = Vector3(1.2232053, 1, 1)
 
+
+[node name="Reactions" parent="." instance=ExtResource("reactions_scene")]
 [connection signal="took_damage" from="Hurtbox" to="HealthComponent" method="_on_hurtbox_took_damage"]
 [connection signal="took_knockback" from="Hurtbox" to="." method="_on_hurtbox_took_knockback"]
 [connection signal="took_stun" from="Hurtbox" to="." method="_on_hurtbox_took_stun"]

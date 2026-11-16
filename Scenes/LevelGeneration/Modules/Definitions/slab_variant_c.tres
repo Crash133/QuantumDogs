@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArenaModuleDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/arena_module_definition.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelGeneration/Modules/ground_tile.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+module_id = &"slab_variant_c"
+scene = ExtResource("2_scene")
+supported_silhouettes = Array[StringName]([&"plus_balcony", &"column_corridor", &"square_funnel", &"balcony", &"coliseum", &"square"])
+local_bounds = Rect2(-2.0, -2.0, 4.0, 4.0)

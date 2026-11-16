@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ComboGraphLayout" format=3 uid="uid://ck8b8khwb3un4"]
+
+[ext_resource type="Script" uid="uid://4ax4v1xrs8bj" path="res://addons/combo_designer/combo_graph_layout.gd" id="1_o6iaw"]
+
+[resource]
+script = ExtResource("1_o6iaw")
+graph_key = "res://Assets/Weapons/greatsword.tres"
+node_positions = Dictionary[StringName, Vector2]({
+&"Circle": Vector2(1680, 120),
+&"Earthquake": Vector2(990, 120),
+&"Fissure": Vector2(1450, 120),
+&"Slam": Vector2(760, 120),
+&"Slam Ground": Vector2(1220, 120),
+&"__rest": Vector2(340, 120)
+})
+scroll_offset = Vector2(142, -93)

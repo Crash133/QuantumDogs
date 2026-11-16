@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/WeaponShock.tscn" id="1_base"]
+
+[node name="greatsword_shock" instance=ExtResource("1_base")]
+core_color = Color(0.7, 0.95, 1.0, 1)
+edge_color = Color(0.4, 0.8, 1.0, 1)
+size = 0.9
+width = 0.4
+expand = 3.2
+delay = 0.12
+lifetime = 0.4
+opacity = 0.65

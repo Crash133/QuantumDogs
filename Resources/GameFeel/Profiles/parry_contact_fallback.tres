@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FeedbackProfile" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/GameFeel/feedback_profile.gd" id="1_profile"]
+[ext_resource type="PackedScene" path="res://Scenes/HitImpact.tscn" id="2_contact"]
+
+[resource]
+script = ExtResource("1_profile")
+cue_id = &"parry_contact_fallback"
+priority = 1
+cooldown_seconds = 0.0
+max_active = 2
+vfx_scenes = Array[PackedScene]([ExtResource("2_contact")])
+vfx_scale = 0.55
+vfx_lifetime_cap = 0.25
+vfx_sustained = false
+camera_trauma = 0.04
+stop_duration = 0.0
+stop_scale = 1.0

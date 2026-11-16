@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/combo_designer/combo_preview.gd" id="1_preview"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(4, 4)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_target"]
+radius = 0.28
+height = 1.25
+
+[sub_resource type="StandardMaterial3D" id="Material_target"]
+albedo_color = Color(0.32, 0.36, 0.43, 1)
+metallic = 0.25
+roughness = 0.65
+
+[node name="ComboPreview" type="Control"]
+custom_minimum_size = Vector2(320, 220)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_preview")
+
+[node name="PreviewLayout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PreviewControls" type="GridContainer" parent="PreviewLayout"]
+layout_mode = 2
+columns = 3
+
+[node name="PressLight" type="Button" parent="PreviewLayout/PreviewControls" unique_id=1023040]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(56, 0)
+text = "Light"
+
+[node name="PressHeavy" type="Button" parent="PreviewLayout/PreviewControls" unique_id=1023041]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(56, 0)
+text = "Heavy"
+
+[node name="PreviewStep" type="Button" parent="PreviewLayout/PreviewControls" unique_id=1023042]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(56, 0)
+text = "Step"
+
+[node name="PreviewTick" type="SpinBox" parent="PreviewLayout/PreviewControls" unique_id=1023043]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(70, 0)
+max_value = 3600.0
+prefix = "t "
+
+[node name="PreviewStop" type="Button" parent="PreviewLayout/PreviewControls" unique_id=1023044]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(56, 0)
+text = "Stop"
+
+[node name="PreviewActionControls" type="GridContainer" parent="PreviewLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 1
+
+[node name="PreviewPlayPause" type="Button" parent="PreviewLayout/PreviewActionControls" unique_id=1023048]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="PreviewCancelAction" type="OptionButton" parent="PreviewLayout/PreviewActionControls" unique_id=1023049]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(130, 0)
+
+[node name="PreviewCancel" type="Button" parent="PreviewLayout/PreviewActionControls" unique_id=1023050]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[node name="PreviewStatus" type="Label" parent="PreviewLayout" unique_id=1023045]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+text = "Preview only: no damage, audio or time effects"
+
+[node name="PreviewViewportContainer" type="SubViewportContainer" parent="PreviewLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 130)
+size_flags_vertical = 3
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="PreviewLayout/PreviewViewportContainer"]
+unique_name_in_owner = true
+size = Vector2i(512, 384)
+render_target_update_mode = 2
+
+[node name="PreviewWorld" type="Node3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport"]
+unique_name_in_owner = true
+
+[node name="PreviewCamera" type="Camera3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld"]
+position = Vector3(0, 1.3, 3.6)
+rotation = Vector3(-0.15, 0, 0)
+current = true
+
+[node name="PreviewKeyLight" type="DirectionalLight3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld"]
+rotation = Vector3(-0.7, -0.65, 0)
+light_energy = 1.6
+
+[node name="PreviewFloor" type="MeshInstance3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld"]
+position = Vector3(0, -0.03, 0)
+mesh = SubResource("PlaneMesh_floor")
+
+[node name="PreviewTargetDummy" type="Node3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld"]
+position = Vector3(0.9, 0, -1.1)
+
+[node name="DummyBody" type="MeshInstance3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld/PreviewTargetDummy"]
+position = Vector3(0, 0.65, 0)
+mesh = SubResource("CapsuleMesh_target")
+material_override = SubResource("Material_target")
+
+[node name="ExecutionCenter" type="Node3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld/PreviewTargetDummy"]
+position = Vector3(0, 0.9, 0)
+
+[node name="CenterMarker" type="MeshInstance3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld/PreviewTargetDummy/ExecutionCenter"]
+mesh = SubResource("CapsuleMesh_target")
+scale = Vector3(0.08, 0.08, 0.08)
+material_override = SubResource("Material_target")
+
+[node name="PreviewOverlays" type="Node3D" parent="PreviewLayout/PreviewViewportContainer/PreviewViewport/PreviewWorld"]
+

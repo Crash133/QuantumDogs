@@ -2,6 +2,14 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_spc5r"]
 lifetime_randomness = 0.07
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.5
+initial_velocity_max = 3.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fed1h"]
 albedo_color = Color(0.15334707, 0.5721432, 0.76940346, 1)
@@ -10,6 +18,7 @@ emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_spc5r"]
 material = SubResource("StandardMaterial3D_fed1h")
+size = Vector2(0.12, 0.12)
 
 [sub_resource type="Skin" id="Skin_tkd5o"]
 
@@ -18,7 +27,10 @@ material = SubResource("StandardMaterial3D_fed1h")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1019416535]
 emitting = false
 amount = 20
+lifetime = 0.35
 one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
 process_material = SubResource("ParticleProcessMaterial_spc5r")
 draw_pass_1 = SubResource("QuadMesh_spc5r")
 draw_skin = SubResource("Skin_tkd5o")

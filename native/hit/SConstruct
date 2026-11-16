@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+import os
+
+godot_cpp_path = os.environ.get("GODOT_CPP_PATH", "godot-cpp")
+if not os.path.isdir(godot_cpp_path):
+	print("Set GODOT_CPP_PATH to a godot-cpp checkout, or place godot-cpp beside this SConstruct.")
+	Exit(1)
+
+os.makedirs("../../bin", exist_ok=True)
+env = SConscript(os.path.join(godot_cpp_path, "SConstruct"))
+env.Append(CPPPATH=["."])
+env.Append(CXXFLAGS=["-std=c++17"])
+env.SharedLibrary(
+	target="../../bin/hit_manager",
+	source=["hit_manager.cpp", "register_types.cpp"],
+)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/presentation_effect.gd" id="1_fx"]
+
+[node name="EnemyWarningAccent" type="Node3D"]
+script = ExtResource("1_fx")
+shape = 4
+size = 0.6
+core_color = Color(1.0, 0.62, 0.18, 1)
+edge_color = Color(1.0, 0.62, 0.18, 1)
+sustain = true
+lifetime = 0.3
+opacity = 0.9

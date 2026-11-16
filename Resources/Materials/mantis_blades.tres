@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/MantisBlade/DefaultMaterial_BaseColor.1001.png" id="basecolor"]
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/MantisBlade/DefaultMaterial_Normal.1001.png" id="normal"]
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/MantisBlade/DefaultMaterial_Roughness.1001.png" id="roughness"]
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/MantisBlade/DefaultMaterial_Metallic.1001.png" id="metallic"]
+
+[resource]
+resource_name = "mantis_blades"
+albedo_texture = ExtResource("basecolor")
+metallic = 0.6
+metallic_texture = ExtResource("metallic")
+metallic_texture_channel = 0
+roughness = 1.0
+roughness_texture = ExtResource("roughness")
+roughness_texture_channel = 0
+normal_enabled = true
+normal_texture = ExtResource("normal")
+texture_filter = 5
+rim_enabled = true
+rim = 0.35

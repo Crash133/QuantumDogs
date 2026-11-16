@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/combat_pose_mixer.gd" id="1_mixer"]
+
+[node name="CombatPoseMixer" type="Node"]
+script = ExtResource("1_mixer")

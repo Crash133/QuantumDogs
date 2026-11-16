@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FeedbackProfile" format=3]
+
+[ext_resource type="Script" path="res://Scripts/GameFeel/feedback_profile.gd" id="script"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Combat/dash.wav" id="a0"]
+
+[resource]
+script = ExtResource("script")
+cue_id = &"dash"
+priority = 0
+cooldown_seconds = 0.08
+max_active = 2
+vfx_scale = 1.0
+vfx_lifetime_cap = 1.0
+vfx_sustained = false
+audio_streams = Array[AudioStream]([ExtResource("a0")])
+audio_spatial = false
+audio_volume_db = -6.0
+audio_pitch_range = Vector2(0.95, 1.05)
+camera_trauma = 0.0
+stop_duration = 0.0
+stop_scale = 0.05

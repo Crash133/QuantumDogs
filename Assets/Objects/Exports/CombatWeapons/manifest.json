@@ -1,0 +1,68 @@
+{
+  "blender": "5.2.0 LTS",
+  "source": "Assets/Objects/Exports/TUDO.blend (live weapon snapshot)",
+  "snapshot_sha256": "67ad9a9702866491e7db73dc028d718623ac228448e58104c85cf944d9f5198b",
+  "note": "Visual scale/grip and colors are playtest placeholders; no gameplay data exported",
+  "exports": [
+    {
+      "weapon_id": "mantis_blades",
+      "source_object": "MantisBlades",
+      "source_vertices": 1376,
+      "source_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_long_axis": 2,
+      "normalized_length": 0.65,
+      "grip_fraction_from_base": 0.1,
+      "file": "mantis_blades.obj",
+      "sha256": "23fc1bc72b64c0127fad17fe839cde0877c73020b5bbc13d375699faebfba643"
+    },
+    {
+      "weapon_id": "rocket_lance",
+      "source_object": "RocketLance",
+      "source_vertices": 1347,
+      "source_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_long_axis": 1,
+      "normalized_length": 1.8,
+      "grip_fraction_from_base": 0.1,
+      "file": "rocket_lance.obj",
+      "sha256": "d03ebbbb959fec766df80e3af53e685a7c0d786ff51ea9aadd45a44e26639f60"
+    },
+    {
+      "weapon_id": "saber",
+      "source_object": "Plane",
+      "source_vertices": 786,
+      "source_scale": [
+        1.0,
+        1.150010585784912,
+        1.0
+      ],
+      "source_long_axis": 1,
+      "normalized_length": 1.0,
+      "grip_fraction_from_base": 0.1,
+      "file": "saber.obj",
+      "sha256": "02b0f55b7bb79f370c170280d0be067285e0face2ec43d0d1290f6aaa6bbd926"
+    },
+    {
+      "weapon_id": "greatsword",
+      "source_object": "BigSword",
+      "source_vertices": 2946,
+      "source_scale": [
+        1.0,
+        2.7025210857391357,
+        1.0
+      ],
+      "source_long_axis": 1,
+      "normalized_length": 1.6,
+      "grip_fraction_from_base": 0.1,
+      "file": "greatsword.obj",
+      "sha256": "38ec8e141d2910c2ac74119e312e30f414ce4f59ce3a38c3b36504a85613c840"
+    }
+  ]
+}

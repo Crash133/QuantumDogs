@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Combat/reaction_arena.gd" id="arena"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_manager_node.gd" id="hit"]
+[ext_resource type="PackedScene" path="res://Scenes/Combat/CombatTimeDomains.tscn" id="time_domains"]
+[ext_resource type="PackedScene" path="res://Scenes/Rendering/CombatLightRig.tscn" id="light_rig"]
+[ext_resource type="PackedScene" path="res://Scenes/GameFeel/FeedbackDirector.tscn" id="feedback"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/Player.tscn" id="player"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/CameraRig.tscn" id="camera"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/CommonEnemy.tscn" id="common"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/EliteEnemy.tscn" id="elite"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/FlyingEnemy.tscn" id="drone"]
+
+[sub_resource type="BoxShape3D" id="FloorShape"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxShape3D" id="WallShape"]
+size = Vector3(40, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.16, 0.17, 0.19, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="WallMaterial"]
+albedo_color = Color(0.26, 0.2, 0.34, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+material = SubResource("FloorMaterial")
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxMesh" id="WallMesh"]
+material = SubResource("WallMaterial")
+size = Vector3(40, 4, 1)
+
+[node name="CombatReactionArena" type="Node3D" node_paths=PackedStringArray("hit_manager", "player", "camera_rig", "feedback", "enemies_root", "anchors_root")]
+script = ExtResource("arena")
+hit_manager = NodePath("HitManager")
+player = NodePath("Player")
+camera_rig = NodePath("CameraRig")
+feedback = NodePath("FeedbackDirector")
+enemies_root = NodePath("Enemies")
+anchors_root = NodePath("Anchors")
+common_scene = ExtResource("common")
+elite_scene = ExtResource("elite")
+drone_scene = ExtResource("drone")
+
+[node name="HitManager" type="Node" parent="."]
+script = ExtResource("hit")
+
+[node name="CombatTimeDomains" parent="." instance=ExtResource("time_domains")]
+
+[node name="CombatLightRig" parent="." instance=ExtResource("light_rig")]
+
+[node name="FeedbackDirector" parent="." instance=ExtResource("feedback")]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("FloorShape")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("FloorMesh")
+
+[node name="WallNorth" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth"]
+shape = SubResource("WallShape")
+
+[node name="WallMesh" type="MeshInstance3D" parent="WallNorth"]
+mesh = SubResource("WallMesh")
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera_rig") instance=ExtResource("player")]
+camera_rig = NodePath("../CameraRig")
+
+[node name="OrbitPoint" type="Marker3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="CameraRig" parent="." node_paths=PackedStringArray("orbit_point") instance=ExtResource("camera")]
+orbit_point = NodePath("../Player/OrbitPoint")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Anchors" type="Node3D" parent="."]
+
+[node name="PlayerStart" type="Marker3D" parent="Anchors"]
+
+[node name="ChainAnchor" type="Marker3D" parent="Anchors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+
+[node name="CrowdAnchor" type="Marker3D" parent="Anchors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="EliteAnchor" type="Marker3D" parent="Anchors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.2)
+
+[node name="WallLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, -7.4)
+text = "WALL: push-back wall contact (wall scenario)"
+font_size = 48

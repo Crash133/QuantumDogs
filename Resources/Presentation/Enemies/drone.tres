@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyAnimationMap" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/enemy_animation_map.gd" id="1_map"]
+
+[resource]
+script = ExtResource("1_map")
+role = &"drone"
+clips = Dictionary[StringName, StringName]({&"idle": &"FlyingIdle", &"pursue": &"FlyingWalking", &"windup": &"FlyingAttacking", &"attack": &"FlyingAttacking", &"recovery": &"FlyingAttacking", &"hit": &"FlyingHit1", &"stagger": &"FlyingHit2", &"defeated": &"FlyingHit2"})
+fallback = &"FlyingIdle"

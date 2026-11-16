@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/front_end_controller.gd" id="1_controller"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/TitleGarage.tscn" id="2_garage"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/device_tracker.gd" id="DeviceTracker"]
+[ext_resource type="Script" path="res://Scripts/UI/options_controller.gd" id="OptionsController"]
+[ext_resource type="Script" path="res://Scripts/UI/combat_hud_presenter.gd" id="CombatHudPresenter"]
+[ext_resource type="Script" path="res://Scripts/UI/run_ui_bridge.gd" id="RunUiBridge"]
+[node name="FrontEndRoot" type="Node"]
+script = ExtResource("1_controller")
+
+[node name="TitleGarage" parent="." instance=ExtResource("2_garage")]
+
+[node name="DeviceTracker" type="Node" parent="."]
+script = ExtResource("DeviceTracker")
+
+[node name="OptionsController" type="Node" parent="."]
+script = ExtResource("OptionsController")
+
+[node name="CombatHudPresenter" type="Node" parent="."]
+script = ExtResource("CombatHudPresenter")
+
+[node name="RunUiBridge" type="Node" parent="."]
+script = ExtResource("RunUiBridge")
+

@@ -1,34 +1,21 @@
 extends Node
 
 
-var _is_hit_stopping := false
+## The single time-scale owner (set by the FeedbackDirector). hit_stop forwards to it.
+var time_handler: FeedbackTimeHandler
+var _warned_unbound := false
 
 
 @export var default_hit_particle: PackedScene
 
 
 func hit_stop(duration: float) -> void:
-
-	if duration <= 0.0:
-		return
-
-	if _is_hit_stopping:
-		return
-
-	_is_hit_stopping = true
-
-	Engine.time_scale = 0.05
-
-	await get_tree().create_timer(
-		duration,
-		true,
-		false,
-		true
-	).timeout
-
-	Engine.time_scale = 1.0
-
-	_is_hit_stopping = false
+	# Legacy entry point. Time scale has one owner: FeedbackTimeHandler.
+	if is_instance_valid(time_handler):
+		time_handler.request_stop(duration, 0.05, &"")
+	elif not _warned_unbound:
+		_warned_unbound = true
+		push_warning("JuiceManager.hit_stop ignored: no FeedbackDirector time handler is bound")
 
 
 func spawn_hit_particle(

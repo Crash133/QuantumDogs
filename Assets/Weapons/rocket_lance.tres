@@ -1,0 +1,497 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://c17sguul0fxqu"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/combo_node.gd" id="1_h6mnw"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_edge.gd" id="2_uf7pf"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_spec.gd" id="3_10vfc"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_graph.gd" id="4_h5uka"]
+[ext_resource type="Script" uid="uid://c0sry7v5hmkgk" path="res://Scripts/Combat/combo_cancel_window.gd" id="5_1mcwr"]
+[ext_resource type="PackedScene" path="res://Scenes/Weapons/rocket_lance.tscn" id="5_yewxj"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_data.gd" id="6_cdp80"]
+[ext_resource type="Script" uid="uid://cq38ys2it828d" path="res://Scripts/Combat/weapon_ability.gd" id="ab_script"]
+[ext_resource type="Script" uid="uid://djxmy4wgm5l4n" path="res://Scripts/Combat/gather_throw_ability.gd" id="gt_script"]
+[ext_resource type="Script" uid="uid://cwtm3r2hk4whv" path="res://Scripts/Combat/hitbox_profile.gd" id="hp_script"]
+[ext_resource type="PackedScene" uid="uid://bqgixi31gejoa" path="res://Assets/Objects/LaceGame.glb" id="rig_scene"]
+[ext_resource type="Script" uid="uid://co75ynll48mu8" path="res://Scripts/Combat/weapon_poses.gd" id="wp_script"]
+
+[sub_resource type="Resource" id="GatherThrowAbility_ghost_drill"]
+script = ExtResource("gt_script")
+
+[sub_resource type="Resource" id="Resource_b7efc"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_l6wod"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_jplse"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_ldxo5"]
+script = ExtResource("2_uf7pf")
+id = &"Sweep_light_Lunge_0"
+target = &"Lunge"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_st7jh"]
+script = ExtResource("2_uf7pf")
+id = &"Sweep_heavy_Circle@Sweep_1"
+input = &"heavy"
+target = &"Circle@Sweep"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_h5184"]
+script = ExtResource("3_10vfc")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_igr8g"]
+script = ExtResource("1_h6mnw")
+id = &"Sweep"
+display_name = "Sweep"
+animation = &"sweep"
+duration_ticks = 36
+clip_end_seconds = 0.45
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_b7efc"), SubResource("Resource_l6wod"), SubResource("Resource_jplse")])
+edges = Array[ExtResource("2_uf7pf")]([SubResource("Resource_ldxo5"), SubResource("Resource_st7jh")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_h5184")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_o61sm"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_wu3d5"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_aw2r5"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_4sg5u"]
+script = ExtResource("2_uf7pf")
+id = &"Lunge_light_Fire_0"
+target = &"Fire"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_u1671"]
+script = ExtResource("2_uf7pf")
+id = &"Lunge_heavy_High Throw_1"
+input = &"heavy"
+target = &"High Throw"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_n5glh"]
+script = ExtResource("3_10vfc")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_p2ykl"]
+script = ExtResource("1_h6mnw")
+id = &"Lunge"
+display_name = "Lunge"
+animation = &"lunge"
+duration_ticks = 36
+clip_start_seconds = 0.508
+clip_end_seconds = 0.958
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_o61sm"), SubResource("Resource_wu3d5"), SubResource("Resource_aw2r5")])
+edges = Array[ExtResource("2_uf7pf")]([SubResource("Resource_4sg5u"), SubResource("Resource_u1671")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_n5glh")])
+magnetism = 0.35
+lunge_distance = 2.0
+airborne_ok = false
+
+[sub_resource type="Resource" id="Resource_yvpdm"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_eqwyy"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_wxgfa"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_5rh8p"]
+script = ExtResource("3_10vfc")
+profile = &"circle"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_c6d1s"]
+script = ExtResource("1_h6mnw")
+id = &"Circle@Sweep"
+display_name = "Circle"
+animation = &"circle_sweep"
+duration_ticks = 36
+clip_start_seconds = 0.508
+clip_end_seconds = 0.958
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_yvpdm"), SubResource("Resource_eqwyy"), SubResource("Resource_wxgfa")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_5rh8p")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_nh4h1"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_oxf2s"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_3jvqv"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_5cj7e"]
+script = ExtResource("2_uf7pf")
+id = &"Fire_light_Stoke_0"
+target = &"Stoke"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_6av5o"]
+script = ExtResource("2_uf7pf")
+id = &"Fire_heavy_Behind Stab_1"
+input = &"heavy"
+target = &"Behind Stab"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_h0j8v"]
+script = ExtResource("3_10vfc")
+profile = &"fire"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_165re"]
+script = ExtResource("1_h6mnw")
+id = &"Fire"
+display_name = "Fire"
+animation = &"fire"
+duration_ticks = 36
+clip_end_seconds = 0.727
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_nh4h1"), SubResource("Resource_oxf2s"), SubResource("Resource_3jvqv")])
+edges = Array[ExtResource("2_uf7pf")]([SubResource("Resource_5cj7e"), SubResource("Resource_6av5o")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_h0j8v")])
+magnetism = 0.35
+airborne_ok = false
+
+[sub_resource type="Resource" id="Resource_0lmpk"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_x728s"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_jpr7i"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_mqkvr"]
+script = ExtResource("3_10vfc")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+effect = &"launch"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_khv21"]
+script = ExtResource("1_h6mnw")
+id = &"High Throw"
+display_name = "High Throw"
+animation = &"high_throw"
+duration_ticks = 36
+clip_start_seconds = 1.008
+clip_end_seconds = 1.458
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_0lmpk"), SubResource("Resource_x728s"), SubResource("Resource_jpr7i")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_mqkvr")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_qvxd5"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_sy6vq"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_uglpk"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_rkyyr"]
+script = ExtResource("2_uf7pf")
+id = &"Stoke_light_Stoke_0"
+target = &"Stoke"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_omg1i"]
+script = ExtResource("2_uf7pf")
+id = &"Stoke_heavy_Circle@Stoke_1"
+input = &"heavy"
+target = &"Circle@Stoke"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_x5fmg"]
+script = ExtResource("3_10vfc")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+effect = &"ghost_drill"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_u0nxx"]
+script = ExtResource("1_h6mnw")
+id = &"Stoke"
+display_name = "Stoke"
+animation = &"stoke"
+duration_ticks = 36
+clip_end_seconds = 0.45
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_qvxd5"), SubResource("Resource_sy6vq"), SubResource("Resource_uglpk")])
+edges = Array[ExtResource("2_uf7pf")]([SubResource("Resource_rkyyr"), SubResource("Resource_omg1i")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_x5fmg")])
+magnetism = 0.35
+airborne_ok = false
+tags = Array[StringName]([&"ghost_drill"])
+
+[sub_resource type="Resource" id="Resource_p8x41"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_sgbaa"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_avhu4"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_a5sms"]
+script = ExtResource("3_10vfc")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_sjtcp"]
+script = ExtResource("1_h6mnw")
+id = &"Behind Stab"
+display_name = "Behind Stab"
+animation = &"behind_stab"
+duration_ticks = 36
+clip_end_seconds = 0.45
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_p8x41"), SubResource("Resource_sgbaa"), SubResource("Resource_avhu4")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_a5sms")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_fp51g"]
+script = ExtResource("5_1mcwr")
+action = 2
+start_tick = 20
+end_tick = 34
+
+[sub_resource type="Resource" id="Resource_v6de6"]
+script = ExtResource("5_1mcwr")
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_h7mhh"]
+script = ExtResource("5_1mcwr")
+action = 4
+end_tick = 35
+
+[sub_resource type="Resource" id="Resource_k5wpl"]
+script = ExtResource("2_uf7pf")
+id = &"Circle@Stoke_heavy_Circle@Stoke_0"
+input = &"heavy"
+target = &"Circle@Stoke"
+input_window = Vector2i(12, 31)
+
+[sub_resource type="Resource" id="Resource_lxxwo"]
+script = ExtResource("3_10vfc")
+profile = &"circle"
+active_windows = Array[Vector2i]([Vector2i(9, 24)])
+active_ticks = Vector2i(9, 24)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 10.0
+stun_ticks = 16
+heat = 20.0
+
+[sub_resource type="Resource" id="Resource_fg1x0"]
+script = ExtResource("1_h6mnw")
+id = &"Circle@Stoke"
+display_name = "Circle"
+animation = &"circle_stoke"
+duration_ticks = 36
+clip_start_seconds = 0.508
+clip_end_seconds = 0.958
+input_window = Vector2i(12, 31)
+switch_window = Vector2i(20, 34)
+cancel_windows = Array[ExtResource("5_1mcwr")]([SubResource("Resource_fp51g"), SubResource("Resource_v6de6"), SubResource("Resource_h7mhh")])
+edges = Array[ExtResource("2_uf7pf")]([SubResource("Resource_k5wpl")])
+hit_specs = Array[ExtResource("3_10vfc")]([SubResource("Resource_lxxwo")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_g8slt"]
+script = ExtResource("2_uf7pf")
+id = &"rest_light_0"
+target = &"Sweep"
+
+[sub_resource type="Resource" id="Resource_rest_heavy"]
+script = ExtResource("2_uf7pf")
+id = &"rest_heavy_Sweep"
+input = &"heavy"
+target = &"Sweep"
+
+[sub_resource type="Resource" id="Resource_rjx8b"]
+script = ExtResource("4_h5uka")
+schema_version = 1
+rest_edges = Array[ExtResource("2_uf7pf")]([SubResource("Resource_g8slt"), SubResource("Resource_rest_heavy")])
+nodes = Array[ExtResource("1_h6mnw")]([SubResource("Resource_igr8g"), SubResource("Resource_p2ykl"), SubResource("Resource_c6d1s"), SubResource("Resource_165re"), SubResource("Resource_khv21"), SubResource("Resource_u0nxx"), SubResource("Resource_sjtcp"), SubResource("Resource_fg1x0")])
+
+[sub_resource type="Resource" id="HitboxProfile_circle"]
+script = ExtResource("hp_script")
+shape = 4
+radius = 2.5
+thickness = 0.4
+height = 1.0
+
+[sub_resource type="Resource" id="HitboxProfile_fire"]
+script = ExtResource("hp_script")
+shape = 3
+length = 6.0
+angle_degrees = 25.0
+
+[sub_resource type="Resource" id="HitboxProfile_primary"]
+script = ExtResource("hp_script")
+shape = 1
+radius = 0.65
+length = 3.0
+
+[sub_resource type="Resource" id="WeaponPoses_placeholder"]
+script = ExtResource("wp_script")
+idle = &"LanceIdle"
+run = &"LanceRunning"
+jump_start = &"LanceJumpStart"
+jump_idle = &"LanceJumpIdle"
+jump_end = &"LanceJumpEnd"
+block = &"LanceParry"
+parry = &"LanceParrySuccess"
+hit = &"LanceHit1"
+equip = &"LanceChange"
+
+[resource]
+script = ExtResource("6_cdp80")
+id = &"rocket_lance"
+display_name = "Rocket Lance"
+scene = ExtResource("5_yewxj")
+graph = SubResource("Resource_rjx8b")
+hitbox_profiles = Dictionary[StringName, ExtResource("hp_script")]({
+&"circle": SubResource("HitboxProfile_circle"),
+&"fire": SubResource("HitboxProfile_fire"),
+&"primary": SubResource("HitboxProfile_primary")
+})
+character_scene = ExtResource("rig_scene")
+character_weapon_bone = &"DEF-hand.L"
+character_weapon_transform = Transform3D(-0.8983519, -0.21459405, 0.69242847, 0.69906306, 0.03540803, 0.91793305, -0.19188188, 1.133684, 0.102399625, 0.0727847, 0.035693936, -0.19324262)
+animation_aliases = Dictionary[StringName, StringName]({
+&"behind_stab": &"LanceHeavy3",
+&"circle_stoke": &"LanceHeavy1",
+&"circle_sweep": &"LanceHeavy1",
+&"fire": &"LanceLight3",
+&"high_throw": &"LanceHeavy2",
+&"lunge": &"LanceLight2",
+&"stoke": &"LanceLight4",
+&"sweep": &"LanceLight1"
+})
+air_animation_aliases = Dictionary[StringName, StringName]({
+&"behind_stab": &"LanceJumpHeavy1",
+&"circle_stoke": &"LanceJumpHeavy1",
+&"circle_sweep": &"LanceJumpHeavy1",
+&"high_throw": &"LanceJumpHeavy1",
+&"sweep": &"LanceJumpLight1"
+})
+poses = SubResource("WeaponPoses_placeholder")
+fallback_animation = &"LanceLight1"
+trace_core_color = Color(0.78, 0.987, 1, 1)
+trace_edge_color = Color(0.1, 0.946, 1, 1)
+abilities = Array[ExtResource("ab_script")]([SubResource("GatherThrowAbility_ghost_drill")])

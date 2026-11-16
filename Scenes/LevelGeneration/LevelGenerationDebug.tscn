@@ -1,0 +1,182 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/level_generation_debug.gd" id="1_script"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Profiles/plus_balcony.tres" id="2_profile"]
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/spawn_pacing_tuning.gd" id="3_tuning"]
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/level_generation_debug_rig.gd" id="4_rig"]
+
+[sub_resource type="Resource" id="Resource_tuning"]
+script = ExtResource("3_tuning")
+
+[sub_resource type="CapsuleShape3D" id="Shape_walker"]
+radius = 0.3
+height = 1.8
+
+[sub_resource type="Environment" id="Environment_preview"]
+background_mode = 1
+background_color = Color(0.025, 0.035, 0.06, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.65, 0.72, 0.85, 1)
+ambient_light_energy = 0.8
+
+[node name="LevelGenerationDebug" type="Node3D"]
+script = ExtResource("1_script")
+default_profile = ExtResource("2_profile")
+pacing_tuning = SubResource("Resource_tuning")
+
+[node name="ArenaContainer" type="Node3D" parent="."]
+
+[node name="AnchorMarkers" type="Node3D" parent="."]
+
+[node name="DebugRig" type="Node3D" parent="."]
+script = ExtResource("4_rig")
+
+[node name="OverviewCamera" type="Camera3D" parent="DebugRig"]
+current = true
+fov = 55.0
+h_offset = -5.0
+
+[node name="Walker" type="CharacterBody3D" parent="DebugRig"]
+floor_snap_length = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugRig/Walker"]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("Shape_walker")
+
+[node name="Head" type="Node3D" parent="DebugRig/Walker"]
+position = Vector3(0, 1.55, 0)
+
+[node name="WalkCamera" type="Camera3D" parent="DebugRig/Walker/Head"]
+near = 0.05
+fov = 75.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_preview")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.9, -0.6, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 358.0
+offset_bottom = -12.0
+
+[node name="Margin" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Scroll" type="ScrollContainer" parent="CanvasLayer/Panel/Margin"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/Panel/Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+text = "LEVEL GENERATION"
+theme_override_font_sizes/font_size = 22
+
+[node name="Subtitle" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+text = "Arena playground"
+
+[node name="ProfileSelector" type="OptionButton" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SeedRow" type="HBoxContainer" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+
+[node name="SeedInput" type="LineEdit" parent="CanvasLayer/Panel/Margin/Scroll/VBox/SeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Run seed"
+
+[node name="GenerateButton" type="Button" parent="CanvasLayer/Panel/Margin/Scroll/VBox/SeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Generate"
+
+[node name="NextSeedButton" type="Button" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next seed"
+
+[node name="WalkToggle" type="CheckButton" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Walk around the arena"
+
+[node name="ResetViewButton" type="Button" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset view / return to start"
+
+[node name="ModeHint" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "OVERVIEW: right-drag to orbit.\nMouse wheel zooms.\nAmber: start | Teal: spawn anchors."
+
+[node name="AnchorToggle" type="CheckButton" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Show spawn / start markers"
+
+[node name="MetricTitle" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+text = "PACING INPUTS"
+
+[node name="StyleLabel" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+text = "Style result (test input)"
+
+[node name="StyleInput" type="HSlider" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="LivingLabel" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+text = "Living enemies / fixed total"
+
+[node name="LivingInput" type="HSlider" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+layout_mode = 2
+text = "Player health ratio"
+
+[node name="HealthInput" type="HSlider" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Report" type="Label" parent="CanvasLayer/Panel/Margin/Scroll/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(302, 0)
+layout_mode = 2
+autowrap_mode = 2
+text = "Generating arena..."

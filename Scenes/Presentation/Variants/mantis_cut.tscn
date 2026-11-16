@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/WeaponArc.tscn" id="1_base"]
+
+[node name="mantis_cut" instance=ExtResource("1_base")]
+core_color = Color(0.0, 0.9, 0.75, 1)
+edge_color = Color(0.55, 1.0, 0.9, 1)
+size = 1.3
+width = 0.16
+arc_degrees = 110.0
+count = 2
+cross_degrees = 28.0
+lifetime = 0.14
+reveal_fraction = 0.5

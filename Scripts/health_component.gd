@@ -13,8 +13,14 @@ signal died(amount: float)
 
 func _ready() -> void:
 	heal_health(max_health)
+	set_process(decay != null and decay_holdup != null) # No decay curve: nothing to do per frame.
 	
 func _process(delta: float) -> void:
+	var _probe := ScriptCostProbe.start()
+	_process_body(delta)
+	ScriptCostProbe.stop(&"enemy.health_component", _probe)
+
+func _process_body(delta: float) -> void:
 	time_since_last_heal += delta
 	
 	if decay:

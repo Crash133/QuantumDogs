@@ -1,0 +1,238 @@
+[gd_scene format=3]
+
+[node name="OptionsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.01, 0.02, 0.03, 0.92)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -315.0
+offset_right = 460.0
+offset_bottom = 315.0
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 14
+
+[node name="Column" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Panel/Margin/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="OptionsDeviceLabel" type="Label" parent="Panel/Margin/Column"]
+layout_mode = 2
+text = "INPUT: KEYBOARD / MOUSE"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Margin/Column"]
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Settings" type="VBoxContainer" parent="Panel/Margin/Column/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="MasterLabel" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "MASTER VOLUME"
+
+[node name="MasterVolume" type="HSlider" parent="Panel/Margin/Column/Scroll/Settings"]
+custom_minimum_size = Vector2(360, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+
+[node name="MusicLabel" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "MUSIC VOLUME"
+
+[node name="MusicVolume" type="HSlider" parent="Panel/Margin/Column/Scroll/Settings"]
+custom_minimum_size = Vector2(360, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+
+[node name="SfxLabel" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "SFX VOLUME"
+
+[node name="SfxVolume" type="HSlider" parent="Panel/Margin/Column/Scroll/Settings"]
+custom_minimum_size = Vector2(360, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+
+[node name="DisplayModeLabel" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "DISPLAY MODE"
+
+[node name="DisplayModeOption" type="OptionButton" parent="Panel/Margin/Column/Scroll/Settings"]
+custom_minimum_size = Vector2(300, 36)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "WINDOWED"
+popup/item_1/text = "FULLSCREEN"
+popup/item_2/text = "BORDERLESS"
+
+[node name="ResolutionLabel" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "RESOLUTION"
+
+[node name="ResolutionOption" type="OptionButton" parent="Panel/Margin/Column/Scroll/Settings"]
+custom_minimum_size = Vector2(300, 36)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "1280 x 720"
+popup/item_1/text = "1600 x 900"
+popup/item_2/text = "1920 x 1080"
+
+[node name="VSyncCheck" type="CheckButton" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "VERTICAL SYNC"
+
+[node name="BatteryDrainCheck" type="CheckButton" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "BATTERY DRAIN"
+
+[node name="ReduceMotionCheck" type="CheckButton" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "REDUCE DECORATIVE MOTION"
+
+[node name="DisplayPreviewRow" type="HBoxContainer" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+
+[node name="ConfirmDisplayButton" type="Button" parent="Panel/Margin/Column/Scroll/Settings/DisplayPreviewRow"]
+layout_mode = 2
+text = "KEEP DISPLAY"
+visible = false
+
+[node name="RevertDisplayButton" type="Button" parent="Panel/Margin/Column/Scroll/Settings/DisplayPreviewRow"]
+layout_mode = 2
+text = "REVERT"
+visible = false
+
+[node name="DisplayTimerLabel" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = "DISPLAY CHANGE REVERTS IN 12 SECONDS"
+
+[node name="BindingTitle" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "CONTROLS"
+
+[node name="BindingList" type="GridContainer" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+columns = 2
+
+[node name="Bind_light" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "LIGHT"
+
+[node name="Bind_heavy" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "HEAVY"
+
+[node name="Bind_dash" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "DASH"
+
+[node name="Bind_jump" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "JUMP"
+
+[node name="Bind_block" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "BLOCK"
+
+[node name="Bind_execute" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "EXECUTE"
+
+[node name="Bind_shoot" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "SHOOT"
+
+[node name="Bind_switch_1" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "WEAPON 1"
+
+[node name="Bind_switch_2" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "WEAPON 2"
+
+[node name="Bind_switch_3" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "WEAPON 3"
+
+[node name="Bind_switch_4" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingList"]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "WEAPON 4"
+
+[node name="BindingStatus" type="Label" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+text = ""
+
+[node name="BindingConflict" type="VBoxContainer" parent="Panel/Margin/Column/Scroll/Settings"]
+layout_mode = 2
+visible = false
+
+[node name="ConflictText" type="Label" parent="Panel/Margin/Column/Scroll/Settings/BindingConflict"]
+layout_mode = 2
+text = "BINDING IS IN USE. SWAP IT?"
+
+[node name="SwapBindingButton" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingConflict"]
+layout_mode = 2
+text = "SWAP"
+
+[node name="CancelBindingButton" type="Button" parent="Panel/Margin/Column/Scroll/Settings/BindingConflict"]
+layout_mode = 2
+text = "CANCEL"
+
+[node name="ResetBindingsButton" type="Button" parent="Panel/Margin/Column/Scroll/Settings"]
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+text = "RESET CONTROLS"
+
+[node name="OptionsBackButton" type="Button" parent="Panel/Margin/Column"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "BACK"

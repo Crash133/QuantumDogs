@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/FlyingEnemy/DefaultMaterial_BaseColor.1001.png" id="basecolor"]
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/FlyingEnemy/DefaultMaterial_Normal.1001.png" id="normal"]
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/FlyingEnemy/DefaultMaterial_Roughness.1001.png" id="roughness"]
+[ext_resource type="Texture2D" path="res://Assets/Objects/Exports/FlyingEnemy/DefaultMaterial_Metallic.1001.png" id="metallic"]
+
+[resource]
+resource_name = "enemy_drone"
+albedo_texture = ExtResource("basecolor")
+metallic = 0.5
+metallic_texture = ExtResource("metallic")
+metallic_texture_channel = 0
+roughness = 1.0
+roughness_texture = ExtResource("roughness")
+roughness_texture_channel = 0
+normal_enabled = true
+normal_texture = ExtResource("normal")
+texture_filter = 5

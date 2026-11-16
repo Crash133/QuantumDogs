@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/WeaponArc.tscn" id="1_base"]
+
+[node name="slash_trace" instance=ExtResource("1_base")]
+shape = 5
+core_color = Color(0.78, 0.99, 1, 1)
+edge_color = Color(0.1, 0.95, 1, 1)
+size = 2.0
+width = 0.45
+arc_degrees = 170.0
+lifetime = 0.3
+reveal_fraction = 0.4
+opacity = 0.95

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/WeaponArc.tscn" id="1_base"]
+
+[node name="saber_arc" instance=ExtResource("1_base")]
+core_color = Color(0.25, 0.9, 1.0, 1)
+edge_color = Color(0.72, 0.45, 1.0, 1)
+edge_width = 0.45
+size = 1.5
+width = 0.3
+arc_degrees = 150.0
+lifetime = 0.2

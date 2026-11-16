@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Combat/combat_time_domains.gd" id="time_domains"]
+[ext_resource type="Script" path="res://Scripts/Combat/combat_action_leases.gd" id="action_leases"]
+
+[node name="CombatTimeDomains" type="Node"]
+script = ExtResource("time_domains")
+
+[node name="CombatActionLeases" type="Node" parent="." node_paths=PackedStringArray("hit_manager_path")]
+script = ExtResource("action_leases")
+hit_manager_path = NodePath("../../HitManager")

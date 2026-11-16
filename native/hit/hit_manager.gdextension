@@ -1,0 +1,10 @@
+[configuration]
+entry_symbol = "hit_manager_library_init"
+compatibility_minimum = "4.2"
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 = "res://bin/libhit_manager_combat.linux.template_debug.x86_64.so"
+linux.release.x86_64 = "res://bin/libhit_manager_combat.linux.template_release.x86_64.so"
+windows.debug.x86_64 = "res://bin/hit_manager_combat.windows.template_debug.x86_64.dll"
+windows.release.x86_64 = "res://bin/hit_manager_combat.windows.template_release.x86_64.dll"

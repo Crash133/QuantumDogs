@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AttackPresentationCatalog" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/attack_presentation_profile.gd" id="1_profile"]
+[ext_resource type="Script" path="res://Scripts/Presentation/attack_presentation_catalog.gd" id="2_catalog"]
+
+[sub_resource type="Resource" id="Profile_0"]
+script = ExtResource("1_profile")
+weapon_id = &"greatsword"
+move_id = &""
+variant_id = &"greatsword"
+potency = 0.9
+
+[resource]
+script = ExtResource("2_catalog")
+profiles = Array[ExtResource("1_profile")]([SubResource("Profile_0")])

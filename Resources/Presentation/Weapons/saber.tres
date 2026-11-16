@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="AttackPresentationCatalog" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/attack_presentation_profile.gd" id="1_profile"]
+[ext_resource type="Script" path="res://Scripts/Presentation/attack_presentation_catalog.gd" id="2_catalog"]
+
+[sub_resource type="Resource" id="Profile_0"]
+script = ExtResource("1_profile")
+weapon_id = &"saber"
+move_id = &""
+variant_id = &"saber"
+potency = 0.5
+
+[sub_resource type="Resource" id="Profile_1"]
+script = ExtResource("1_profile")
+weapon_id = &"saber"
+move_id = &"Up Slash"
+variant_id = &"saber/up_slash"
+potency = 0.7
+
+[sub_resource type="Resource" id="Profile_2"]
+script = ExtResource("1_profile")
+weapon_id = &"saber"
+move_id = &"Storm@Pass"
+variant_id = &"saber/storm"
+potency = 0.8
+
+[sub_resource type="Resource" id="Profile_3"]
+script = ExtResource("1_profile")
+weapon_id = &"saber"
+move_id = &"Storm@L-Sweep"
+variant_id = &"saber/storm"
+potency = 0.8
+
+[resource]
+script = ExtResource("2_catalog")
+profiles = Array[ExtResource("1_profile")]([SubResource("Profile_0"), SubResource("Profile_1"), SubResource("Profile_2"), SubResource("Profile_3")])

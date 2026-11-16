@@ -1,18 +1,26 @@
 [gd_scene format=3 uid="uid://brp41fv6aauig"]
 
 [ext_resource type="Script" uid="uid://bbq0mq6kui6fu" path="res://Scripts/main.gd" id="1_7go7v"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_manager_node.gd" id="combat_hit_manager"]
 [ext_resource type="PackedScene" uid="uid://ds3ccfhhi7ys7" path="res://Scenes/Components/CameraRig.tscn" id="1_s2l5p"]
 [ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_7go7v"]
 [ext_resource type="Script" uid="uid://hctnj3c78bhg" path="res://Scripts/health_component.gd" id="4_b43vc"]
 [ext_resource type="PackedScene" uid="uid://bxleb0pxhiep1" path="res://Scenes/Components/Enemy.tscn" id="5_4js3i"]
 [ext_resource type="PackedScene" uid="uid://c6q0tywwpuem4" path="res://Assets/Objects/Sci Fi Room_Fbx/Sci Fi Room.fbx" id="6_urm7v"]
-[ext_resource type="PackedScene" uid="uid://com1cbgks057n" path="res://Scenes/Components/DashManager.tscn" id="7_b43vc"]
 [ext_resource type="Script" uid="uid://bdad428wm7d3p" path="res://Scripts/spawner.gd" id="7_urm7v"]
 [ext_resource type="Shader" uid="uid://0m60c6obe4vh" path="res://Shaders/StyleFill.gdshader" id="8_l40ec"]
 [ext_resource type="Script" uid="uid://bsjfkkkqtn2vq" path="res://Scripts/battery_health.gd" id="8_sepaq"]
 [ext_resource type="Script" uid="uid://t8sas17itcgl" path="res://Scripts/style.gd" id="10_v4tai"]
 [ext_resource type="Texture2D" uid="uid://dr5pxj732ghtd" path="res://Assets/Images/Style_Atlas_3.png" id="11_e6k8e"]
 [ext_resource type="FontFile" uid="uid://becnvgx254dim" path="res://Assets/Fonts/Rubik_Glitch/RubikGlitch-Regular.ttf" id="13_e6k8e"]
+[ext_resource type="Script" path="res://Scripts/Style/style_system.gd" id="style_system"]
+[ext_resource type="Resource" path="res://Resources/Style/style_tuning.tres" id="style_tuning"]
+[ext_resource type="Resource" path="res://Resources/Style/action_hit.tres" id="style_hit"]
+[ext_resource type="Resource" path="res://Resources/Style/action_kill.tres" id="style_kill"]
+[ext_resource type="Resource" path="res://Resources/Style/action_combo_advance.tres" id="style_combo_advance"]
+[ext_resource type="Resource" path="res://Resources/Style/action_parry.tres" id="style_parry"]
+[ext_resource type="Resource" path="res://Resources/Style/action_execution.tres" id="style_execution"]
+[ext_resource type="Resource" path="res://Resources/Style/action_weapon_switch.tres" id="style_weapon_switch"]
 
 [sub_resource type="Curve" id="Curve_sepaq"]
 _limits = [0.0, 12.0, 0.0, 1.0]
@@ -415,6 +423,9 @@ _data = {
 [node name="Dummy" type="Node3D" unique_id=1664004354]
 script = ExtResource("1_7go7v")
 
+[node name="HitManager" type="Node" parent="."]
+script = ExtResource("combat_hit_manager")
+
 [node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig", "health") instance=ExtResource("2_7go7v")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 camera_rig = NodePath("../CameraRig")
@@ -422,9 +433,6 @@ health = NodePath("HealthComponent")
 
 [node name="Orbit Point" type="Node3D" parent="Player" unique_id=125713502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0507636, 0)
-
-[node name="DashManager2" parent="Player" unique_id=706154543 instance=ExtResource("7_b43vc")]
-dash_multiplier = 15.0
 
 [node name="HealthComponent" type="Node" parent="Player" unique_id=1131662113]
 script = ExtResource("4_b43vc")
@@ -515,9 +523,6 @@ offset_transform_enabled = true
 texture = SubResource("AtlasTexture_5h11f")
 stretch_mode = 1
 script = ExtResource("10_v4tai")
-mult = 5
-decay_mult = 40
-decay = SubResource("Curve_v4tai")
 letter_spacing = 80.0
 
 [node name="RichTextLabel" type="Label" parent="Control/CenterContainer/VBoxContainer/H" unique_id=1122203457]
@@ -564,6 +569,18 @@ layout_mode = 2
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="ActionList" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="PayoutLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=294261761]
 layout_mode = 1
 anchors_preset = 15
@@ -590,7 +607,11 @@ script = ExtResource("8_sepaq")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=328040570]
 libraries/ = SubResource("AnimationLibrary_f0mwc")
 
-[connection signal="dealt_damage" from="Player" to="Control/CenterContainer/VBoxContainer/H/TextureRect" method="_on_player_dealt_damage"]
+[node name="StyleSystem" type="Node" parent="Control"]
+script = ExtResource("style_system")
+actions = [ExtResource("style_hit"), ExtResource("style_kill"), ExtResource("style_combo_advance"), ExtResource("style_parry"), ExtResource("style_execution"), ExtResource("style_weapon_switch")]
+tuning = ExtResource("style_tuning")
+
 [connection signal="health_changed" from="Player/HealthComponent" to="Control/VBoxContainer/MarginContainer/ProgressBar" method="_on_health_component_health_changed"]
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="Control/CenterContainer/VBoxContainer/H/TextureRect" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="Control/AnimationPlayer" to="Control/CenterContainer/VBoxContainer/H/TextureRect" method="_on_animation_player_animation_started"]

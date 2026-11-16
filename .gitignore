@@ -2,4 +2,6 @@
 .godot/
 /android/
 /Build/
-
+native/hit/build/
+/Other/
+/bin/

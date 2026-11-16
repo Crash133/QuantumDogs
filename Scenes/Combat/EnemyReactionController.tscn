@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Combat/enemy_reaction_controller.gd" id="1_controller"]
+[ext_resource type="Resource" path="res://Resources/Combat/Reactions/common.tres" id="2_profile"]
+
+[node name="EnemyReactionController" type="Node"]
+script = ExtResource("1_controller")
+profile = ExtResource("2_profile")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/WeaponLine.tscn" id="1_base"]
+
+[node name="lance_stoke" instance=ExtResource("1_base")]
+core_color = Color(0.2, 0.75, 1.0, 1)
+edge_color = Color(0.1, 0.25, 0.9, 1)
+edge_width = 0.6
+size = 4.0
+width = 0.3
+rings = 8
+ring_radius = 0.45
+lifetime = 0.45
+reveal_fraction = 0.7

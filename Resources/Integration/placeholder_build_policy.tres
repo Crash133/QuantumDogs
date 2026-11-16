@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CombatBuildPolicy" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Integration/combat_build_policy.gd" id="1_policy"]
+
+[resource]
+resource_name = "PLACEHOLDER stat effects (D1 unapproved): plan fixture values, level 2 extends the level-1 step"
+script = ExtResource("1_policy")
+stat_values = {
+&"battery_drain_reduction": [1.0, 0.8, 0.6],
+&"damage": [1.0, 1.25, 1.5],
+&"dash_cooldown_reduction": [1.0, 0.5, 0.25],
+&"heat_damage_multiplier": [1.0, 1.5, 2.0],
+&"heat_gauge_increase": [0.0, 20.0, 40.0]
+}
+upgrade_values = {}

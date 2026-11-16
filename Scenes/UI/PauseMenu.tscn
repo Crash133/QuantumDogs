@@ -1,0 +1,136 @@
+[gd_scene format=3]
+
+[ext_resource type="LabelSettings" path="res://Assets/FrontEndPrototype/LabelSettings/pause_menu.tres" id="1_emv3i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2llrr"]
+
+[node name="PauseMenu" type="Control" unique_id=1886489476]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1566144864]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2llrr")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=189012469]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1328098667]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=275778949]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" unique_id=618821397]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME"
+label_settings = ExtResource("1_emv3i")
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1903362949]
+layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=677248446]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/OptionsButton" unique_id=1923286714]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPTIONS"
+label_settings = ExtResource("1_emv3i")
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=771022966]
+layout_mode = 2
+
+[node name="QuitToMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1127432644]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/QuitToMenuButton" unique_id=1674746751]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT TO MENU"
+label_settings = ExtResource("1_emv3i")
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=18231]
+layout_mode = 2
+
+[node name="QuitGameButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1470455981]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/QuitGameButton" unique_id=2012481157]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT GAME"
+label_settings = ExtResource("1_emv3i")
+
+[node name="PauseStatus" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PauseRetryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+text = "RETRY"

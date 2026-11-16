@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ArenaProfile" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Scripts/LevelGeneration/arena_profile.gd" id="1_profile"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/core_plus_balcony.tres" id="2_core"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/slab_variant_a.tres" id="3_a"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/slab_variant_b.tres" id="4_b"]
+[ext_resource type="Resource" path="res://Scenes/LevelGeneration/Modules/Definitions/slab_variant_c.tres" id="5_c"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelGeneration/Fallbacks/fallback_plus_balcony.tscn" id="6_fallback"]
+
+[resource]
+script = ExtResource("1_profile")
+allowed_silhouettes = Array[StringName]([&"plus_balcony"])
+module_unit_size = 4.0
+normalized_footprints = { &"plus_balcony": PackedVector2Array(0.35, 0.0, 0.65, 0.0, 0.65, 0.35, 1.0, 0.35, 1.0, 0.65, 0.65, 0.65, 0.65, 1.0, 0.35, 1.0, 0.35, 0.65, 0.0, 0.65, 0.0, 0.35, 0.35, 0.35) }
+silhouette_source_note = "Approximate normalized shape guided by the user-provided Silhoutees.png; the original GDD diagram scale is unverified."
+core_modules = { &"plus_balcony": ExtResource("2_core") }
+module_catalogue = Array[ArenaModuleDefinition]([ExtResource("3_a"), ExtResource("4_b"), ExtResource("5_c")])
+fallback_scenes = { &"plus_balcony": ExtResource("6_fallback") }
+max_attempts = 16

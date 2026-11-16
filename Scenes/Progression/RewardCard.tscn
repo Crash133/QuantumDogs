@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Progression/reward_card.gd" id="1_card"]
+
+[node name="RewardCard" type="CheckButton"]
+custom_minimum_size = Vector2(280, 400)
+toggle_mode = true
+script = ExtResource("1_card")

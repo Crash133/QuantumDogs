@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Presentation/EnemyWarningAccent.tscn" id="1_base"]
+
+[node name="warning_common" instance=ExtResource("1_base")]
+warning_shape = 0
+size = 1.1
+warning_intensity = 1.8

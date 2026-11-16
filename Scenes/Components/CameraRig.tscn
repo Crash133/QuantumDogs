@@ -11,6 +11,17 @@ script = ExtResource("1_pkqe1")
 [node name="CameraShake" type="Node3D" parent="PitchPivot" unique_id=1487581132]
 script = ExtResource("2_apqul")
 
-[node name="Camera3D" type="Camera3D" parent="PitchPivot/CameraShake" unique_id=470521252]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0108566, 2.6193104)
+[node name="SpringArm3D" type="SpringArm3D" parent="PitchPivot/CameraShake" unique_id=470521252]
+position = Vector3(0, 1.0108566, 0)
+spring_length = 2.61931
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="PitchPivot/CameraShake/SpringArm3D"]
 current = true
+
+[node name="CameraWallProbe" type="SpringArm3D" parent="PitchPivot/CameraShake"]
+position = Vector3(0, 1.0108566, 0)
+spring_length = 2.61931
+margin = 0.2
+
+[node name="ProbeTip" type="Marker3D" parent="PitchPivot/CameraShake/CameraWallProbe"]

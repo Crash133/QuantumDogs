@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackPresentationCatalog" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Presentation/attack_presentation_catalog.gd" id="2_catalog"]
+[ext_resource type="Resource" path="res://Resources/Presentation/Weapons/mantis_blades.tres" id="w0"]
+[ext_resource type="Resource" path="res://Resources/Presentation/Weapons/rocket_lance.tres" id="w1"]
+[ext_resource type="Resource" path="res://Resources/Presentation/Weapons/saber.tres" id="w2"]
+[ext_resource type="Resource" path="res://Resources/Presentation/Weapons/greatsword.tres" id="w3"]
+
+[resource]
+script = ExtResource("2_catalog")
+includes = Array[Resource]([ExtResource("w0"), ExtResource("w1"), ExtResource("w2"), ExtResource("w3")])

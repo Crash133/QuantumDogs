@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bff3fwwbkwv6e"]
+
+[ext_resource type="PackedScene" path="res://Scenes/CombatDebugArena.tscn" id="1_arena"]
+
+[node name="CombatBenchmarkMantis" unique_id=413390162 instance=ExtResource("1_arena")]
+benchmark_weapon = &"mantis_blades"
+benchmark_report_path = "res://native/hit/build/mantis_benchmark_visible.json"
+benchmark_quit = true
+
+[node name="Floor" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

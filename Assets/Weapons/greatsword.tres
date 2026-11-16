@@ -1,0 +1,325 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bv0m832rdjigo"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/combo_node.gd" id="1_7cyrt"]
+[ext_resource type="Script" uid="uid://cq38ys2it828d" path="res://Scripts/Combat/weapon_ability.gd" id="1_bondj"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_edge.gd" id="2_3k2nv"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_spec.gd" id="3_ukltk"]
+[ext_resource type="Script" uid="uid://c0sry7v5hmkgk" path="res://Scripts/Combat/combo_cancel_window.gd" id="4_o11mo"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_graph.gd" id="4_xk4kg"]
+[ext_resource type="PackedScene" uid="uid://d4h6is7xnrjfl" path="res://Scenes/Weapons/greatsword.tscn" id="5_i44a0"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_data.gd" id="6_bondj"]
+[ext_resource type="Script" uid="uid://cwtm3r2hk4whv" path="res://Scripts/Combat/hitbox_profile.gd" id="hp_script"]
+[ext_resource type="PackedScene" uid="uid://bqgixi31gejoa" path="res://Assets/Objects/LaceGame.glb" id="rig_scene"]
+[ext_resource type="Script" uid="uid://co75ynll48mu8" path="res://Scripts/Combat/weapon_poses.gd" id="wp_script"]
+
+[sub_resource type="Resource" id="Resource_nj6pt"]
+script = ExtResource("4_o11mo")
+action = 2
+start_tick = 32
+end_tick = 50
+
+[sub_resource type="Resource" id="Resource_5lleq"]
+script = ExtResource("4_o11mo")
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_7yv20"]
+script = ExtResource("4_o11mo")
+action = 4
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_lc7dk"]
+script = ExtResource("2_3k2nv")
+id = &"Slam_light_Earthquake_0"
+target = &"Earthquake"
+input_window = Vector2i(24, 46)
+
+[sub_resource type="Resource" id="Resource_2sbpg"]
+script = ExtResource("2_3k2nv")
+id = &"Slam_heavy_Slam Ground_1"
+input = &"heavy"
+target = &"Slam Ground"
+input_window = Vector2i(24, 46)
+
+[sub_resource type="Resource" id="Resource_qorv2"]
+script = ExtResource("3_ukltk")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(20, 34)])
+active_ticks = Vector2i(20, 34)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 25.2
+stun_ticks = 18
+heat = 40.0
+reaction_kind = &"knockdown"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_f41r6"]
+script = ExtResource("1_7cyrt")
+id = &"Slam"
+display_name = "Slam"
+animation = &"slam"
+duration_ticks = 54
+clip_end_seconds = 1.333
+input_window = Vector2i(24, 46)
+switch_window = Vector2i(32, 50)
+cancel_windows = Array[ExtResource("4_o11mo")]([SubResource("Resource_nj6pt"), SubResource("Resource_5lleq"), SubResource("Resource_7yv20")])
+edges = Array[ExtResource("2_3k2nv")]([SubResource("Resource_lc7dk"), SubResource("Resource_2sbpg")])
+hit_specs = Array[ExtResource("3_ukltk")]([SubResource("Resource_qorv2")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_xcwm4"]
+script = ExtResource("4_o11mo")
+action = 2
+start_tick = 32
+end_tick = 50
+
+[sub_resource type="Resource" id="Resource_ghqwi"]
+script = ExtResource("4_o11mo")
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_6my2w"]
+script = ExtResource("4_o11mo")
+action = 4
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_teroc"]
+script = ExtResource("2_3k2nv")
+id = &"Earthquake_light_Fissure_0"
+target = &"Fissure"
+input_window = Vector2i(24, 46)
+
+[sub_resource type="Resource" id="Resource_acmut"]
+script = ExtResource("2_3k2nv")
+id = &"Earthquake_heavy_Circle_1"
+input = &"heavy"
+target = &"Circle"
+input_window = Vector2i(24, 46)
+
+[sub_resource type="Resource" id="Resource_d0rjg"]
+script = ExtResource("3_ukltk")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(20, 34)])
+active_ticks = Vector2i(20, 34)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 25.2
+stun_ticks = 18
+heat = 40.0
+reaction_kind = &"knockdown"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_aiqri"]
+script = ExtResource("1_7cyrt")
+id = &"Earthquake"
+display_name = "Earthquake"
+animation = &"earthquake"
+duration_ticks = 54
+clip_end_seconds = 1.417
+input_window = Vector2i(24, 46)
+switch_window = Vector2i(32, 50)
+cancel_windows = Array[ExtResource("4_o11mo")]([SubResource("Resource_xcwm4"), SubResource("Resource_ghqwi"), SubResource("Resource_6my2w")])
+edges = Array[ExtResource("2_3k2nv")]([SubResource("Resource_teroc"), SubResource("Resource_acmut")])
+hit_specs = Array[ExtResource("3_ukltk")]([SubResource("Resource_d0rjg")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_edrql"]
+script = ExtResource("4_o11mo")
+action = 2
+start_tick = 32
+end_tick = 50
+
+[sub_resource type="Resource" id="Resource_x2j0p"]
+script = ExtResource("4_o11mo")
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_t0mxn"]
+script = ExtResource("4_o11mo")
+action = 4
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_ihc3u"]
+script = ExtResource("3_ukltk")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(20, 34)])
+active_ticks = Vector2i(20, 34)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 25.2
+stun_ticks = 18
+heat = 40.0
+reaction_kind = &"knockdown"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_bpwss"]
+script = ExtResource("1_7cyrt")
+id = &"Slam Ground"
+display_name = "Slam Ground"
+animation = &"slam_ground"
+duration_ticks = 54
+clip_start_seconds = 0.183
+clip_end_seconds = 1.983
+input_window = Vector2i(24, 46)
+switch_window = Vector2i(32, 50)
+cancel_windows = Array[ExtResource("4_o11mo")]([SubResource("Resource_edrql"), SubResource("Resource_x2j0p"), SubResource("Resource_t0mxn")])
+hit_specs = Array[ExtResource("3_ukltk")]([SubResource("Resource_ihc3u")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_0ko46"]
+script = ExtResource("4_o11mo")
+action = 2
+start_tick = 32
+end_tick = 50
+
+[sub_resource type="Resource" id="Resource_3f0bt"]
+script = ExtResource("4_o11mo")
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_y1dhg"]
+script = ExtResource("4_o11mo")
+action = 4
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_jjkhr"]
+script = ExtResource("3_ukltk")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(20, 34)])
+active_ticks = Vector2i(20, 34)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 25.2
+stun_ticks = 18
+heat = 40.0
+effect = &"launch"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_4wbxm"]
+script = ExtResource("1_7cyrt")
+id = &"Fissure"
+display_name = "Fissure"
+animation = &"fissure"
+duration_ticks = 54
+clip_end_seconds = 1.167
+input_window = Vector2i(24, 46)
+switch_window = Vector2i(32, 50)
+cancel_windows = Array[ExtResource("4_o11mo")]([SubResource("Resource_0ko46"), SubResource("Resource_3f0bt"), SubResource("Resource_y1dhg")])
+hit_specs = Array[ExtResource("3_ukltk")]([SubResource("Resource_jjkhr")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_mwdqw"]
+script = ExtResource("4_o11mo")
+action = 2
+start_tick = 32
+end_tick = 50
+
+[sub_resource type="Resource" id="Resource_ie2co"]
+script = ExtResource("4_o11mo")
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_ueb1u"]
+script = ExtResource("4_o11mo")
+action = 4
+end_tick = 53
+
+[sub_resource type="Resource" id="Resource_wo2kv"]
+script = ExtResource("3_ukltk")
+profile = &"circle"
+active_windows = Array[Vector2i]([Vector2i(20, 34)])
+active_ticks = Vector2i(20, 34)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 25.2
+stun_ticks = 18
+heat = 40.0
+reaction_kind = &"knockdown"
+feedback_cue_id = &"heavy_hit"
+
+[sub_resource type="Resource" id="Resource_7ybut"]
+script = ExtResource("1_7cyrt")
+id = &"Circle"
+display_name = "Circle"
+animation = &"circle"
+duration_ticks = 54
+clip_end_seconds = 1.417
+input_window = Vector2i(24, 46)
+switch_window = Vector2i(32, 50)
+cancel_windows = Array[ExtResource("4_o11mo")]([SubResource("Resource_mwdqw"), SubResource("Resource_ie2co"), SubResource("Resource_ueb1u")])
+hit_specs = Array[ExtResource("3_ukltk")]([SubResource("Resource_wo2kv")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_t7o5i"]
+script = ExtResource("2_3k2nv")
+id = &"rest_light_0"
+target = &"Slam"
+
+[sub_resource type="Resource" id="Resource_bondj"]
+script = ExtResource("2_3k2nv")
+id = &"rest_heavy_Slam"
+input = &"heavy"
+target = &"Slam"
+
+[sub_resource type="Resource" id="Resource_p2yql"]
+script = ExtResource("4_xk4kg")
+schema_version = 1
+rest_edges = Array[ExtResource("2_3k2nv")]([SubResource("Resource_t7o5i"), SubResource("Resource_bondj")])
+nodes = Array[ExtResource("1_7cyrt")]([SubResource("Resource_f41r6"), SubResource("Resource_aiqri"), SubResource("Resource_bpwss"), SubResource("Resource_4wbxm"), SubResource("Resource_7ybut")])
+
+[sub_resource type="Resource" id="HitboxProfile_circle"]
+script = ExtResource("hp_script")
+shape = 4
+radius = 3.5
+thickness = 0.6
+height = 1.2
+
+[sub_resource type="Resource" id="HitboxProfile_primary"]
+script = ExtResource("hp_script")
+shape = 2
+size = Vector3(2.5, 1, 2.5)
+
+[sub_resource type="Resource" id="WeaponPoses_placeholder"]
+script = ExtResource("wp_script")
+idle = &"BigSwordIdle"
+run = &"BigSwordRunning"
+jump_start = &"BigSwordJumpStart"
+jump_idle = &"BigSwordJumpIdle"
+jump_end = &"BigSwordJumpEnd"
+block = &"BigSwordParry"
+parry = &"BigSwordParrySuccess"
+hit = &"BigSwordHit1"
+equip = &"BigSwordChange"
+
+[resource]
+script = ExtResource("6_bondj")
+id = &"greatsword"
+display_name = "Greatsword"
+scene = ExtResource("5_i44a0")
+graph = SubResource("Resource_p2yql")
+hitbox_profiles = Dictionary[StringName, ExtResource("hp_script")]({
+&"circle": SubResource("HitboxProfile_circle"),
+&"primary": SubResource("HitboxProfile_primary")
+})
+character_scene = ExtResource("rig_scene")
+character_weapon_bone = &"DEF-hand.L"
+character_weapon_transform = Transform3D(0.08208079, -0.2761819, 1.1910365, 1.195469, 0.26838264, -0.020152705, -0.25631642, 1.1633039, 0.28741533, 0.0060128253, 0.067615345, 0.0635102)
+animation_aliases = Dictionary[StringName, StringName]({
+&"circle": &"BigSwordHeavy2",
+&"earthquake": &"BigSwordLight2",
+&"fissure": &"BigSwordLight3",
+&"slam": &"BigSwordLight1",
+&"slam_ground": &"BigSwordHeavy1"
+})
+air_animation_aliases = Dictionary[StringName, StringName]({
+&"circle": &"BigSwordJumpHeavy1",
+&"earthquake": &"BigSwordJumpLight2",
+&"fissure": &"BigSwordJumpLight1",
+&"slam": &"BigSwordJumpLight1",
+&"slam_ground": &"BigSwordJumpHeavy1"
+})
+poses = SubResource("WeaponPoses_placeholder")
+fallback_animation = &"BigSwordLight1"
+trace_core_color = Color(1, 0.899, 0.78, 1)
+trace_edge_color = Color(1, 0.586, 0.1, 1)

@@ -1,0 +1,557 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dyef82yh5s5d6"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/combo_node.gd" id="1_tax1h"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_edge.gd" id="2_uc5xs"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_spec.gd" id="3_18wm2"]
+[ext_resource type="Script" path="res://Scripts/Combat/combo_graph.gd" id="4_ro0gy"]
+[ext_resource type="PackedScene" path="res://Scenes/Weapons/saber.tscn" id="5_lyc7b"]
+[ext_resource type="Script" path="res://Scripts/Combat/weapon_data.gd" id="6_i1gls"]
+[ext_resource type="Script" uid="uid://c0sry7v5hmkgk" path="res://Scripts/Combat/combo_cancel_window.gd" id="7_ri1yn"]
+[ext_resource type="PackedScene" uid="uid://bqgixi31gejoa" path="res://Assets/Objects/LaceGame.glb" id="7_saber_rig"]
+[ext_resource type="Script" uid="uid://cq38ys2it828d" path="res://Scripts/Combat/weapon_ability.gd" id="ab_script"]
+[ext_resource type="Script" uid="uid://dq2wbpv4hixav" path="res://Scripts/Combat/weapon_contact_profile.gd" id="contact_profile_script"]
+[ext_resource type="Script" uid="uid://78ghdgdiowbj" path="res://Scripts/Combat/charged_projectile_ability.gd" id="cp_script"]
+[ext_resource type="Script" uid="uid://cwtm3r2hk4whv" path="res://Scripts/Combat/hitbox_profile.gd" id="hp_script"]
+[ext_resource type="Script" uid="uid://cviylp6htxva6" path="res://Scripts/Combat/weapon_rig_calibration.gd" id="rig_calibration_script"]
+[ext_resource type="Script" uid="uid://co75ynll48mu8" path="res://Scripts/Combat/weapon_poses.gd" id="wp_script"]
+
+[sub_resource type="Resource" id="ChargedProjectileAbility_plasma"]
+script = ExtResource("cp_script")
+
+[sub_resource type="Resource" id="WeaponRigCalibration_saber"]
+script = ExtResource("rig_calibration_script")
+shoulder_bone = &"DEF-upper_arm.L"
+elbow_bone = &"DEF-forearm.L"
+hand_bone = &"DEF-hand.L"
+correction_bones = Array[StringName]([&"DEF-hand.L", &"DEF-forearm.L.001", &"DEF-forearm.L", &"DEF-upper_arm.L.001", &"DEF-upper_arm.L"])
+execution_correction_bones = Array[StringName]([&"DEF-hand.L", &"DEF-forearm.L", &"DEF-upper_arm.L"])
+flattened_rig = true
+hand_followers = Array[StringName]([&"DEF-hand.L.001", &"DEF-hand.L.002", &"DEF-hand.L.012", &"DEF-hand.L.003", &"DEF-hand.L.004", &"DEF-hand.L.013", &"DEF-hand.L.005", &"DEF-hand.L.006", &"DEF-hand.L.014", &"DEF-hand.L.007", &"DEF-hand.L.008", &"DEF-hand.L.015", &"DEF-hand.L.009", &"DEF-hand.L.010", &"DEF-hand.L.011"])
+pole_direction = Vector3(1, 0, 0)
+airborne_execution_pole_direction = Vector3(1, 0, 0)
+
+[sub_resource type="Resource" id="WeaponContactProfile_saber"]
+script = ExtResource("contact_profile_script")
+execution_tip_id = &"primary"
+permitted_parry_tip_ids = Array[StringName]([&"primary"])
+rig_calibration = SubResource("WeaponRigCalibration_saber")
+execution_standoff_distance = 0.7
+airborne_execution_standoff_distance = 0.6
+
+[sub_resource type="Resource" id="Resource_p60lr"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_r23t5"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_bbhqi"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_1buk7"]
+script = ExtResource("2_uc5xs")
+id = &"Swipe 1_light_Swipe 2_0"
+target = &"Swipe 2"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_n0h1n"]
+script = ExtResource("2_uc5xs")
+id = &"Swipe 1_heavy_Up Slash_1"
+input = &"heavy"
+target = &"Up Slash"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_0rexy"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 0, -1.5)
+
+[sub_resource type="Resource" id="Resource_odjv3"]
+script = ExtResource("1_tax1h")
+id = &"Swipe 1"
+display_name = "Swipe 1"
+animation = &"swipe_1"
+clip_end_seconds = 0.481
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_p60lr"), SubResource("Resource_r23t5"), SubResource("Resource_bbhqi")])
+edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_1buk7"), SubResource("Resource_n0h1n")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_0rexy")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_rm7ps"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_n3dql"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_y70or"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_yv0aw"]
+script = ExtResource("2_uc5xs")
+id = &"Swipe 2_light_Pass_0"
+target = &"Pass"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_edpqv"]
+script = ExtResource("2_uc5xs")
+id = &"Swipe 2_heavy_Swipe Rise_1"
+input = &"heavy"
+target = &"Swipe Rise"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_rj72f"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 0, -1.5)
+
+[sub_resource type="Resource" id="Resource_rmlce"]
+script = ExtResource("1_tax1h")
+id = &"Swipe 2"
+display_name = "Swipe 2"
+animation = &"swipe_2"
+clip_end_seconds = 0.375
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_rm7ps"), SubResource("Resource_n3dql"), SubResource("Resource_y70or")])
+edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_yv0aw"), SubResource("Resource_edpqv")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_rj72f")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_0dufj"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_mqiwo"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_26238"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_s50gx"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 0, -1.5)
+
+[sub_resource type="Resource" id="Resource_j0ij8"]
+script = ExtResource("1_tax1h")
+id = &"Up Slash"
+display_name = "Up Slash"
+animation = &"up_slash"
+clip_start_seconds = 0.583
+clip_end_seconds = 0.958
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_0dufj"), SubResource("Resource_mqiwo"), SubResource("Resource_26238")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_s50gx")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_kj3jd"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_k1iou"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_y2hxy"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_23utn"]
+script = ExtResource("2_uc5xs")
+id = &"Pass_light_L-Sweep_0"
+target = &"L-Sweep"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_82kw7"]
+script = ExtResource("2_uc5xs")
+id = &"Pass_heavy_Storm@Pass_1"
+input = &"heavy"
+target = &"Storm@Pass"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_bawof"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 0, -1.5)
+
+[sub_resource type="Resource" id="Resource_rlak3"]
+script = ExtResource("1_tax1h")
+id = &"Pass"
+display_name = "Pass"
+animation = &"pass"
+clip_end_seconds = 0.375
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_kj3jd"), SubResource("Resource_k1iou"), SubResource("Resource_y2hxy")])
+edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_23utn"), SubResource("Resource_82kw7")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_bawof")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_mj06f"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_0eq6f"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_ysy68"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_ukpdc"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 6, -1)
+reaction_kind = &"launch"
+
+[sub_resource type="Resource" id="Resource_gh6ot"]
+script = ExtResource("1_tax1h")
+id = &"Swipe Rise"
+display_name = "Swipe Rise"
+animation = &"swipe_rise"
+clip_start_seconds = 0.067
+clip_end_seconds = 1.067
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_mj06f"), SubResource("Resource_0eq6f"), SubResource("Resource_ysy68")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_ukpdc")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_73cn0"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_ssuaa"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_8fbv2"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_am2d7"]
+script = ExtResource("2_uc5xs")
+id = &"L-Sweep_light_R-Sweep_0"
+target = &"R-Sweep"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_hqki4"]
+script = ExtResource("2_uc5xs")
+id = &"L-Sweep_heavy_Storm@L-Sweep_1"
+input = &"heavy"
+target = &"Storm@L-Sweep"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_h1vag"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 0, -1.5)
+
+[sub_resource type="Resource" id="Resource_6gp1c"]
+script = ExtResource("1_tax1h")
+id = &"L-Sweep"
+display_name = "L-Sweep"
+animation = &"l_sweep"
+clip_start_seconds = 0.233
+clip_end_seconds = 1.233
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_73cn0"), SubResource("Resource_ssuaa"), SubResource("Resource_8fbv2")])
+edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_am2d7"), SubResource("Resource_hqki4")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_h1vag")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_urnne"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_6cupv"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_5fdw0"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_lu2w0"]
+script = ExtResource("2_uc5xs")
+id = &"Storm@Pass_light_L-Sweep_0"
+target = &"L-Sweep"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_qaryr"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 30
+heat = 20.0
+knockback = Vector3(0, 0, -6)
+reaction_kind = &"pushback"
+interrupts_armor = true
+feedback_cue_id = &"finisher"
+
+[sub_resource type="Resource" id="Resource_kmlsu"]
+script = ExtResource("1_tax1h")
+id = &"Storm@Pass"
+display_name = "Storm"
+animation = &"storm_pass"
+clip_start_seconds = 0.608
+clip_end_seconds = 1.608
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_urnne"), SubResource("Resource_6cupv"), SubResource("Resource_5fdw0")])
+edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_lu2w0")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_qaryr")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_e7noh"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_6f8qi"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_mxtt1"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_orf5o"]
+script = ExtResource("2_uc5xs")
+id = &"R-Sweep_light_L-Sweep_0"
+target = &"L-Sweep"
+input_window = Vector2i(10, 26)
+
+[sub_resource type="Resource" id="Resource_w165x"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 24
+heat = 20.0
+knockback = Vector3(0, 0, -1.5)
+
+[sub_resource type="Resource" id="Resource_q1tof"]
+script = ExtResource("1_tax1h")
+id = &"R-Sweep"
+display_name = "R-Sweep"
+animation = &"r_sweep"
+clip_end_seconds = 0.375
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_e7noh"), SubResource("Resource_6f8qi"), SubResource("Resource_mxtt1")])
+edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_orf5o")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_w165x")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_2hga1"]
+script = ExtResource("7_ri1yn")
+action = 2
+start_tick = 18
+end_tick = 28
+
+[sub_resource type="Resource" id="Resource_4xjf0"]
+script = ExtResource("7_ri1yn")
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_66nsk"]
+script = ExtResource("7_ri1yn")
+action = 4
+end_tick = 29
+
+[sub_resource type="Resource" id="Resource_oqg12"]
+script = ExtResource("3_18wm2")
+profile = &"primary"
+active_windows = Array[Vector2i]([Vector2i(8, 18)])
+active_ticks = Vector2i(8, 18)
+survive_transition = true
+refresh_ticks = PackedInt32Array()
+damage = 14.0
+stun_ticks = 30
+heat = 20.0
+knockback = Vector3(0, 0, -4)
+reaction_kind = &"slam"
+interrupts_armor = true
+feedback_cue_id = &"finisher"
+
+[sub_resource type="Resource" id="Resource_0ywue"]
+script = ExtResource("1_tax1h")
+id = &"Storm@L-Sweep"
+display_name = "Storm"
+animation = &"storm_l_sweep"
+clip_start_seconds = 0.608
+clip_end_seconds = 1.608
+input_window = Vector2i(10, 26)
+switch_window = Vector2i(18, 28)
+cancel_windows = Array[ExtResource("7_ri1yn")]([SubResource("Resource_2hga1"), SubResource("Resource_4xjf0"), SubResource("Resource_66nsk")])
+hit_specs = Array[ExtResource("3_18wm2")]([SubResource("Resource_oqg12")])
+magnetism = 0.35
+suspends_gravity = true
+
+[sub_resource type="Resource" id="Resource_ublm2"]
+script = ExtResource("2_uc5xs")
+id = &"rest_light_0"
+target = &"Swipe 1"
+
+[sub_resource type="Resource" id="Resource_ri1yn"]
+script = ExtResource("2_uc5xs")
+id = &"rest_heavy_Swipe 1"
+input = &"heavy"
+target = &"Swipe 1"
+
+[sub_resource type="Resource" id="Resource_mhyug"]
+script = ExtResource("4_ro0gy")
+schema_version = 1
+rest_edges = Array[ExtResource("2_uc5xs")]([SubResource("Resource_ublm2"), SubResource("Resource_ri1yn")])
+nodes = Array[ExtResource("1_tax1h")]([SubResource("Resource_odjv3"), SubResource("Resource_rmlce"), SubResource("Resource_j0ij8"), SubResource("Resource_rlak3"), SubResource("Resource_gh6ot"), SubResource("Resource_6gp1c"), SubResource("Resource_kmlsu"), SubResource("Resource_q1tof"), SubResource("Resource_0ywue")])
+
+[sub_resource type="Resource" id="HitboxProfile_primary"]
+script = ExtResource("hp_script")
+shape = 1
+radius = 0.6
+length = 1.8
+
+[sub_resource type="Resource" id="WeaponPoses_main"]
+script = ExtResource("wp_script")
+idle = &"SaberIdle"
+run = &"SaberRunning"
+jump_start = &"SaberJumpStart"
+jump_idle = &"SaberJumpIdle"
+jump_end = &"SaberJumpEnd"
+block = &"SaberParry"
+parry = &"SaberParrySuccess"
+hit = &"SaberHit1"
+equip = &"SaberChange"
+
+[resource]
+script = ExtResource("6_i1gls")
+id = &"saber"
+display_name = "Saber"
+scene = ExtResource("5_lyc7b")
+contact_profile = SubResource("WeaponContactProfile_saber")
+graph = SubResource("Resource_mhyug")
+hitbox_profiles = Dictionary[StringName, ExtResource("hp_script")]({
+&"primary": SubResource("HitboxProfile_primary")
+})
+character_scene = ExtResource("7_saber_rig")
+character_weapon_bone = &"DEF-hand.L"
+character_weapon_transform = Transform3D(0.07495024, -0.25218937, 1.0875684, 1.0916159, 0.24506763, -0.018401993, -0.23404963, 1.062245, 0.2624469, 0.0060128253, 0.067615345, 0.0635102)
+animation_aliases = Dictionary[StringName, StringName]({
+&"l_sweep": &"SaberLight4",
+&"pass": &"SaberLight3",
+&"r_sweep": &"SaberLight2",
+&"storm_l_sweep": &"SaberHeavy3",
+&"storm_pass": &"SaberHeavy3",
+&"swipe_1": &"SaberLight1",
+&"swipe_2": &"SaberLight2",
+&"swipe_rise": &"SaberHeavy2",
+&"up_slash": &"SaberHeavy1"
+})
+air_animation_aliases = Dictionary[StringName, StringName]({
+&"l_sweep": &"SaberJumpLight2",
+&"pass": &"SaberJumpLight1",
+&"r_sweep": &"SaberJumpLight1",
+&"storm_l_sweep": &"SaberJumpHeavy1",
+&"storm_pass": &"SaberJumpHeavy1",
+&"swipe_1": &"SaberJumpLight1",
+&"swipe_2": &"SaberJumpLight2",
+&"swipe_rise": &"SaberJumpHeavy1",
+&"up_slash": &"SaberJumpHeavy1"
+})
+poses = SubResource("WeaponPoses_main")
+fallback_animation = &"SaberLight1"
+trace_core_color = Color(0.969, 0.78, 1, 1)
+trace_edge_color = Color(0.874, 0.1, 1, 1)
+abilities = Array[ExtResource("ab_script")]([SubResource("ChargedProjectileAbility_plasma")])

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://Scripts/Style/style_feedback_tuning.gd" id="1"]
+[resource]
+script = ExtResource("1")
+pulse_up = 0.08
+pulse_down = 0.12
+award_hold = 1.0
+award_fade = 0.3
+damage_recover = 0.2
