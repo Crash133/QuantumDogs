@@ -4,19 +4,17 @@
 [ext_resource type="Script" path="res://Scripts/GameFeel/feedback_time_handler.gd" id="time"]
 [ext_resource type="Script" path="res://Scripts/GameFeel/feedback_camera_handler.gd" id="camera"]
 [ext_resource type="Script" path="res://Scripts/GameFeel/feedback_vfx_handler.gd" id="vfx"]
-[ext_resource type="Script" path="res://Scripts/GameFeel/feedback_audio_handler.gd" id="audio"]
 [ext_resource type="Script" path="res://Scripts/Presentation/attack_presentation_observer.gd" id="observer"]
 [ext_resource type="Resource" path="res://Resources/GameFeel/catalog.tres" id="catalog"]
 [ext_resource type="Resource" path="res://Resources/Presentation/Weapons/combat_attacks.tres" id="attacks"]
 
-[node name="FeedbackDirector" type="Node" node_paths=PackedStringArray("time_handler", "camera_handler", "vfx_handler", "audio_handler", "attack_observer")]
+[node name="FeedbackDirector" type="Node" node_paths=PackedStringArray("time_handler", "camera_handler", "vfx_handler", "attack_observer")]
 script = ExtResource("director")
 catalog = ExtResource("catalog")
 attack_catalog = ExtResource("attacks")
 time_handler = NodePath("TimeHandler")
 camera_handler = NodePath("CameraHandler")
 vfx_handler = NodePath("VfxHandler")
-audio_handler = NodePath("AudioHandler")
 attack_observer = NodePath("AttackObserver")
 
 [node name="TimeHandler" type="Node" parent="."]
@@ -27,9 +25,6 @@ script = ExtResource("camera")
 
 [node name="VfxHandler" type="Node" parent="."]
 script = ExtResource("vfx")
-
-[node name="AudioHandler" type="Node" parent="."]
-script = ExtResource("audio")
 
 [node name="AttackObserver" type="Node" parent="."]
 script = ExtResource("observer")

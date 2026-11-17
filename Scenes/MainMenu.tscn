@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_jix8l"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/menu.tscn" id="2_glbon"]
-[ext_resource type="PackedScene" path="res://ProtagonistLowPoly.glb" id="3_fu7sn"]
+[ext_resource type="PackedScene" path="res://Assets/FrontEndPrototype/ProtagonistLowPoly.glb" id="3_fu7sn"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/press_any_button.tscn" id="3_nlkkf"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/pause_menu.tscn" id="4_qe12f"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/combat_ui.tscn" id="5_nlkkf"]
-[ext_resource type="Texture2D" path="res://Lace/DefaultMaterial_BaseColor.1001.png" id="7_j5v2v"]
-[ext_resource type="Texture2D" path="res://Lace/DefaultMaterial_Emission.1001.png" id="8_iotk1"]
-[ext_resource type="Texture2D" path="res://Lace/DefaultMaterial_Metallic.1001.png" id="9_w44g7"]
-[ext_resource type="Texture2D" path="res://Lace/DefaultMaterial_Normal.1001.png" id="10_cm266"]
-[ext_resource type="Texture2D" path="res://Lace/DefaultMaterial_Roughness.1001.png" id="11_g8g3n"]
-[ext_resource type="PackedScene" path="res://Garage/scene.gltf" id="12_8u0te"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_BaseColor.1001.png" id="7_j5v2v"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Emission.1001.png" id="8_iotk1"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Metallic.1001.png" id="9_w44g7"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Normal.1001.png" id="10_cm266"]
+[ext_resource type="Texture2D" path="res://Assets/FrontEndPrototype/Lace/DefaultMaterial_Roughness.1001.png" id="11_g8g3n"]
+[ext_resource type="PackedScene" path="res://Assets/FrontEndPrototype/Garage/scene.gltf" id="12_8u0te"]
 
 [sub_resource type="Animation" id="Animation_fu7sn"]
 resource_name = "MenuIntro"

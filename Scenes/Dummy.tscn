@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://brp41fv6aauig"]
 
 [ext_resource type="Script" uid="uid://bbq0mq6kui6fu" path="res://Scripts/main.gd" id="1_7go7v"]
-[ext_resource type="Script" path="res://Scripts/Combat/hit_manager_node.gd" id="combat_hit_manager"]
 [ext_resource type="PackedScene" uid="uid://ds3ccfhhi7ys7" path="res://Scenes/Components/CameraRig.tscn" id="1_s2l5p"]
 [ext_resource type="PackedScene" uid="uid://c4hlloppwe5s0" path="res://Scenes/Components/Player.tscn" id="2_7go7v"]
 [ext_resource type="Script" uid="uid://hctnj3c78bhg" path="res://Scripts/health_component.gd" id="4_b43vc"]
@@ -13,13 +12,15 @@
 [ext_resource type="Script" uid="uid://t8sas17itcgl" path="res://Scripts/style.gd" id="10_v4tai"]
 [ext_resource type="Texture2D" uid="uid://dr5pxj732ghtd" path="res://Assets/Images/Style_Atlas_3.png" id="11_e6k8e"]
 [ext_resource type="FontFile" uid="uid://becnvgx254dim" path="res://Assets/Fonts/Rubik_Glitch/RubikGlitch-Regular.ttf" id="13_e6k8e"]
-[ext_resource type="Script" path="res://Scripts/Style/style_system.gd" id="style_system"]
-[ext_resource type="Resource" path="res://Resources/Style/style_tuning.tres" id="style_tuning"]
+[ext_resource type="Script" uid="uid://ciadcl8j7uiks" path="res://Scripts/Style/style_action_definition.gd" id="15_b2tv6"]
+[ext_resource type="Script" path="res://Scripts/Combat/hit_manager_node.gd" id="combat_hit_manager"]
+[ext_resource type="Resource" path="res://Resources/Style/action_combo_advance.tres" id="style_combo_advance"]
+[ext_resource type="Resource" path="res://Resources/Style/action_execution.tres" id="style_execution"]
 [ext_resource type="Resource" path="res://Resources/Style/action_hit.tres" id="style_hit"]
 [ext_resource type="Resource" path="res://Resources/Style/action_kill.tres" id="style_kill"]
-[ext_resource type="Resource" path="res://Resources/Style/action_combo_advance.tres" id="style_combo_advance"]
 [ext_resource type="Resource" path="res://Resources/Style/action_parry.tres" id="style_parry"]
-[ext_resource type="Resource" path="res://Resources/Style/action_execution.tres" id="style_execution"]
+[ext_resource type="Script" uid="uid://c3hrwlgh3k5ql" path="res://Scripts/Style/style_system.gd" id="style_system"]
+[ext_resource type="Resource" path="res://Resources/Style/style_tuning.tres" id="style_tuning"]
 [ext_resource type="Resource" path="res://Resources/Style/action_weapon_switch.tres" id="style_weapon_switch"]
 
 [sub_resource type="Curve" id="Curve_sepaq"]
@@ -79,10 +80,6 @@ atlas = ExtResource("11_e6k8e")
 [sub_resource type="AtlasTexture" id="AtlasTexture_5h11f"]
 atlas = SubResource("AtlasTexture_l40ec")
 region = Rect2(641, 40, 218, 206)
-
-[sub_resource type="Curve" id="Curve_v4tai"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.22140223, 0.12871289), 0.0, 0.0, 0, 0, Vector2(0.37269378, 0.52475256), 0.0, 0.0, 0, 0, Vector2(0.6457565, 0.9504951), 0.423658, 0.423658, 0, 0, Vector2(0.9889299, 1), 0.0, 0.0, 0, 0]
-point_count = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_urm7v"]
 font = ExtResource("13_e6k8e")
@@ -423,7 +420,7 @@ _data = {
 [node name="Dummy" type="Node3D" unique_id=1664004354]
 script = ExtResource("1_7go7v")
 
-[node name="HitManager" type="Node" parent="."]
+[node name="HitManager" type="Node" parent="." unique_id=1292231631]
 script = ExtResource("combat_hit_manager")
 
 [node name="Player" parent="." unique_id=1929478343 node_paths=PackedStringArray("camera_rig", "health") instance=ExtResource("2_7go7v")]
@@ -523,7 +520,6 @@ offset_transform_enabled = true
 texture = SubResource("AtlasTexture_5h11f")
 stretch_mode = 1
 script = ExtResource("10_v4tai")
-letter_spacing = 80.0
 
 [node name="RichTextLabel" type="Label" parent="Control/CenterContainer/VBoxContainer/H" unique_id=1122203457]
 visible = false
@@ -569,13 +565,13 @@ layout_mode = 2
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ActionList" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+[node name="ActionList" type="Label" parent="Control/CenterContainer/VBoxContainer" unique_id=1386342261]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="PayoutLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+[node name="PayoutLabel" type="Label" parent="Control/CenterContainer/VBoxContainer" unique_id=618279932]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -607,9 +603,9 @@ script = ExtResource("8_sepaq")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=328040570]
 libraries/ = SubResource("AnimationLibrary_f0mwc")
 
-[node name="StyleSystem" type="Node" parent="Control"]
+[node name="StyleSystem" type="Node" parent="Control" unique_id=1603443898]
 script = ExtResource("style_system")
-actions = [ExtResource("style_hit"), ExtResource("style_kill"), ExtResource("style_combo_advance"), ExtResource("style_parry"), ExtResource("style_execution"), ExtResource("style_weapon_switch")]
+actions = Array[ExtResource("15_b2tv6")]([ExtResource("style_hit"), ExtResource("style_kill"), ExtResource("style_combo_advance"), ExtResource("style_parry"), ExtResource("style_execution"), ExtResource("style_weapon_switch")])
 tuning = ExtResource("style_tuning")
 
 [connection signal="health_changed" from="Player/HealthComponent" to="Control/VBoxContainer/MarginContainer/ProgressBar" method="_on_health_component_health_changed"]

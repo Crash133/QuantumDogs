@@ -2,7 +2,7 @@ class_name FeedbackDirector
 extends Node
 
 ## Run-scoped adapter from resolved Combat, Enemy and Style signals to typed
-## FeedbackRequests, routed to separate time, camera, VFX and audio handlers.
+## FeedbackRequests, routed to separate time, camera and VFX handlers.
 ## It is presentation only: it cannot deal damage, award Style Points, change
 ## spawns, or own Style rank animation. Every handler runs independently, so a
 ## missing asset in one never suppresses the others.
@@ -21,7 +21,6 @@ extends Node
 @export var time_handler: FeedbackTimeHandler
 @export var camera_handler: FeedbackCameraHandler
 @export var vfx_handler: FeedbackVfxHandler
-@export var audio_handler: FeedbackAudioHandler
 @export var attack_observer: AttackPresentationObserver
 
 @export_group("Tuning")
@@ -60,7 +59,7 @@ func recent_cues() -> Array[StringName]:
 	return _recent
 
 func stats() -> Dictionary:
-	return {&"requests": _requests, &"handled": _handled, &"vfx": vfx_handler.stats() if vfx_handler != null else {}, &"audio": audio_handler.stats() if audio_handler != null else {}}
+	return {&"requests": _requests, &"handled": _handled, &"vfx": vfx_handler.stats() if vfx_handler != null else {}}
 
 ## Routes one request to the handlers. Returns true when any handler acted.
 func request(feedback: FeedbackRequest, channels: Dictionary = {}) -> bool:
@@ -80,8 +79,6 @@ func request(feedback: FeedbackRequest, channels: Dictionary = {}) -> bool:
 		acted = camera_handler.apply(profile.camera_trauma * clampf(feedback.potency, 0.25, 1.0), feedback.correlation_key) or acted
 	if (all_channels or bool(channels.get(&"vfx", false))) and vfx_handler != null:
 		acted = vfx_handler.play(feedback, profile) or acted
-	if (all_channels or bool(channels.get(&"audio", false))) and audio_handler != null:
-		acted = audio_handler.play(feedback, profile) or acted
 	_remember(feedback.cue_id)
 	_handled += 1
 	return acted
@@ -89,8 +86,6 @@ func request(feedback: FeedbackRequest, channels: Dictionary = {}) -> bool:
 func bind_world(world: Node3D) -> void:
 	if vfx_handler != null:
 		vfx_handler.bind(world)
-	if audio_handler != null:
-		audio_handler.bind(world)
 
 func bind_camera(rig: CameraRig) -> void:
 	if camera_handler != null:
@@ -182,8 +177,6 @@ func clear_level() -> void:
 		attack_observer.clear()
 	if vfx_handler != null:
 		vfx_handler.clear_level()
-	if audio_handler != null:
-		audio_handler.clear_level()
 	if time_handler != null:
 		time_handler.clear()
 
@@ -200,7 +193,6 @@ func _exit_tree() -> void:
 func _combat_links() -> Array:
 	return [
 		[&"hit_landed", _on_hit_landed],
-		[&"parried", _on_parried],
 		[&"parry_contact_presented", _on_parry_contact_presented],
 		[&"executed", _on_executed],
 		[&"blocked", _on_blocked],
@@ -256,15 +248,6 @@ func _request_defeat(hit: HitData, target: Object) -> void:
 	feedback.direction = hit.reaction_direction
 	feedback.correlation_key = StringName("defeat:%d" % target.get_instance_id())
 	request(feedback)
-
-func _on_parried(parrier: Variant, attacker: Variant) -> void:
-	var feedback := _new_request(&"parry")
-	feedback.source = parrier if _live(parrier) else null
-	feedback.target = attacker if _live(attacker) else (parrier if _live(parrier) else null)
-	feedback.correlation_key = StringName("parry:%d" % Engine.get_physics_frames())
-	# Confirmed defense keeps its immediate sound. Contact particles and camera
-	# shake are emitted later by the dedicated presentation event.
-	request(feedback, {&"audio": true})
 
 func _on_parry_contact_presented(action_id: int, world_point: Vector3) -> void:
 	if not world_point.is_finite():
@@ -334,7 +317,7 @@ func _on_swing_started(correlation_key: StringName, pose: Transform3D, _profile_
 	feedback.variant_id = weapon.id
 	feedback.weapon_id = weapon.id
 	feedback.correlation_key = correlation_key
-	feedback.set_world_position(pose.origin) # Audio and fallback effects share the actual hitbox center.
+	feedback.set_world_position(pose.origin) # Fallback effects use the actual hitbox center.
 	feedback.set_world_transform(pose)
 	feedback.direction = -pose.basis.z
 	feedback.visual = {
