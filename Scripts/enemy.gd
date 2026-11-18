@@ -95,6 +95,10 @@ func setup(new_definition: EnemyDefinition, player_node: Node3D, difficulty: Dic
 	if is_inside_tree():
 		_apply_definition()
 
+## HitResolver reads this on the attacker: x scales damage by level depth, y leaves Heat unchanged.
+func get_outgoing_hit_multipliers(_weapon_id: StringName) -> Vector2:
+	return Vector2(float(difficulty_snapshot.get("damage_multiplier", 1.0)), 1.0)
+
 func _apply_definition() -> void:
 	if definition == null:
 		return

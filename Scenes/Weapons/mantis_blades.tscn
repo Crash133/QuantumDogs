@@ -4,8 +4,6 @@
 [ext_resource type="Material" path="res://Resources/Materials/mantis_blades.tres" id="2_mat"]
 [ext_resource type="Script" uid="uid://cmtg8mme057p7" path="res://Scripts/Combat/weapon_unit.gd" id="3_unit"]
 [ext_resource type="Script" uid="uid://c4inwedy701rb" path="res://Scripts/Combat/weapon_hitbox_marker.gd" id="4_marker"]
-[ext_resource type="ArrayMesh" path="res://Assets/Objects/Exports/CombatWeapons/mantis_blade_left.res" id="5_left"]
-[ext_resource type="ArrayMesh" path="res://Assets/Objects/Exports/CombatWeapons/mantis_blade_right.res" id="6_right"]
 
 [node name="MantisBlades" type="Node3D" unique_id=1396179189]
 
@@ -23,17 +21,17 @@ orientation_guide = NodePath("OrientationGuide")
 
 [node name="UnitMesh" type="MeshInstance3D" parent="LeftUnit" unique_id=1450554681]
 material_override = ExtResource("2_mat")
-mesh = ExtResource("5_left")
+mesh = ExtResource("1_mesh")
 
 [node name="Grip" type="Node3D" parent="LeftUnit" unique_id=536238762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0468765, -0.007281, 0)
 
 [node name="Tip" type="Node3D" parent="LeftUnit" unique_id=1274143371]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0468765, 0.268717, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0256855, 0.585, 0)
 
 [node name="OrientationGuide" type="Node3D" parent="LeftUnit"]
 [node name="PrimaryHitboxLeft" type="Node3D" parent="LeftUnit" unique_id=613711448]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052, 0.15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041, 0.3, 0)
 script = ExtResource("4_marker")
 marker_id = &"primary_left"
 
@@ -47,7 +45,7 @@ orientation_guide = NodePath("OrientationGuide")
 [node name="UnitMesh" type="MeshInstance3D" parent="RightUnit" unique_id=1556821666]
 visible = false
 material_override = ExtResource("2_mat")
-mesh = ExtResource("6_right")
+mesh = ExtResource("1_mesh")
 
 [node name="Grip" type="Node3D" parent="RightUnit" unique_id=2092979975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0256855, -0.065, 0)

@@ -327,7 +327,7 @@ func _preflight_level_activation(result: Resource, next: StageContext, build: Co
 			errors.append("Generated spawn anchor is invalid or outside its arena root")
 			continue
 		anchors.append(anchor)
-	var difficulty := _difficulty_adapter.normalize(next.difficulty_parameters)
+	var difficulty := _difficulty_adapter.normalize(next.difficulty_parameters, next.ascent_depth)
 	for diagnostic in difficulty.get("diagnostics", PackedStringArray()):
 		push_warning("Difficulty adapter: " + diagnostic)
 	if not difficulty.get("ok", false):

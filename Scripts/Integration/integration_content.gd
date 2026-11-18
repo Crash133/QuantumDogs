@@ -13,13 +13,13 @@ const PROFILES_BY_BAND := {
 	&"Medium": ["column_corridor", "coliseum", "balcony"],
 	&"Hard": ["square_funnel", "coliseum", "column_corridor"],
 }
-## Horde sizes per band. Levels 1-2 (Easy) are 50-80, then Normal 300-400 with
-## 5% elites and Hard 500 with 15% elites; a band never grows with depth.
+## Horde sizes per band, never above 100. Levels 1-2 (Easy) are 50-80, then Normal
+## 90-100 with 5% elites and Hard 100 with 15% elites; a band never grows with depth.
 ## RunController.active_enemy_cap keeps ~20 alive at once.
 const TOTALS_BY_BAND := {
 	&"Easy": [50, 65, 80],
-	&"Medium": [300, 350, 400],
-	&"Hard": [500],
+	&"Medium": [90, 95, 100],
+	&"Hard": [100],
 }
 const ELITE_SHARE_BY_BAND := {&"Easy": 0.0, &"Medium": 0.05, &"Hard": 0.15}
 const DRONE_SHARE := 0.2
@@ -41,7 +41,7 @@ static func make_catalog() -> ProgressionCatalog:
 			encounters[key] = TOTALS_BY_BAND[band].map(func(total: int) -> EncounterDefinition: return make_encounter(band, total))
 	catalog.arena_profiles = profiles
 	catalog.encounters = encounters
-	catalog.checkpoint_compatibility_id = &"integration-content-v1"
+	catalog.checkpoint_compatibility_id = &"integration-content-v2"
 	return catalog
 
 static func make_encounter(band: StringName, total: int = 0) -> EncounterDefinition:

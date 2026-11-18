@@ -31,7 +31,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/combat_native_builder/plugin.cfg")
+enabled=PackedStringArray("res://addons/combat_native_builder/plugin.cfg", "res://addons/godot_mcp/plugin.cfg")
 
 [file_customization]
 
